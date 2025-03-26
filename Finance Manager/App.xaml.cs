@@ -3,6 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Finance_Manager.ViewModels;
 using System.Windows;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace Finance_Manager
 {
@@ -12,6 +14,7 @@ namespace Finance_Manager
     public partial class App : Application
     {
         public static IServiceProvider ServiceProvider { get; private set; }
+        public static IConfiguration Config { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -25,7 +28,12 @@ namespace Finance_Manager
 
         private void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = "Server=localhost;Database=FinanceManagerDB;Integrated Security=True;";
+            Config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            string? connectionString = Config.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString));
