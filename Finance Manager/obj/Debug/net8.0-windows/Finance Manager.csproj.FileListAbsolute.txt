@@ -22,10 +22,16 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.EntityFrameworkCore.SqlServer.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Memory.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.FileExtensions.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Json.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyModel.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.FileProviders.Abstractions.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.FileProviders.Physical.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.FileSystemGlobbing.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
@@ -138,6 +144,7 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.AssemblyInfoInputs.cache
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.AssemblyInfo.cs
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.csproj.CoreCompileInputs.cache
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.sourcelink.json
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance .EEDB9F32.Up2Date
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\refint\Finance Manager.dll
