@@ -9,12 +9,16 @@ public class Transaction : INotifyPropertyChanged
     private string _name = string.Empty;
     private decimal _price;
     private Category _category = new();
-    private Category _innerCategory = new();
-    private DateTime _date = DateTime.Now;
+    private Category? _innerCategory = new();    
     private string _photo = string.Empty;
 
-    public int Id;
-    public int UserId;
+    public int Id { get; set; }
+    public int CategoryId { get; set; }
+    public int? InnerCategoryId { get; set; }
+    public int UserId { get; set; }
+    public User user { get; set; } = new();
+
+    public DateTime Date { get; set; } = DateTime.Now;
 
     public string Name
     {
@@ -55,7 +59,7 @@ public class Transaction : INotifyPropertyChanged
         }
     }
 
-    public Category InnerCategory
+    public Category? InnerCategory
     {
         get => _innerCategory;
         set
@@ -63,19 +67,6 @@ public class Transaction : INotifyPropertyChanged
             if (_innerCategory != value)
             {
                 _innerCategory = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-    public DateTime Date
-    {
-        get => _date;
-        set
-        {
-            if (_date != value)
-            {
-                _date = value;
                 OnPropertyChanged();
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Finance_Manager.Models;
@@ -8,10 +9,10 @@ public class User : INotifyPropertyChanged
     private string _email = string.Empty;
     private string _password = string.Empty;
     private decimal _balance;
-    private List<Transaction> _spendings = new();
-    private List<Saving> _savings = new();
+    private ObservableCollection<Transaction> _transactions = new();
+    private ObservableCollection<Saving> _savings = new();
 
-    public int Id;
+    public int Id { get; set; }
 
     public string Email
     {
@@ -52,20 +53,20 @@ public class User : INotifyPropertyChanged
         }
     }
 
-    public List<Transaction> Spendings
+    public ObservableCollection<Transaction> Transactions
     {
-        get => _spendings;
+        get => _transactions;
         set
         {
-            if (_spendings != value)
+            if (_transactions != value)
             {
-                _spendings = value;
+                _transactions = value;
                 OnPropertyChanged();
             }
         }
     }
 
-    public List<Saving> Savings
+    public ObservableCollection<Saving> Savings
     {
         get => _savings;
         set

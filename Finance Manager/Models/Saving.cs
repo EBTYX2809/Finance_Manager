@@ -8,9 +8,11 @@ public class Saving : INotifyPropertyChanged
 {
     private string _name = string.Empty;
     private decimal _goal;
-    private decimal _currentAmount;
+    private decimal? _currentAmount;
 
-    public int Id;
+    public int Id { get; set; }
+    public int UserId { get; set; }
+    public User user { get; set; } = new();
 
     public string Name
     {
@@ -38,7 +40,7 @@ public class Saving : INotifyPropertyChanged
         }
     }
 
-    public decimal CurrentAmount
+    public decimal? CurrentAmount
     {
         get => _currentAmount;
         set
