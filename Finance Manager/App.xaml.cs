@@ -1,10 +1,12 @@
 ﻿using Finance_Manager.DataBase;
-using Microsoft.Extensions.DependencyInjection;
+using Finance_Manager.Views;
 using Finance_Manager.ViewModels;
-using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Windows;
 using System.IO;
+using Finance_Manager.Models;
 
 namespace Finance_Manager
 {
@@ -38,6 +40,8 @@ namespace Finance_Manager
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
+            services.AddSingleton<UserSession>();
+
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<TransactionsViewModel>();
             services.AddSingleton<AnalyticsViewModel>();
@@ -45,6 +49,7 @@ namespace Finance_Manager
             services.AddSingleton<PlanningViewModel>();
             services.AddSingleton<SettingsViewModel>();
 
+            services.AddSingleton<LoginWindow>();
             services.AddSingleton<MainWindow>();
         }      
     }

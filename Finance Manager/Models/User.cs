@@ -7,12 +7,13 @@ namespace Finance_Manager.Models;
 public class User : INotifyPropertyChanged
 {
     private string _email = string.Empty;
-    private string _password = string.Empty;
+    private string _passwordHash = string.Empty;
     private decimal _balance;
     private ObservableCollection<Transaction> _transactions = new();
     private ObservableCollection<Saving> _savings = new();
 
     public int Id { get; set; }
+    public string Salt { get; set; } = string.Empty;
 
     public string Email
     {
@@ -27,14 +28,14 @@ public class User : INotifyPropertyChanged
         }
     }
 
-    public string Password
+    public string PasswordHash
     {
-        get => _password;
+        get => _passwordHash;
         set
         {
-            if (_password != value)
+            if (_passwordHash != value)
             {
-                _password = value;
+                _passwordHash = value;
                 OnPropertyChanged();
             }
         }

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\App.xaml
-11407045341
-
-24-1510129548
+2-1457342498
+11413424753
+301062124421
 234417120747
-MainWindow.xaml;
+Views\LoginWindow.xaml;Views\MainWindow.xaml;
 
 False
 

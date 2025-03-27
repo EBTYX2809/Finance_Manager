@@ -24,9 +24,15 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(50)
             .HasColumnName("email");
 
-        builder.Property(u => u.Password)
+        builder.Property(u => u.PasswordHash)
             .IsRequired()
-            .HasColumnName("password");
+            .HasMaxLength(50)
+            .HasColumnName("password_hash");
+
+        builder.Property(u => u.Salt)
+            .IsRequired()
+            .HasMaxLength(30)
+            .HasColumnName("salt");
 
         builder.Property(u => u.Balance)
             .IsRequired()

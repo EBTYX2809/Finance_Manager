@@ -21,12 +21,4 @@ public class AppDbContext : DbContext
 
         base.OnModelCreating(modelBuilder);
     }
-
-    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=FinanceManagerDB;Integrated Security=True;");
-        }
-    }*/
 }

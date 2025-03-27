@@ -134,11 +134,9 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.csproj.AssemblyReference.cache
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\MainWindow.g.cs
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\App.g.cs
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager_MarkupCompile.cache
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager_MarkupCompile.lref
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\MainWindow.baml
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.g.resources
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.GeneratedMSBuildEditorConfig.editorconfig
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.AssemblyInfoInputs.cache
@@ -151,3 +149,9 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.pdb
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager.genruntimeconfig.cache
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\ref\Finance Manager.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\appsettings.json
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Views\LoginWindow.g.cs
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Views\MainWindow.g.cs
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager_Content.g.cs
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Views\LoginWindow.baml
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Views\MainWindow.baml
