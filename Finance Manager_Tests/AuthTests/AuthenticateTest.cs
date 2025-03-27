@@ -1,0 +1,50 @@
+﻿using Xunit;
+using Finance_Manager.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace Finance_Manager_Tests.AuthTests;
+
+public class AuthenticateTest
+{
+    [Fact]
+    public async void AuthenticateUserFromDataBase_Test()
+    {
+        // Arrange
+        using var dbContext = TestDbContext.Create();
+
+        var authSevice = new AuthService(dbContext);
+
+        string email = "test@example.com";
+        string password = "qwerty";
+
+        // Act
+        await authSevice.RegisterUserAsync(email, password);
+        var user = await authSevice.AuthenticateUserAsync(email, password);
+
+        // Assert
+        Assert.NotNull(user);        
+        Assert.Equal(email, user.Email);
+        Assert.NotNull(user.PasswordHash);
+        Assert.NotNull(user.Salt);
+        Console.WriteLine($"Generated password: {user.PasswordHash}. Salt: {user.Salt}.");
+    }
+
+    [Fact]
+    public async void AuthenticateUserWithInvalidPasswordFromDataBase_Test()
+    {
+        // Arrange
+        using var dbContext = TestDbContext.Create();
+
+        var authSevice = new AuthService(dbContext);
+
+        string email = "test@example.com";
+        string password = "qwerty";
+
+        // Act
+        await authSevice.RegisterUserAsync(email, password);
+        var user = await authSevice.AuthenticateUserAsync(email, "invalid");
+
+        // Assert
+        Assert.Null(user);
+    }
+}
