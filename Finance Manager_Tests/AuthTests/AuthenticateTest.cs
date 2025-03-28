@@ -6,6 +6,9 @@ namespace Finance_Manager_Tests.AuthTests;
 
 public class AuthenticateTest
 {
+    private readonly string email = "test@example.com";
+    private readonly string password = "qwerty";
+
     [Fact]
     public async void AuthenticateUserFromDataBase_Test()
     {
@@ -13,9 +16,6 @@ public class AuthenticateTest
         using var dbContext = TestDbContext.Create();
 
         var authSevice = new AuthService(dbContext);
-
-        string email = "test@example.com";
-        string password = "qwerty";
 
         // Act
         await authSevice.RegisterUserAsync(email, password);
@@ -36,9 +36,6 @@ public class AuthenticateTest
         using var dbContext = TestDbContext.Create();
 
         var authSevice = new AuthService(dbContext);
-
-        string email = "test@example.com";
-        string password = "qwerty";
 
         // Act
         await authSevice.RegisterUserAsync(email, password);

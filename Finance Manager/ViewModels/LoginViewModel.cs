@@ -16,11 +16,11 @@ public class LoginViewModel : INotifyPropertyChanged
     public string Email
     {
         get => _email;
-        set 
+        set
         {
-            if(value != _email)
+            if (value != _email)
             {
-                _email = value; 
+                _email = value;
                 OnPropertyChanged(nameof(Email));
             }
         }
@@ -30,25 +30,25 @@ public class LoginViewModel : INotifyPropertyChanged
     public string Password
     {
         get => _password;
-        set 
+        set
         {
-            if (value != _password) 
+            if (value != _password)
             {
-                _password = value; 
+                _password = value;
                 OnPropertyChanged(nameof(Password));
             }
         }
     }
 
-    private bool _isRegisterButtonVisible;
-    public bool IsRegisterButtonVisible
+    private bool _saveCredentials;
+    public bool SaveCredentials
     {
-        get => _isRegisterButtonVisible;
+        get => _saveCredentials;
         set
         {
-            if (value != _isRegisterButtonVisible)
+            if (value != _saveCredentials)
             {
-                _isRegisterButtonVisible = value;
+                _saveCredentials = value;
             }
         }
     }
@@ -66,27 +66,23 @@ public class LoginViewModel : INotifyPropertyChanged
 
     private void LoginCheck()
     {
-        string[] credentials = []; // Взять из компа
-        if (credentials != null)
-        {
-            Email = credentials[0];
-            Password = credentials[1];
-            IsRegisterButtonVisible = false;
-        }
-        else IsRegisterButtonVisible = true;       
+        var (email, password) = _authService.LoadCredentials();
+        Email = email;
+        Password = password;
     }
 
     private async void LoginAsync(object parameter)
     {
-        if(parameter is string type) // Передать в параметрах команды
+        if (parameter is string type) // Передать в параметрах команды
         {
             if (type == "auth")
             {
                 _userSession.CurrentUser = await _authService.AuthenticateUserAsync(Email, Password);
             }
-            else if(type == "reg")
+            else if (type == "reg")
             {
                 _userSession.CurrentUser = await _authService.RegisterUserAsync(Email, Password);
+                if(SaveCredentials) await _authService.SaveCredentials(Email, Password);
             }
         }
 

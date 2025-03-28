@@ -155,3 +155,4 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Finance Manager_Content.g.cs
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Views\LoginWindow.baml
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\obj\Debug\net8.0-windows\Views\MainWindow.baml
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\bin\Debug\net8.0-windows\Newtonsoft.Json.dll

@@ -6,6 +6,9 @@ namespace Finance_Manager_Tests.AuthTests;
 
 public class RegisterTest
 {
+    private readonly string email = "test@example.com";
+    private readonly string password = "qwerty";
+
     [Fact]
     public async void RegisterUserInDataBase_Test()
     {
@@ -13,9 +16,6 @@ public class RegisterTest
         using var dbContext = TestDbContext.Create();
 
         var authSevice = new AuthService(dbContext);
-
-        string email = "test@example.com";
-        string password = "qwerty";
 
         // Act
         await authSevice.RegisterUserAsync(email, password);
@@ -26,5 +26,21 @@ public class RegisterTest
         Assert.Equal(email, user.Email);
         Assert.NotNull(user.PasswordHash);
         Assert.NotNull(user.Salt);
+    }
+
+    [Fact]
+    public async void RegisterUserInDataBaseWithExistedEmail_Test()
+    {
+        // Arrange
+        using var dbContext = TestDbContext.Create();
+
+        var authSevice = new AuthService(dbContext);
+
+        // Act
+        await authSevice.RegisterUserAsync(email, password);
+        var user = await authSevice.RegisterUserAsync(email, "new password");
+
+        // Assert
+        Assert.Null(user);
     }
 }
