@@ -11,6 +11,7 @@ public class LoginViewModel : INotifyPropertyChanged
 {
     private readonly UserSession _userSession;
     private readonly AuthService _authService;
+    private readonly GoogleAuthServise _googleAuthServise;
 
     private string _email;
     public string Email
@@ -54,10 +55,11 @@ public class LoginViewModel : INotifyPropertyChanged
     }
 
     public ICommand LoginCommand { get; set; }
-    public LoginViewModel(UserSession userSession, AuthService authService)
+    public LoginViewModel(UserSession userSession, AuthService authService, GoogleAuthServise googleAuthServise)
     {
         _userSession = userSession;
         _authService = authService;
+        _googleAuthServise = googleAuthServise;
 
         LoginCommand = new RelayCommand(LoginAsync);
 

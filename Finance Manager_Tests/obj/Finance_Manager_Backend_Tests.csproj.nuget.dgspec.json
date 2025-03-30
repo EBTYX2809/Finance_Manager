@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager_Tests\\Finance Manager_Tests.csproj": {}
+    "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager_Tests\\Finance_Manager_Backend_Tests.csproj": {}
   },
   "projects": {
     "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\Finance_Manager_Backend.csproj": {
@@ -113,12 +113,12 @@
         }
       }
     },
-    "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager_Tests\\Finance Manager_Tests.csproj": {
+    "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager_Tests\\Finance_Manager_Backend_Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager_Tests\\Finance Manager_Tests.csproj",
-        "projectName": "Finance Manager_Tests",
-        "projectPath": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager_Tests\\Finance Manager_Tests.csproj",
+        "projectUniqueName": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager_Tests\\Finance_Manager_Backend_Tests.csproj",
+        "projectName": "Finance_Manager_Backend_Tests",
+        "projectPath": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager_Tests\\Finance_Manager_Backend_Tests.csproj",
         "packagesPath": "C:\\Users\\ebtyx\\.nuget\\packages\\",
         "outputPath": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager_Tests\\obj\\",
         "projectStyle": "PackageReference",

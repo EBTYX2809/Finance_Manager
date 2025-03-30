@@ -1,4 +1,4 @@
-﻿Finance Manager
+﻿Finance_Manager_Beckend
 1.0.0.0
 
 winexe
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance Manager\Finance Manager\App.xaml
 2-1457342498
 11413424753
-33-1586024182
+331395084403
 239201996457
 Views\LoginWindow.xaml;Views\MainWindow.xaml;
 
-False
+True
 

@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\Finance Manager.csproj": {}
+    "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\Finance_Manager_Beckend.csproj": {}
   },
   "projects": {
-    "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\Finance Manager.csproj": {
+    "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\Finance_Manager_Beckend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\Finance Manager.csproj",
-        "projectName": "Finance Manager",
-        "projectPath": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\Finance Manager.csproj",
+        "projectUniqueName": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\Finance_Manager_Beckend.csproj",
+        "projectName": "Finance_Manager_Beckend",
+        "projectPath": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\Finance_Manager_Beckend.csproj",
         "packagesPath": "C:\\Users\\ebtyx\\.nuget\\packages\\",
         "outputPath": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance Manager\\Finance Manager\\obj\\",
         "projectStyle": "PackageReference",
