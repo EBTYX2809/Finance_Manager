@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Finance_Manager.DataBase;
+using Finance_Manager_Backend.DataBase;
 
-namespace Finance_Manager_Tests.AuthTests;
+namespace Finance_Manager_Backend_Tests.AuthTests;
 
 public static class TestDbContext
 {    

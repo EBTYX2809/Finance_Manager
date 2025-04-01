@@ -2,12 +2,12 @@
 using System.Windows;
 using System.IO;
 using Newtonsoft.Json.Linq;
-using Finance_Manager.DataBase;
+using Finance_Manager_Backend.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 
-namespace Finance_Manager.Models;
+namespace Finance_Manager_Backend.Models;
 
 public class AuthService
 {
@@ -50,7 +50,7 @@ public class AuthService
         var userCheck = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
         if (userCheck != null)
         {
-            MessageBox.Show("Error, this email already registered.");
+            //MessageBox.Show("Error, this email already registered.");
             return null;
         }
 
@@ -69,7 +69,7 @@ public class AuthService
         var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
         if (user == null)
         {
-            MessageBox.Show("Error, user not found.");
+            //MessageBox.Show("Error, user not found.");
             return null;
         }
 
@@ -81,7 +81,7 @@ public class AuthService
         }
         else
         {
-            MessageBox.Show("Invalid email or password. Please try again.");
+            //MessageBox.Show("Invalid email or password. Please try again.");
             return null;
         }
     }

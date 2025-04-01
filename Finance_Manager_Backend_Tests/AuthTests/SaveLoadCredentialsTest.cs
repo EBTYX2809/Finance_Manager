@@ -1,8 +1,8 @@
-﻿using Finance_Manager.Models;
+﻿using Finance_Manager_Backend.Models;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 
-namespace Finance_Manager_Tests.AuthTests;
+namespace Finance_Manager_Backend_Tests.AuthTests;
 
 public class SaveLoadCredentialsTest : IDisposable
 {

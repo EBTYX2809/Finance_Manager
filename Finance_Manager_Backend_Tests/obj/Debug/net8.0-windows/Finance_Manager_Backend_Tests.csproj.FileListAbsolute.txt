@@ -166,3 +166,16 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\obj\Debug\net8.0-windows\Finance_Manager_Backend_Tests.pdb
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\obj\Debug\net8.0-windows\Finance_Manager_Backend_Tests.genruntimeconfig.cache
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\obj\Debug\net8.0-windows\ref\Finance_Manager_Backend_Tests.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Microsoft.Win32.SystemEvents.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\System.CodeDom.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\System.Configuration.ConfigurationManager.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\System.Drawing.Common.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\System.Security.Cryptography.ProtectedData.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\System.Security.Permissions.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\System.Windows.Extensions.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Finance_Manager_Backend.staticwebassets.endpoints.json

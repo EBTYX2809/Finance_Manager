@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Finance_Manager.Migrations
+namespace Finance_Manager_Backend.Migrations
 {
     /// <inheritdoc />
     public partial class InitializeDb : Migration

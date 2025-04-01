@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace Finance_Manager.DataBase;
+namespace Finance_Manager_Backend.DataBase;
 
 public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 {

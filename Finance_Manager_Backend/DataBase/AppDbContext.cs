@@ -1,8 +1,8 @@
-﻿using Finance_Manager.Configurations;
-using Finance_Manager.Models;
+﻿using Finance_Manager_Backend.Configurations;
+using Finance_Manager_Backend.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Finance_Manager.DataBase;
+namespace Finance_Manager_Backend.DataBase;
 
 public class AppDbContext : DbContext
 {

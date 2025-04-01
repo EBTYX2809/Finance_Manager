@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Finance_Manager.Models
+namespace Finance_Manager_Backend.Models
 {
     public class UserSession : INotifyPropertyChanged
     {

@@ -1,11 +1,11 @@
-﻿using Finance_Manager.DataBase;
+﻿using Finance_Manager_Backend.DataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Finance_Manager.Models;
+namespace Finance_Manager_Backend.Models;
 
 public class GoogleAuthServise
 {

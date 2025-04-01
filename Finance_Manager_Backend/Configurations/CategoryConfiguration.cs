@@ -1,8 +1,8 @@
-﻿using Finance_Manager.Models;
+﻿using Finance_Manager_Backend.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
-namespace Finance_Manager.Configurations;
+namespace Finance_Manager_Backend.Configurations;
 
 public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
