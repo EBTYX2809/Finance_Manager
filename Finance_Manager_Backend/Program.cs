@@ -1,64 +1,38 @@
-using System;
-using System.IO;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Finance_Manager_Backend.DataBase;
-using Finance_Manager_Backend.Models;
 
 public class Program
-{
-    public static IServiceProvider ServiceProvider { get; private set; }
-    public static IConfiguration Config { get; private set; }
-    
+{    
     public static void Main()
-    {
-        var services = new ServiceCollection();
-        ConfigureServices(services);
-        ServiceProvider = services.BuildServiceProvider();
-
-        //        
-
-        var app = CreateWebApplication(services);
-
-        app.Run();
-
-        //
-
-        Console.WriteLine("It's all good man.");
-    }
-
-    private static void ConfigureServices(IServiceCollection services)
-    {
-        Config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .Build();
-
-        string? connectionString = Config.GetConnectionString("DefaultConnection");
-        
-        services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(connectionString));
-
-        services.AddSingleton<UserSession>();
-    }
-    
-    private static WebApplication CreateWebApplication(IServiceCollection services)
     {
         var builder = WebApplication.CreateBuilder();
 
-        foreach(var service in services)
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        /*builder.WebHost.ConfigureKestrel(serverOptions =>
         {
-            builder.Services.Add(service);
-        }
+            serverOptions.Listen(System.Net.IPAddress.Any, 18090);       // http://0.0.0.0:18090
+        });*/
 
         var app = builder.Build();
 
-        // Настройка middleware
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
         app.UseHttpsRedirection();
         //app.UseAuthorization();
-        //app.MapControllers();
+        app.MapControllers();
 
-        return app;
-    }
+        app.Run();
+
+        Console.WriteLine("It's all good man.");
+    }  
 }
