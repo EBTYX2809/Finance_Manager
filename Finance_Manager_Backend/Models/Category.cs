@@ -8,7 +8,5 @@ public class Category
     public string ColorForBackground { get; set; } = string.Empty;
     public int? ParentCategoryId { get; set; }
     public List<Category>? InnerCategories { get; set; } 
-
-    // Навигационные свойства для связи
     public Category? ParentCategory { get; set; }
 }
