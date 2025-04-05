@@ -32,7 +32,7 @@ public class SavingConfiguration : IEntityTypeConfiguration<Saving>
             .HasColumnType("decimal(10,2)")            
             .HasColumnName("current_amount");
 
-        builder.HasOne(s => s.user)
+        builder.HasOne(s => s.User)
             .WithMany(u => u.Savings)
             .HasForeignKey(s => s.UserId)
             .OnDelete(DeleteBehavior.Cascade);

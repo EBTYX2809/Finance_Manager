@@ -51,7 +51,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             .IsRequired(false)
             .HasColumnName("inner_category_fk");
 
-        builder.HasOne(t => t.user)
+        builder.HasOne(t => t.User)
             .WithMany(u => u.Transactions)
             .HasForeignKey(t => t.UserId)
             .OnDelete(DeleteBehavior.Cascade);

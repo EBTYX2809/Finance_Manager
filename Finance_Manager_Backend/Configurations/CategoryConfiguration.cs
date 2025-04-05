@@ -22,6 +22,10 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
             .HasMaxLength(50)
             .HasColumnName("name");
 
+        builder.Property(c => c.IsIncome)
+            .IsRequired()
+            .HasColumnName("is_income");
+
         builder.Property(c => c.Icon)
             .IsRequired()
             .HasMaxLength(100)
