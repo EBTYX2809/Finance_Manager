@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "ContainingType": "Finance_Manager_Backend.Controllers.TestAPI",
+    "Method": "HelloWorld",
+    "RelativePath": "api/test",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]
