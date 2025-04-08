@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Finance_Manager_Backend.DataBase;
 using Serilog;
 using Finance_Manager_Backend.BuisnessLogic.Services;
+using Finance_Manager_Backend.Middleware;
 
 public class Program
 {    
@@ -46,6 +47,8 @@ public class Program
         }
 
         // Middleware
+        app.UseRouting();
+        app.UseMiddleware<ExceptionsHandler>();
         app.UseHttpsRedirection();
         //app.UseAuthorization();
         app.MapControllers();
