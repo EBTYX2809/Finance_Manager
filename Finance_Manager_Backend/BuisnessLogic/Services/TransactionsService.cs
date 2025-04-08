@@ -1,6 +1,7 @@
-﻿using Finance_Manager_Backend.DataBase;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Data;
+using Finance_Manager_Backend.DataBase;
+using Finance_Manager_Backend.Exceptions;
 using UserTransaction = Finance_Manager_Backend.BuisnessLogic.Models.Transaction;
 
 namespace Finance_Manager_Backend.BuisnessLogic.Services;
@@ -26,11 +27,7 @@ public class TransactionsService
             _logger.LogInformation("Executing CreateTransactionAsync method.");
             var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == userTransaction.UserId);
 
-            if (user == null)
-            {
-                _logger.LogError("User with ID {UserId} not found.", userTransaction.UserId);
-                throw new InvalidOperationException("User not found");
-            }
+            if (user == null) throw new UserNotFoundException(userTransaction.UserId.ToString());
 
             await _appDbContext.Transactions.AddAsync(userTransaction);
 
@@ -66,19 +63,11 @@ public class TransactionsService
         {
             var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == newUserTransaction.UserId);
 
-            if (user == null)
-            {
-                _logger.LogError("User with ID {UserId} not found.", newUserTransaction.UserId);
-                throw new InvalidOperationException("User not found");
-            }
+            if (user == null) throw new UserNotFoundException(newUserTransaction.UserId.ToString());
 
             var oldUserTransaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == newUserTransaction.Id);
 
-            if (oldUserTransaction == null)
-            {
-                _logger.LogError("Transaction isn't exist.");
-                throw new InvalidOperationException("Transaction isn't exist.");
-            }
+            if (oldUserTransaction == null) throw new TransactionIsNotExistException();
 
             if (newUserTransaction.Price >= oldUserTransaction.Price)
             {
@@ -110,19 +99,11 @@ public class TransactionsService
             _logger.LogInformation("Executing DeleteTransactionAsync method.");
             var transaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
 
-            if (transaction == null)
-            {
-                _logger.LogError("Transaction isn't exist.");
-                throw new InvalidOperationException("Transaction isn't exist.");
-            }
+            if (transaction == null) throw new TransactionIsNotExistException();
 
             var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == transaction.UserId);
 
-            if (user == null)
-            {
-                _logger.LogError("User with ID {UserId} not found.", transaction.UserId);
-                throw new InvalidOperationException("User not found");
-            }
+            if (user == null) throw new UserNotFoundException(transaction.UserId.ToString());
 
             user.Balance += transaction.Price;
 
