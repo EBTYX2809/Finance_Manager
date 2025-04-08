@@ -72,7 +72,7 @@ public class TransactionsService
                 throw new InvalidOperationException("User not found");
             }
 
-            var oldUserTransaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == newUserTransaction.UserId);
+            var oldUserTransaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == newUserTransaction.Id);
 
             if (oldUserTransaction == null)
             {

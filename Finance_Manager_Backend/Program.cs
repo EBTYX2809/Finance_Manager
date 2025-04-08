@@ -9,6 +9,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder();
 
+        // DI
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -22,6 +23,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        // Logger
         Log.Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console()
@@ -43,6 +45,7 @@ public class Program
             app.UseSwaggerUI();
         }
 
+        // Middleware
         app.UseHttpsRedirection();
         //app.UseAuthorization();
         app.MapControllers();
