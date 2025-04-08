@@ -1,5 +1,5 @@
 ﻿using Xunit;
-using Finance_Manager_Backend.Models;
+using Finance_Manager_Backend.BuisnessLogic.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Finance_Manager_Backend_Tests.AuthTests;

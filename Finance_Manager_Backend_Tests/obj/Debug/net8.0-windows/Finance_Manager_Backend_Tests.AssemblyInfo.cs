@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Finance_Manager_Backend_Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e519d329a9100d604b5f1ccca7bf7c6d366c136")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+036305d68e8056158c36acfe3c1ac8c6b514deff")]
 [assembly: System.Reflection.AssemblyProductAttribute("Finance_Manager_Backend_Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Finance_Manager_Backend_Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
