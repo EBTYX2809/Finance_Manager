@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Finance_Manager_Backend.Services;
+namespace Finance_Manager_Backend.BuisnessLogic.Services;
 
 public class GoogleAuthService
 {

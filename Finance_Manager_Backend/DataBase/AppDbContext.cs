@@ -1,5 +1,5 @@
-﻿using Finance_Manager_Backend.Configurations;
-using Finance_Manager_Backend.Models;
+﻿using Finance_Manager_Backend.BuisnessLogic.Models;
+using Finance_Manager_Backend.DataBase.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Finance_Manager_Backend.DataBase;

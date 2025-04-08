@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Finance_Manager_Backend.DataBase;
-using Finance_Manager_Backend.Services;
 using Serilog;
+using Finance_Manager_Backend.BuisnessLogic.Services;
 
 public class Program
 {    

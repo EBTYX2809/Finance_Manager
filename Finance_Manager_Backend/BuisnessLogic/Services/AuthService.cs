@@ -3,9 +3,9 @@ using Newtonsoft.Json.Linq;
 using Finance_Manager_Backend.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
-using Finance_Manager_Backend.Models;
+using Finance_Manager_Backend.BuisnessLogic.Models;
 
-namespace Finance_Manager_Backend.Services;
+namespace Finance_Manager_Backend.BuisnessLogic.Services;
 
 public class AuthService
 {

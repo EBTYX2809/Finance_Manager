@@ -1,8 +1,8 @@
-﻿using Finance_Manager_Backend.Models;
+﻿using Finance_Manager_Backend.BuisnessLogic.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Finance_Manager_Backend.Configurations;
+namespace Finance_Manager_Backend.DataBase.Configurations;
 
 public class SavingConfiguration : IEntityTypeConfiguration<Saving>
 {

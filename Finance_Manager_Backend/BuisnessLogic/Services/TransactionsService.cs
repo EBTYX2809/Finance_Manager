@@ -1,9 +1,9 @@
 ﻿using Finance_Manager_Backend.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using UserTransaction = Finance_Manager_Backend.Models.Transaction;
+using UserTransaction = Finance_Manager_Backend.BuisnessLogic.Models.Transaction;
 
-namespace Finance_Manager_Backend.Services;
+namespace Finance_Manager_Backend.BuisnessLogic.Services;
 
 public class TransactionsService
 {

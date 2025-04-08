@@ -1,4 +1,4 @@
-﻿namespace Finance_Manager_Backend.Models;
+﻿namespace Finance_Manager_Backend.BuisnessLogic.Models;
 
 public class User
 {
