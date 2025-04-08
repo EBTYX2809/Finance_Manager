@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend.Services;
+using Serilog;
 
 public class Program
 {    
@@ -20,6 +21,14 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Console()
+            .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+
+        builder.Host.UseSerilog();
 
         /*builder.WebHost.ConfigureKestrel(serverOptions =>
         {
