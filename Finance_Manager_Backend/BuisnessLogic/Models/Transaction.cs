@@ -2,6 +2,26 @@
 
 public class Transaction
 {
+    public Transaction() { }
+    public Transaction(string name, decimal price, DateTime date, Category category, User user)
+    {
+        if(string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Name can't be null or empty", nameof(name));
+
+        if(category == null) 
+            throw new ArgumentNullException("Category can't be null", nameof(category));
+
+        if(user == null) 
+            throw new ArgumentNullException("User can't be null", nameof(user));
+
+        Name = name;
+        Price = price;
+        Date = date;
+        Category = category;
+        CategoryId = category.Id;
+        User = user;
+        UserId = user.Id;
+    }
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public decimal Price { get; set; }
