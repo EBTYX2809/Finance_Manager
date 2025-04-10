@@ -13,7 +13,7 @@ public class AuthenticateTest
     public async void AuthenticateUserFromDataBase_Test()
     {
         // Arrange
-        using var dbContext = TestDbContext.Create();
+        using var dbContext = TestInMemoryDbContext.Create();
 
         var authSevice = new AuthService(dbContext);
 
@@ -33,7 +33,7 @@ public class AuthenticateTest
     public async void AuthenticateUserWithInvalidPasswordFromDataBase_Test()
     {
         // Arrange
-        using var dbContext = TestDbContext.Create();
+        using var dbContext = TestInMemoryDbContext.Create();
 
         var authSevice = new AuthService(dbContext);
 

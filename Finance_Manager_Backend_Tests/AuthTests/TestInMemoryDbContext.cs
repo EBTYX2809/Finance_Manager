@@ -3,7 +3,7 @@ using Finance_Manager_Backend.DataBase;
 
 namespace Finance_Manager_Backend_Tests.AuthTests;
 
-public static class TestDbContext
+public static class TestInMemoryDbContext
 {    
     public static AppDbContext Create()
     {

@@ -13,7 +13,7 @@ public class RegisterTest
     public async void RegisterUserInDataBase_Test()
     {
         // Arrange
-        using var dbContext = TestDbContext.Create();
+        using var dbContext = TestInMemoryDbContext.Create();
 
         var authSevice = new AuthService(dbContext);
 
@@ -32,7 +32,7 @@ public class RegisterTest
     public async void RegisterUserInDataBaseWithExistedEmail_Test()
     {
         // Arrange
-        using var dbContext = TestDbContext.Create();
+        using var dbContext = TestInMemoryDbContext.Create();
 
         var authSevice = new AuthService(dbContext);
 
