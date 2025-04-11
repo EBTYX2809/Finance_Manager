@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Finance_Manager_Tests.DataBase;
+namespace Finance_Manager_Backend_Tests.DataBase;
 
 public class DBSeeder : IClassFixture<TestDbContextFixture>
 {

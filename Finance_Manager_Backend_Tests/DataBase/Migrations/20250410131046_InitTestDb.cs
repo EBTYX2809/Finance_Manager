@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Finance_Manager_Tests.Migrations
+namespace Finance_Manager_Backend_Tests.Migrations
 {
     /// <inheritdoc />
     public partial class InitTestDb : Migration

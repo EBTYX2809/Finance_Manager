@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Finance_Manager_Tests.DataBase;
+namespace Finance_Manager_Backend_Tests.DataBase;
 
 public class TestDbContextFixture : IDisposable
 {
