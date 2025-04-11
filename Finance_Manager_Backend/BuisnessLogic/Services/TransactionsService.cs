@@ -19,7 +19,7 @@ public class TransactionsService
     }
 
     // Db Transactions required due to changing user balance
-    // For test
+    // Need return id in controller to front
     public async Task CreateTransactionAsync(UserTransaction userTransaction)
     {
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
@@ -32,11 +32,10 @@ public class TransactionsService
             await _appDbContext.Transactions.AddAsync(userTransaction);
 
             if (userTransaction.Category.IsIncome) user.Balance += userTransaction.Price;
-            else user.Balance -= userTransaction.Price;
+            else user.Balance -= userTransaction.Price;            
         });
     }
 
-    // For test
     public async Task<List<UserTransaction>> GetTransactionsAsync(int userId, DateTime? lastDate, int pageSize)
     {
         var orderedTransactions = _appDbContext.Transactions
@@ -55,7 +54,6 @@ public class TransactionsService
             .ToListAsync();
     }
 
-    // For test
     public async Task UpdateTransactionAsync(UserTransaction newUserTransaction)
     {
         _logger.LogInformation("Executing UpdateTransactionAsync method.");

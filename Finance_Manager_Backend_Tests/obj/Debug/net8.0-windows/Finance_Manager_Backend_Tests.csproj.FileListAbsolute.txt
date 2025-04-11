@@ -12,6 +12,7 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Finance_Manager_Backend.staticwebassets.endpoints.json
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Finance_Manager_Backend.exe
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\testhost.exe
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\appsettings.Test.json
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\xunit.runner.reporters.netcoreapp10.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\xunit.runner.utility.netcoreapp10.dll
@@ -21,6 +22,7 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Finance_Manager_Backend_Tests.pdb
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Azure.Core.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Azure.Identity.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Castle.Core.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Google.Apis.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Google.Apis.Auth.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Google.Apis.Core.dll
@@ -79,6 +81,7 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.Common.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Microsoft.Win32.SystemEvents.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Mono.TextTemplating.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Moq.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\NuGet.Frameworks.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Serilog.dll
@@ -276,4 +279,3 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\obj\Debug\net8.0-windows\Finance_Manager_Backend_Tests.pdb
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\obj\Debug\net8.0-windows\Finance_Manager_Backend_Tests.genruntimeconfig.cache
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\obj\Debug\net8.0-windows\ref\Finance_Manager_Backend_Tests.dll
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\appsettings.Test.json

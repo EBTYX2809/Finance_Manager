@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Finance_Manager_Tests.Migrations
+namespace Finance_Manager_Backend_Tests.DataBase.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20250410131046_InitTestDb")]
