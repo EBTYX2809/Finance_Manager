@@ -68,7 +68,7 @@ public class SavingsService
 
             if (user == null) throw new UserNotFoundException(saving.UserId.ToString());
 
-            user.Balance += (decimal)saving.CurrentAmount;
+            user.Balance += saving.CurrentAmount;
 
             _appDbContext.Savings.Remove(saving);
         });

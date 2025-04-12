@@ -28,7 +28,7 @@ public class SavingConfiguration : IEntityTypeConfiguration<Saving>
             .HasColumnName("goal");
 
         builder.Property(s => s.CurrentAmount)
-            .IsRequired(false)
+            .HasDefaultValue(0m)
             .HasColumnType("decimal(10,2)")            
             .HasColumnName("current_amount");
 
