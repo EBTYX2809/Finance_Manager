@@ -38,12 +38,6 @@ public class SavingsServiceTests : IClassFixture<TestDbContextFixture>
 
         // Assert
         Assert.Equal(saving, createdSaving);
-
-        /*if (createdSaving != null)
-        {
-            _appDbContext.Savings.Remove(createdSaving);
-            await _appDbContext.SaveChangesAsync();
-        }*/
     }
 
     [Fact]

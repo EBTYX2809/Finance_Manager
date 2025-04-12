@@ -42,12 +42,6 @@ public class TransactionsServiceTests : IClassFixture<TestDbContextFixture>
 
         // Assert
         Assert.Equal(transaction, createdTransaction);
-
-        if( createdTransaction != null )
-        {
-            _appDbContext.Transactions.Remove(createdTransaction);
-            await _appDbContext.SaveChangesAsync();
-        }
     }
 
     [Fact]
