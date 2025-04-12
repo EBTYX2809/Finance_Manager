@@ -2,6 +2,6 @@
 
 public class TransactionIsNotExistException : Exception
 {
-    public TransactionIsNotExistException() 
-        : base("Transaction isn't exist.")  { }
+    public TransactionIsNotExistException(string transactionId) 
+        : base($"Transaction with {transactionId} isn't exist.")  { }
 }
