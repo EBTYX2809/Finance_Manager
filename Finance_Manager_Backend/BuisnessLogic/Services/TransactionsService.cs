@@ -41,12 +41,15 @@ public class TransactionsService
         var orderedTransactions = _appDbContext.Transactions
             .Include(t => t.Category)
             .Include(t => t.InnerCategory)
+            .Include(t => t.User)
             .Where(t => t.UserId == userId)
             .OrderByDescending(t => t.Date);
 
         if (lastDate.HasValue)
         {
-            orderedTransactions = orderedTransactions.Where(t => t.Date < lastDate.Value) as IOrderedQueryable<UserTransaction>;
+            orderedTransactions = orderedTransactions
+                .Where(t => t.Date < lastDate.Value) 
+                as IOrderedQueryable<UserTransaction>;
         }
 
         return await orderedTransactions
@@ -65,7 +68,7 @@ public class TransactionsService
 
             var oldUserTransaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == newUserTransaction.Id);
 
-            if (oldUserTransaction == null) throw new TransactionIsNotExistException();
+            if (oldUserTransaction == null) throw new TransactionIsNotExistException(newUserTransaction.Id.ToString());
 
             if (newUserTransaction.Price >= oldUserTransaction.Price)
             {
@@ -92,12 +95,12 @@ public class TransactionsService
 
     public async Task DeleteTransactionAsync(int transactionId)
     {
+        _logger.LogInformation("Executing DeleteTransactionAsync method.");
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
-        {
-            _logger.LogInformation("Executing DeleteTransactionAsync method.");
+        {            
             var transaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
 
-            if (transaction == null) throw new TransactionIsNotExistException();
+            if (transaction == null) throw new TransactionIsNotExistException(transactionId.ToString());
 
             var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == transaction.UserId);
 
