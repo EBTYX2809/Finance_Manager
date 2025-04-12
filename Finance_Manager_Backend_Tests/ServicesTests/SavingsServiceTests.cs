@@ -8,7 +8,8 @@ using Moq;
 
 namespace Finance_Manager_Backend_Tests.ServicesTests;
 
-public class SavingsServiceTests : IClassFixture<TestDbContextFixture>
+[Collection("Database Collection")]
+public class SavingsServiceTests
 {
     private readonly AppDbContext _appDbContext;
     private Mock<ILogger<SavingsService>> _mockLoggerTS;
@@ -29,7 +30,7 @@ public class SavingsServiceTests : IClassFixture<TestDbContextFixture>
     public async Task CreateSavingAsync_Test()
     {
         // Arrange
-        var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == 1);
+        var user = await _appDbContext.Users.FirstOrDefaultAsync();
         var saving = new Saving("Test Saving", 10000, user);
         
         // Act
@@ -44,10 +45,11 @@ public class SavingsServiceTests : IClassFixture<TestDbContextFixture>
     public async Task GetSavingsAsync_Test()
     {
         // Arrange
+        var user = await _appDbContext.Users.FirstOrDefaultAsync();
         int transactionsCount = 2;
 
         // Act
-        var recievedSavings = await _savingsService.GetSavingsAsync(1, 0, transactionsCount);
+        var recievedSavings = await _savingsService.GetSavingsAsync(user.Id, 0, transactionsCount);
 
         // Assert
         Assert.NotNull(recievedSavings);
@@ -58,7 +60,7 @@ public class SavingsServiceTests : IClassFixture<TestDbContextFixture>
     public async Task UpdateSavingAsync_Test()
     {
         // Arrange
-        var oldSaving = await _appDbContext.Savings.FirstOrDefaultAsync(s => s.UserId == 1);
+        var oldSaving = await _appDbContext.Savings.FirstOrDefaultAsync();
         decimal topUpAmount = 100.50m;
 
         // Act
@@ -74,7 +76,7 @@ public class SavingsServiceTests : IClassFixture<TestDbContextFixture>
     public async Task DeleteSavingAsync_Test()
     {
         // Arrange
-        var savingForDelete = await _appDbContext.Savings.FirstOrDefaultAsync(t => t.UserId == 1);
+        var savingForDelete = await _appDbContext.Savings.FirstOrDefaultAsync();
         int id = savingForDelete.Id;
 
         // Act

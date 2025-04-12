@@ -8,7 +8,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Finance_Manager_Backend_Tests.ServicesTests;
 
-public class TransactionsServiceTests : IClassFixture<TestDbContextFixture>
+[Collection("Database Collection")]
+public class TransactionsServiceTests
 {
     private readonly AppDbContext _appDbContext;
     private Mock<ILogger<TransactionsService>> _mockLoggerTS;
@@ -29,8 +30,8 @@ public class TransactionsServiceTests : IClassFixture<TestDbContextFixture>
     public async Task CreateTransactionAsync_Test() 
     {
         // Arrange
-        var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == 1);
-        var category = await _appDbContext.Categories.FirstOrDefaultAsync(c => c.Id == 1);
+        var user = await _appDbContext.Users.FirstOrDefaultAsync();
+        var category = await _appDbContext.Categories.FirstOrDefaultAsync();
         var transaction = new Transaction("New transaction form test", 100.89m, DateTime.Now, category, user);
 
         // Act
@@ -48,10 +49,11 @@ public class TransactionsServiceTests : IClassFixture<TestDbContextFixture>
     public async Task GetTransactionsAsync_Test()
     {
         // Arrange
+        var user = await _appDbContext.Users.FirstOrDefaultAsync();
         int transactionsCount = 3;
 
         // Act
-        var recievedTransactions = await _transactionsService.GetTransactionsAsync(1, DateTime.Now, transactionsCount);
+        var recievedTransactions = await _transactionsService.GetTransactionsAsync(user.Id, DateTime.Now, transactionsCount);
 
         // Assert
         Assert.NotNull(recievedTransactions);
@@ -62,7 +64,7 @@ public class TransactionsServiceTests : IClassFixture<TestDbContextFixture>
     public async Task UpdateTransactionAsync_Test()
     {
         // Arrange
-        var oldTransaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.UserId == 1);
+        var oldTransaction = await _appDbContext.Transactions.FirstOrDefaultAsync();
 
         // Act
         oldTransaction.Name = "New name";
@@ -82,7 +84,7 @@ public class TransactionsServiceTests : IClassFixture<TestDbContextFixture>
     public async Task DeleteTransactionAsync_Test()
     {
         // Arrange
-        var transactionForDelete = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.UserId == 1);
+        var transactionForDelete = await _appDbContext.Transactions.FirstOrDefaultAsync();
         int id = transactionForDelete.Id;
 
         // Act
