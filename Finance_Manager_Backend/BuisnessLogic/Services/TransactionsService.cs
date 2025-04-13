@@ -11,11 +11,14 @@ public class TransactionsService
     private AppDbContext _appDbContext;
     private DbTransactionTemplate _dbTransactionTemplate;
     private ILogger<TransactionsService> _logger;
-    public TransactionsService(AppDbContext appDbContext, DbTransactionTemplate dbTransactionTemplate, ILogger<TransactionsService> logger)
+    private UsersService _usersService;
+    public TransactionsService(AppDbContext appDbContext, DbTransactionTemplate dbTransactionTemplate,
+        ILogger<TransactionsService> logger, UsersService usersService)
     {
         _appDbContext = appDbContext;
         _dbTransactionTemplate = dbTransactionTemplate;
         _logger = logger;
+        _usersService = usersService;
     }
 
     // Db Transactions required due to changing user balance
@@ -25,9 +28,8 @@ public class TransactionsService
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
         {
             _logger.LogInformation("Executing CreateTransactionAsync method.");
-            var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == userTransaction.UserId);
-
-            if (user == null) throw new UserNotFoundException(userTransaction.UserId.ToString());
+            
+            var user = await _usersService.GetUserByIdAsync(userTransaction.UserId);
 
             await _appDbContext.Transactions.AddAsync(userTransaction);
 
@@ -35,6 +37,16 @@ public class TransactionsService
             else user.Balance -= userTransaction.Price;            
         });
     }
+
+    public async Task<UserTransaction> GetTransactionById(int transactionId)
+    {             
+        var transaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
+
+        if (transaction == null) throw new TransactionIsNotExistException(transactionId.ToString());
+
+        return transaction;
+    }
+
 
     public async Task<List<UserTransaction>> GetTransactionsAsync(int userId, DateTime? lastDate, int pageSize)
     {
@@ -62,13 +74,9 @@ public class TransactionsService
         _logger.LogInformation("Executing UpdateTransactionAsync method.");
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
         {
-            var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == newUserTransaction.UserId);
+            var user = await _usersService.GetUserByIdAsync(newUserTransaction.UserId);
 
-            if (user == null) throw new UserNotFoundException(newUserTransaction.UserId.ToString());
-
-            var oldUserTransaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == newUserTransaction.Id);
-
-            if (oldUserTransaction == null) throw new TransactionIsNotExistException(newUserTransaction.Id.ToString());
+            var oldUserTransaction = await GetTransactionById(newUserTransaction.Id);
 
             if (newUserTransaction.Price >= oldUserTransaction.Price)
             {
@@ -98,13 +106,9 @@ public class TransactionsService
         _logger.LogInformation("Executing DeleteTransactionAsync method.");
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
         {            
-            var transaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
+            var transaction = await GetTransactionById(transactionId);
 
-            if (transaction == null) throw new TransactionIsNotExistException(transactionId.ToString());
-
-            var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == transaction.UserId);
-
-            if (user == null) throw new UserNotFoundException(transaction.UserId.ToString());
+            var user = await _usersService.GetUserByIdAsync(transaction.UserId);
 
             user.Balance += transaction.Price;
 
