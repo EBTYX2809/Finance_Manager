@@ -19,6 +19,8 @@ public class Program
         builder.Services.AddScoped<AuthService>();
         builder.Services.AddScoped<GoogleAuthService>();
         builder.Services.AddScoped<TransactionsService>();
+        builder.Services.AddScoped<SavingsService>();
+        builder.Services.AddScoped<AnalyticsService>();
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
