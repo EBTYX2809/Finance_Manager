@@ -38,7 +38,7 @@ public class TransactionsService
         });
     }
 
-    public async Task<UserTransaction> GetTransactionById(int transactionId)
+    public async Task<UserTransaction> GetTransactionByIdAsync(int transactionId)
     {             
         var transaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
 
@@ -76,7 +76,7 @@ public class TransactionsService
         {
             var user = await _usersService.GetUserByIdAsync(newUserTransaction.UserId);
 
-            var oldUserTransaction = await GetTransactionById(newUserTransaction.Id);
+            var oldUserTransaction = await GetTransactionByIdAsync(newUserTransaction.Id);
 
             if (newUserTransaction.Price >= oldUserTransaction.Price)
             {
@@ -106,7 +106,7 @@ public class TransactionsService
         _logger.LogInformation("Executing DeleteTransactionAsync method.");
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
         {            
-            var transaction = await GetTransactionById(transactionId);
+            var transaction = await GetTransactionByIdAsync(transactionId);
 
             var user = await _usersService.GetUserByIdAsync(transaction.UserId);
 

@@ -54,12 +54,12 @@ public class ExceptionsHandler
                 };
                 break;
 
-            case SavingIsNotExistException transactionIsNotExist:
+            case SavingIsNotExistException savingIsNotExist:
                 response.StatusCode = (int)HttpStatusCode.NotFound;
                 errorDetails = new ErrorResponse
                 {
                     StatusCode = response.StatusCode,
-                    Message = transactionIsNotExist.Message
+                    Message = savingIsNotExist.Message
                 };
                 break;
 

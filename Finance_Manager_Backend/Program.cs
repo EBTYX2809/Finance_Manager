@@ -21,6 +21,7 @@ public class Program
         builder.Services.AddScoped<TransactionsService>();
         builder.Services.AddScoped<SavingsService>();
         builder.Services.AddScoped<AnalyticsService>();
+        builder.Services.AddScoped<UsersService>();
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
