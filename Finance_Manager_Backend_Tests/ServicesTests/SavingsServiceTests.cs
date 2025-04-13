@@ -5,6 +5,7 @@ using Finance_Manager_Backend_Tests.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Xunit.Abstractions;
 
 namespace Finance_Manager_Backend_Tests.ServicesTests;
 
@@ -16,14 +17,16 @@ public class SavingsServiceTests
     private Mock<ILogger<DbTransactionTemplate>> _mockLoggerTT;
     private DbTransactionTemplate _transactionTemplate;
     private SavingsService _savingsService;
+    private readonly ITestOutputHelper _output;
 
-    public SavingsServiceTests(TestDbContextFixture fixture)
+    public SavingsServiceTests(TestDbContextFixture fixture, ITestOutputHelper output)
     {
         _appDbContext = fixture.dbContext;
         _mockLoggerTS = new Mock<ILogger<SavingsService>>();
         _mockLoggerTT = new Mock<ILogger<DbTransactionTemplate>>();
         _transactionTemplate = new DbTransactionTemplate(_appDbContext, _mockLoggerTT.Object);
         _savingsService = new SavingsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object);
+        _output = output;
     }
 
     [Fact]
@@ -54,6 +57,11 @@ public class SavingsServiceTests
         // Assert
         Assert.NotNull(recievedSavings);
         Assert.Equal(transactionsCount, recievedSavings.Count);
+
+        foreach (var saving in recievedSavings)
+        {
+            _output.WriteLine(saving.Name);
+        }
     }
 
     [Fact]

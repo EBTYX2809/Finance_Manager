@@ -5,6 +5,7 @@ using Moq;
 using Microsoft.Extensions.Logging;
 using Finance_Manager_Backend.BuisnessLogic.Models;
 using Microsoft.EntityFrameworkCore;
+using Xunit.Abstractions;
 
 namespace Finance_Manager_Backend_Tests.ServicesTests;
 
@@ -16,14 +17,16 @@ public class TransactionsServiceTests
     private Mock<ILogger<DbTransactionTemplate>> _mockLoggerTT;
     private DbTransactionTemplate _transactionTemplate;
     private TransactionsService _transactionsService;
+    private readonly ITestOutputHelper _output;
 
-    public TransactionsServiceTests(TestDbContextFixture fixture)
+    public TransactionsServiceTests(TestDbContextFixture fixture, ITestOutputHelper output)
     {
         _appDbContext = fixture.dbContext;
         _mockLoggerTS = new Mock<ILogger<TransactionsService>>();
         _mockLoggerTT = new Mock<ILogger<DbTransactionTemplate>>();
         _transactionTemplate = new DbTransactionTemplate(_appDbContext, _mockLoggerTT.Object);
         _transactionsService = new TransactionsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object);
+        _output = output;
     }
 
     [Fact]
@@ -58,6 +61,11 @@ public class TransactionsServiceTests
         // Assert
         Assert.NotNull(recievedTransactions);
         Assert.Equal(transactionsCount, recievedTransactions.Count);
+
+        foreach (var transaction in recievedTransactions)
+        {
+            _output.WriteLine(transaction.Name);
+        }
     }
 
     [Fact]
