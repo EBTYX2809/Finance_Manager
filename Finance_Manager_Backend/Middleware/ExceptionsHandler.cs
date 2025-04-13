@@ -54,6 +54,15 @@ public class ExceptionsHandler
                 };
                 break;
 
+            case SavingIsNotExistException transactionIsNotExist:
+                response.StatusCode = (int)HttpStatusCode.NotFound;
+                errorDetails = new ErrorResponse
+                {
+                    StatusCode = response.StatusCode,
+                    Message = transactionIsNotExist.Message
+                };
+                break;
+
             case InvalidOperationException invalidOperation:
                 response.StatusCode = (int)HttpStatusCode.BadRequest;
                 errorDetails = new ErrorResponse
