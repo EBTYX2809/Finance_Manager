@@ -50,6 +50,8 @@ public class TransactionsService
 
     public async Task<List<UserTransaction>> GetTransactionsAsync(int userId, DateTime? lastDate, int pageSize)
     {
+        var user = await _usersService.GetUserByIdAsync(userId);
+
         var orderedTransactions = _appDbContext.Transactions
             .Include(t => t.Category)
             .Include(t => t.InnerCategory)
