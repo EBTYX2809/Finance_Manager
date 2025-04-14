@@ -8,16 +8,18 @@ namespace Finance_Manager_Backend.BuisnessLogic.Services;
 public class AnalyticsService
 {
     private AppDbContext _appDbContext;    
-    public AnalyticsService(AppDbContext appDbContext)
+    private readonly UsersService _usersService;
+    private readonly CategoriesService _categoriesService;
+    public AnalyticsService(AppDbContext appDbContext, UsersService usersService, CategoriesService categoriesService)
     {
-        _appDbContext = appDbContext;        
+        _appDbContext = appDbContext;
+        _usersService = usersService;
+        _categoriesService = categoriesService;
     }
 
-    public async Task<Dictionary<Category, float>> GetAlalyticFromDate(int userId, DateTime minDate, DateTime maxDate)
+    public async Task<Dictionary<Category, float>> GetAlalyticFromDateAsync(int userId, DateTime minDate, DateTime maxDate)
     {
-        var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
-
-        if (user == null) throw new EntityNotFoundException<User>(userId);
+        var user = await _usersService.GetUserByIdAsync(userId);
         
         var spendsByCategory = await _appDbContext.Transactions                
             .Where(s => s.UserId == userId 
@@ -38,11 +40,11 @@ public class AnalyticsService
         return percentsByCategory;
     }
 
-    public async Task<Dictionary<Category, float>> GetInnerAlalyticFromDate(int userId, Category parentCategory, DateTime minDate, DateTime maxDate)
+    public async Task<Dictionary<Category, float>> GetInnerAlalyticFromDateAsync(int userId, int parentCategoryId, DateTime minDate, DateTime maxDate)
     {
-        var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        var user = await _usersService.GetUserByIdAsync(userId);
 
-        if (user == null) throw new EntityNotFoundException<User>(userId);
+        var parentCategory = await _categoriesService.GetCategoryByIdAsync(parentCategoryId);
 
         var spendsByCategory = await _appDbContext.Transactions
             .Where(s => s.UserId == userId
