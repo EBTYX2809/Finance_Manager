@@ -1,4 +1,5 @@
-﻿using Finance_Manager_Backend.Exceptions;
+﻿using Finance_Manager_Backend.BuisnessLogic.Models;
+using Finance_Manager_Backend.Exceptions;
 using System.Net;
 using System.Text.Json;
 
@@ -36,30 +37,12 @@ public class ExceptionsHandler
 
         switch (exception)
         {
-            case UserNotFoundException userNotFound:
+            case EntityNotFoundException<IEntity> entityIsNotExist:
                 response.StatusCode = (int)HttpStatusCode.NotFound;
                 errorDetails = new ErrorResponse
                 {
                     StatusCode = response.StatusCode,
-                    Message = userNotFound.Message
-                };                
-                break;
-
-            case TransactionIsNotExistException transactionIsNotExist:
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                errorDetails = new ErrorResponse
-                {
-                    StatusCode = response.StatusCode,
-                    Message = transactionIsNotExist.Message
-                };
-                break;
-
-            case SavingIsNotExistException savingIsNotExist:
-                response.StatusCode = (int)HttpStatusCode.NotFound;
-                errorDetails = new ErrorResponse
-                {
-                    StatusCode = response.StatusCode,
-                    Message = savingIsNotExist.Message
+                    Message = entityIsNotExist.Message
                 };
                 break;
 
