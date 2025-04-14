@@ -33,7 +33,7 @@ public class SavingsService
     {
         var saving = await _appDbContext.Savings.FirstOrDefaultAsync(s => s.Id == savingId);
 
-        if (saving == null) throw new SavingIsNotExistException(savingId.ToString());
+        if (saving == null) throw new EntityNotFoundException<Category>(savingId);
 
         return saving;
     }

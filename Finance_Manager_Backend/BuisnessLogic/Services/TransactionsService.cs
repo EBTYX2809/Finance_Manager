@@ -42,7 +42,7 @@ public class TransactionsService
     {             
         var transaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
 
-        if (transaction == null) throw new TransactionIsNotExistException(transactionId.ToString());
+        if (transaction == null) throw new EntityNotFoundException<UserTransaction>(transactionId);
 
         return transaction;
     }

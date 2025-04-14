@@ -17,7 +17,7 @@ public class UsersService
     {
         var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
-        if (user == null) throw new UserNotFoundException(userId.ToString());
+        if (user == null) throw new EntityNotFoundException<User>(userId);
 
         return user;
     }
