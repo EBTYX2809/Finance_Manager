@@ -1,6 +1,6 @@
 ﻿namespace Finance_Manager_Backend.BuisnessLogic.Models;
 
-public class Category
+public class Category : IEntity
 {
     public Category() { }
     public Category(string name, bool isIncome, string icon, string colorForBackground)

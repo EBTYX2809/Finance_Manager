@@ -1,6 +1,6 @@
 ﻿namespace Finance_Manager_Backend.BuisnessLogic.Models;
 
-public class User
+public class User : IEntity
 {
     public User() { }
     public User(string email, string salt, string passwordHash, decimal balance)

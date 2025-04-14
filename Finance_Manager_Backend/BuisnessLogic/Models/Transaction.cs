@@ -1,6 +1,6 @@
 ﻿namespace Finance_Manager_Backend.BuisnessLogic.Models;
 
-public class Transaction
+public class Transaction : IEntity
 {
     public Transaction() { }
     public Transaction(string name, decimal price, DateTime date, Category category, User user)

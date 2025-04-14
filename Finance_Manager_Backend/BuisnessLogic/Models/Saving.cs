@@ -1,6 +1,6 @@
 ﻿namespace Finance_Manager_Backend.BuisnessLogic.Models;
 
-public class Saving
+public class Saving : IEntity
 {
     public Saving() { }
     public Saving(string name, decimal goal, User user) 
