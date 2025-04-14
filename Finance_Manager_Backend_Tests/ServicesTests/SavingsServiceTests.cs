@@ -18,6 +18,7 @@ public class SavingsServiceTests
     private DbTransactionTemplate _transactionTemplate;
     private SavingsService _savingsService;
     private readonly ITestOutputHelper _output;
+    private readonly UsersService _usersService;
 
     public SavingsServiceTests(TestDbContextFixture fixture, ITestOutputHelper output)
     {
@@ -25,7 +26,8 @@ public class SavingsServiceTests
         _mockLoggerTS = new Mock<ILogger<SavingsService>>();
         _mockLoggerTT = new Mock<ILogger<DbTransactionTemplate>>();
         _transactionTemplate = new DbTransactionTemplate(_appDbContext, _mockLoggerTT.Object);
-        _savingsService = new SavingsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object);
+        _usersService = new UsersService(_appDbContext);
+        _savingsService = new SavingsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object, _usersService);
         _output = output;
     }
 

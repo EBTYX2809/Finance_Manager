@@ -18,6 +18,7 @@ public class TransactionsServiceTests
     private DbTransactionTemplate _transactionTemplate;
     private TransactionsService _transactionsService;
     private readonly ITestOutputHelper _output;
+    private readonly UsersService _usersService;
 
     public TransactionsServiceTests(TestDbContextFixture fixture, ITestOutputHelper output)
     {
@@ -25,7 +26,8 @@ public class TransactionsServiceTests
         _mockLoggerTS = new Mock<ILogger<TransactionsService>>();
         _mockLoggerTT = new Mock<ILogger<DbTransactionTemplate>>();
         _transactionTemplate = new DbTransactionTemplate(_appDbContext, _mockLoggerTT.Object);
-        _transactionsService = new TransactionsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object);
+        _usersService = new UsersService(_appDbContext);
+        _transactionsService = new TransactionsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object, _usersService);
         _output = output;
     }
 
