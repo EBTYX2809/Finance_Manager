@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Finance_Manager_Backend</name>
+    </assembly>
+    <members>
+        <member name="M:Finance_Manager_Backend.Controllers.AnalyticsController.GetAnalytics(System.Int32,System.DateTime,System.DateTime)">
+            <summary>
+            Get spending analytics in date range.
+            </summary>
+            <param name="userId">User id.</param>
+            <param name="minDate">Start date of the filter range.</param>
+            <param name="maxDate">End date of the filter range.</param>
+            <returns>
+            Returns spending analytics grouped by category in a given date range.
+            Each result shows the category and the percentage of total spending it represents.
+            For example: { "Home" → 32.5, "Transport" → 15.0 }.
+            </returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found some resource.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.AnalyticsController.GetInnerAnalytics(System.Int32,System.Int32,System.DateTime,System.DateTime)">
+            <summary>
+            Get spending analytics from general category in date range.
+            </summary>
+            <param name="parentCategoryId">Id parent category, that inner stats want to know.</param>
+            <param name="userId">User id.</param>
+            <param name="minDate">Start date of the filter range.</param>
+            <param name="maxDate">End date of the filter range.</param>
+            <returns>
+            Returns spending analytics grouped by category in a given date range.
+            Each result shows the category and the percentage of total spending it represents.
+            For example: { "Rent" → 32.5, "Furniture" → 15.0 }.
+            </returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found some resource.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Create(Finance_Manager_Backend.BusinessLogic.Models.Saving)">
+            <summary>
+            Create saving.
+            </summary>
+            <param name="saving">The saving to create.</param>
+            <returns>Returns the ID of the created saving.</returns>
+            <response code="201">Saving successfully created.</response>
+            <response code="404">User not found.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.GetById(System.Int32)">
+            <summary>
+            Get saving by id.
+            </summary>
+            <param name="id">Saving id.</param>
+            <returns>Returns saving object.</returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found saving.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.GetSavings(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get list of savings.
+            </summary>
+            <param name="userId">User id that want to get his savings.</param>
+            <param name="previousSavingId">Last saving id from which savings must be loaded.</param>
+            <param name="pageSize">Amount of savings.</param>
+            <returns>Returns list with savings objects.</returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found some resource.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Update(System.Int32,System.Int32)">
+            <summary>
+            Update saving with new top up.
+            </summary>
+            <param name="savingId">Saving id.</param>
+            <param name="topUpAmount">Amount of top up.</param>
+            <response code="204">Success.</response>
+            <response code="404">Not found some resource.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Delete(System.Int32)">
+            <summary>
+            Delete saving by id.
+            </summary>
+            <param name="id">Saving id.</param>
+            <returns>Returns NoContent</returns>
+            <response code="204">Success.</response>
+            <response code="404">Not found saving.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Create(Finance_Manager_Backend.BusinessLogic.Models.Transaction)">
+            <summary>
+            Create transaction.
+            </summary>
+            <param name="transaction">The transaction to create.</param>
+            <returns>Returns the ID of the created transaction.</returns>
+            <response code="201">Transaction successfully created.</response>
+            <response code="404">User not found.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.GetById(System.Int32)">
+            <summary>
+            Get transaction by id.
+            </summary>
+            <param name="id">Transaction id.</param>
+            <returns>Returns transaction object.</returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found transaction.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.GetTransactions(System.Int32,System.Nullable{System.DateTime},System.Int32)">
+            <summary>
+            Get list of transactions.
+            </summary>
+            <param name="userId">User id.</param>
+            <param name="lastDate">Last date from which transactions must be loaded(null if from first).</param>
+            <param name="pageSize">Amount of transactions.</param>
+            <returns>Returns list with transaction objects.</returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found some resource.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Update(Finance_Manager_Backend.BusinessLogic.Models.Transaction)">
+            <summary>
+            Update transaction with new data.
+            </summary>
+            <param name="transaction">New transaction object.</param>
+            <returns>Returns NoContent</returns>
+            <response code="204">Success.</response>
+            <response code="404">Not found some resource.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Delete(System.Int32)">
+            <summary>
+            Delete transaction by id.
+            </summary>
+            <param name="id">Transaction id.</param>
+            <returns>Returns NoContent</returns>
+            <response code="204">Success.</response>
+            <response code="404">Not found transaction.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="T:Finance_Manager_Backend.Migrations.InitializeDb">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.InitializeDb.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.InitializeDb.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.InitializeDb.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Finance_Manager_Backend.Migrations.ChangedPasswordToHashWithSalt">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedPasswordToHashWithSalt.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedPasswordToHashWithSalt.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedPasswordToHashWithSalt.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Finance_Manager_Backend.Migrations.UpdateCategoryWithIsIncomeCheck">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.UpdateCategoryWithIsIncomeCheck.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.UpdateCategoryWithIsIncomeCheck.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.UpdateCategoryWithIsIncomeCheck.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Finance_Manager_Backend.Migrations.ChangedCurrentAmountInSavingsToNotNullableDecimal">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedCurrentAmountInSavingsToNotNullableDecimal.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedCurrentAmountInSavingsToNotNullableDecimal.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedCurrentAmountInSavingsToNotNullableDecimal.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

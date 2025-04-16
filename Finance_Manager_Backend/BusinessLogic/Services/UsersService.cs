@@ -1,9 +1,9 @@
-﻿using Finance_Manager_Backend.BuisnessLogic.Models;
+﻿using Finance_Manager_Backend.BusinessLogic.Models;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Finance_Manager_Backend.BuisnessLogic.Services;
+namespace Finance_Manager_Backend.BusinessLogic.Services;
 
 public class UsersService
 {

@@ -3,13 +3,12 @@ using Newtonsoft.Json.Linq;
 using Finance_Manager_Backend.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
-using Finance_Manager_Backend.BuisnessLogic.Models;
+using Finance_Manager_Backend.BusinessLogic.Models;
 
-namespace Finance_Manager_Backend.BuisnessLogic.Services;
+namespace Finance_Manager_Backend.BusinessLogic.Services;
 
 public class AuthService
 {
-    private readonly string credentialsPath = "appsettings.json";
     private readonly AppDbContext _dbContext;
     public AuthService(AppDbContext dbContext)
     {

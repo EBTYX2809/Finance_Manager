@@ -1,4 +1,4 @@
-﻿using Finance_Manager_Backend.BuisnessLogic.Models;
+﻿using Finance_Manager_Backend.BusinessLogic.Models;
 using Finance_Manager_Backend.Exceptions;
 using System.Net;
 using System.Text.Json;

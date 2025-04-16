@@ -2,9 +2,9 @@
 using System.Data;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend.Exceptions;
-using UserTransaction = Finance_Manager_Backend.BuisnessLogic.Models.Transaction;
+using UserTransaction = Finance_Manager_Backend.BusinessLogic.Models.Transaction;
 
-namespace Finance_Manager_Backend.BuisnessLogic.Services;
+namespace Finance_Manager_Backend.BusinessLogic.Services;
 
 public class TransactionsService
 {

@@ -1,5 +1,5 @@
-﻿using Finance_Manager_Backend.BuisnessLogic.Models;
-using Finance_Manager_Backend.BuisnessLogic.Services;
+﻿using Finance_Manager_Backend.BusinessLogic.Models;
+using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Finance_Manager_Backend.Controllers;

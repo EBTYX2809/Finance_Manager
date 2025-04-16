@@ -1,4 +1,4 @@
-﻿namespace Finance_Manager_Backend.BuisnessLogic.Models;
+﻿namespace Finance_Manager_Backend.BusinessLogic.Models;
 
 public class Transaction : IEntity
 {

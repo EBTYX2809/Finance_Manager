@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Finance_Manager_Backend.DataBase;
 using Serilog;
-using Finance_Manager_Backend.BuisnessLogic.Services;
+using Finance_Manager_Backend.BusinessLogic.Services;
 using Finance_Manager_Backend.Middleware;
 using System.Reflection;
 

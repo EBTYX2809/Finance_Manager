@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Finance_Manager_Backend.BuisnessLogic.Models;
+using Finance_Manager_Backend.BusinessLogic.Models;
 
 namespace Finance_Manager_Backend.DataBase.Configurations;
 
