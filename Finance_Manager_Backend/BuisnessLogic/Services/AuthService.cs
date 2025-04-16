@@ -14,34 +14,7 @@ public class AuthService
     public AuthService(AppDbContext dbContext)
     {
         _dbContext = dbContext;
-    }
-
-    public async Task SaveCredentials(string email, string password)
-    {
-        var json = await File.ReadAllTextAsync(credentialsPath);
-        var jsonObj = JObject.Parse(json);
-
-        string encryptedPassword = EncryptPassword(password);
-
-        jsonObj["UserCredentials"]["Email"] = email;
-        jsonObj["UserCredentials"]["Password"] = encryptedPassword;
-
-        await File.WriteAllTextAsync(credentialsPath, jsonObj.ToString());
-    }
-
-    public (string email, string password) LoadCredentials()
-    {
-        var config = new ConfigurationBuilder()
-            .AddJsonFile(credentialsPath, optional: false, reloadOnChange: true)
-            .Build();        
-
-        string email = config["UserCredentials:Email"] ?? "";
-        string encryptedPassword = config["UserCredentials:Password"] ?? "";
-        
-        string password = DecryptPassword(encryptedPassword);
-
-        return (email, password);
-    }
+    }   
 
     public async Task<User?> RegisterUserAsync(string email, string password)
     {
@@ -100,26 +73,5 @@ public class AuthService
             rng.GetBytes(saltBytes);
         }
         return Convert.ToBase64String(saltBytes);
-    }
-
-    private string EncryptPassword(string password)
-    {
-        byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-        byte[] encryptedBytes = ProtectedData.Protect(passwordBytes, null, DataProtectionScope.CurrentUser);
-        return Convert.ToBase64String(encryptedBytes);
-    }
-
-    private string DecryptPassword(string encryptedPassword)
-    {
-        try
-        {
-            byte[] encryptedBytes = Convert.FromBase64String(encryptedPassword);
-            byte[] decryptedBytes = ProtectedData.Unprotect(encryptedBytes, null, DataProtectionScope.CurrentUser);
-            return Encoding.UTF8.GetString(decryptedBytes);
-        }
-        catch
-        {
-            return "";
-        }
     }
 }
