@@ -1,6 +1,9 @@
 ﻿using Xunit;
-using Finance_Manager_Backend.BuisnessLogic.Services;
+using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Finance_Manager_Backend.BusinessLogic.Models;
+using Newtonsoft.Json.Linq;
 
 namespace Finance_Manager_Backend_Tests.ServicesTests.AuthTests;
 
@@ -8,6 +11,17 @@ public class AuthenticateTest
 {
     private readonly string email = "test@example.com";
     private readonly string password = "qwerty";
+    private readonly JwtTokenGenerator tokenGenerator;
+
+    public AuthenticateTest()
+    {
+        var config = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.Test.json")
+        .Build();
+
+        tokenGenerator = new JwtTokenGenerator(config);
+    }
 
     [Fact]
     public async void AuthenticateUserFromDataBase_Test()
@@ -15,18 +29,15 @@ public class AuthenticateTest
         // Arrange
         using var dbContext = TestInMemoryDbContext.Create();
 
-        var authSevice = new AuthService(dbContext);
+        var authSevice = new AuthService(dbContext, tokenGenerator);
 
         // Act
-        await authSevice.RegisterUserAsync(email, password);
-        var user = await authSevice.AuthenticateUserAsync(email, password);
+        var (User, Token) = await authSevice.RegisterUserAsync(email, password);
+        var (user, token) = await authSevice.AuthenticateUserAsync(email, password);
 
         // Assert
-        Assert.NotNull(user);        
-        Assert.Equal(email, user.Email);
-        Assert.NotNull(user.PasswordHash);
-        Assert.NotNull(user.Salt);
-        Console.WriteLine($"Generated password: {user.PasswordHash}. Salt: {user.Salt}.");
+        Assert.Equal(User, user);
+        Assert.Equal(Token, token);        
     }
 
     [Fact]
@@ -35,13 +46,13 @@ public class AuthenticateTest
         // Arrange
         using var dbContext = TestInMemoryDbContext.Create();
 
-        var authSevice = new AuthService(dbContext);
+        var authSevice = new AuthService(dbContext, tokenGenerator);
 
         // Act
-        await authSevice.RegisterUserAsync(email, password);
-        var user = await authSevice.AuthenticateUserAsync(email, "invalid");
+        var (User, Token) = await authSevice.RegisterUserAsync(email, password);
 
         // Assert
-        Assert.Null(user);
+        await Assert.ThrowsAsync<InvalidOperationException>(async () =>
+            await authSevice.AuthenticateUserAsync(email, "invalid"));
     }
 }
