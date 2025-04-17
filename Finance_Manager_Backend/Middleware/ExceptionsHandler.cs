@@ -1,5 +1,6 @@
 ﻿using Finance_Manager_Backend.BusinessLogic.Models;
 using Finance_Manager_Backend.Exceptions;
+using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using System.Text.Json;
 
@@ -55,8 +56,29 @@ public class ExceptionsHandler
                 };
                 break;
 
-                default:
+            case SecurityTokenException tokenException:
+                response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                errorDetails = new ErrorResponse
+                {
+                    StatusCode = response.StatusCode,
+                    Message = tokenException.Message
+                };
+                break;
+
+            case UnauthorizedAccessException unauthorizedAccess:
+                response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                errorDetails = new ErrorResponse
+                {
+                    StatusCode = response.StatusCode,
+                    Message = unauthorizedAccess.Message
+                };
+                break;
+
+            default:
                 response.StatusCode = (int)HttpStatusCode.InternalServerError;
+
+                _logger.LogCritical(exception, "Unexpected error occurred: {Message}", exception.Message);
+
                 errorDetails = new ErrorResponse
                 {
                     StatusCode = response.StatusCode,
