@@ -1,5 +1,6 @@
 ﻿using Finance_Manager_Backend.BusinessLogic.Models;
 using Finance_Manager_Backend.BusinessLogic.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Finance_Manager_Backend.Controllers;
@@ -22,10 +23,13 @@ public class TransactionsController : ControllerBase
     /// <returns>Returns the ID of the created transaction.</returns>
     /// <response code="201">Transaction successfully created.</response>
     /// <response code="404">User not found.</response>
+    /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response>
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]    
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<int>> Create([FromBody] Transaction transaction)
     {
@@ -84,10 +88,13 @@ public class TransactionsController : ControllerBase
     /// <returns>Returns NoContent</returns>
     /// <response code="204">Success.</response>
     /// <response code="404">Not found some resource.</response>
+    /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [Authorize]
     [HttpPut]
     public async Task<ActionResult> Update([FromBody] Transaction transaction)
     {
@@ -103,10 +110,13 @@ public class TransactionsController : ControllerBase
     /// <returns>Returns NoContent</returns>
     /// <response code="204">Success.</response>
     /// <response code="404">Not found transaction.</response>
+    /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {

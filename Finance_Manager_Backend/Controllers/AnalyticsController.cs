@@ -6,7 +6,7 @@ namespace Finance_Manager_Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AnalyticsController : Controller
+public class AnalyticsController : ControllerBase
 {
     private readonly AnalyticsService _analyticsService;
     public AnalyticsController(AnalyticsService analyticsService)

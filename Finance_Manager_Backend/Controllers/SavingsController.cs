@@ -1,12 +1,13 @@
 ﻿using Finance_Manager_Backend.BusinessLogic.Models;
 using Finance_Manager_Backend.BusinessLogic.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Finance_Manager_Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class SavingsController : Controller
+public class SavingsController : ControllerBase
 {
     private readonly SavingsService _savingsService;
     public SavingsController(SavingsService savingsService)
@@ -21,10 +22,13 @@ public class SavingsController : Controller
     /// <returns>Returns the ID of the created saving.</returns>
     /// <response code="201">Saving successfully created.</response>
     /// <response code="404">User not found.</response>
+    /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response>
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<int>> Create([FromBody] Saving saving)
     {
@@ -39,7 +43,7 @@ public class SavingsController : Controller
     /// <param name="id">Saving id.</param>
     /// <returns>Returns saving object.</returns>
     /// <response code="200">Success.</response>
-    /// <response code="404">Not found saving.</response>
+    /// <response code="404">Not found saving.</response>     
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(Saving), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -83,10 +87,13 @@ public class SavingsController : Controller
     /// <param name="topUpAmount">Amount of top up.</param>
     /// <response code="204">Success.</response>
     /// <response code="404">Not found some resource.</response>
+    /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [Authorize]
     [HttpPut]
     public async Task<ActionResult> Update(
         [FromQuery] int savingId, 
@@ -104,10 +111,13 @@ public class SavingsController : Controller
     /// <returns>Returns NoContent</returns>
     /// <response code="204">Success.</response>
     /// <response code="404">Not found saving.</response>
+    /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {
