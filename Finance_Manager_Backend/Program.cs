@@ -4,6 +4,9 @@ using Serilog;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Finance_Manager_Backend.Middleware;
 using System.Reflection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 
 public class Program
 {    
@@ -14,6 +17,8 @@ public class Program
         // DI
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        builder.Services.AddTransient<JwtTokenGenerator>();
 
         builder.Services.AddScoped<DbTransactionTemplate>();
 
@@ -33,6 +38,24 @@ public class Program
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             options.IncludeXmlComments(xmlPath);
         });
+
+        // JwtAuthentication
+        builder.Services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtSettings["Issuer"],
+                    ValidAudience = jwtSettings["Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(jwtSettings["Key"]))
+                };
+            });
 
         // Logger
         Log.Logger = new LoggerConfiguration()
@@ -60,7 +83,8 @@ public class Program
         app.UseRouting();
         app.UseMiddleware<ExceptionsHandler>();
         app.UseHttpsRedirection();
-        //app.UseAuthorization();
+        app.UseAuthentication();
+        app.UseAuthorization();
         app.MapControllers();
 
         app.Run();
