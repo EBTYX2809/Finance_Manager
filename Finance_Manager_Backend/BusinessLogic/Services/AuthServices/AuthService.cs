@@ -27,7 +27,7 @@ public class AuthService
         await _dbContext.Users.AddAsync(user);
         await _dbContext.SaveChangesAsync();        
 
-        return (user, _tokenGenerator.GenerateToken(user));
+        return (user, _tokenGenerator.GenerateToken());
     }
 
     public async Task<(User, string)> AuthenticateUserAsync(string email, string password)
@@ -39,7 +39,7 @@ public class AuthService
 
         if (user.PasswordHash == hashedInput) 
         {
-            return (user, _tokenGenerator.GenerateToken(user));
+            return (user, _tokenGenerator.GenerateToken());
         }
         else throw new InvalidOperationException("Invalid password. Please try again.");
     }

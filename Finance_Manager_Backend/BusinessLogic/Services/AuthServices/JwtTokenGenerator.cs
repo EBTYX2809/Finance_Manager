@@ -14,7 +14,7 @@ public class JwtTokenGenerator
         _config = config;
     }
 
-    public string GenerateToken(User user)
+    public string GenerateToken()
     {
         var jwtSettings = _config.GetSection("JwtSettings");
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]!));
