@@ -55,9 +55,6 @@ public class AuthController : ControllerBase
     }
 }
 
-/// <response code="401">Not authorized. Possible invalid token.</response>
-[ProducesResponseType(StatusCodes.Status401Unauthorized)]
-
 public class AuthUserTokenDTO
 {
     public User User { get; set; }
