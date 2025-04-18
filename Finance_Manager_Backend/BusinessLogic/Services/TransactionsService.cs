@@ -22,7 +22,6 @@ public class TransactionsService
     }
 
     // Db Transactions required due to changing user balance
-    // Need return id in controller to front
     public async Task CreateTransactionAsync(UserTransaction userTransaction)
     {
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
@@ -40,7 +39,10 @@ public class TransactionsService
 
     public async Task<UserTransaction> GetTransactionByIdAsync(int transactionId)
     {             
-        var transaction = await _appDbContext.Transactions.FirstOrDefaultAsync(t => t.Id == transactionId);
+        var transaction = await _appDbContext.Transactions
+            .Include(t => t.Category)
+            .Include(t => t.InnerCategory)
+            .FirstOrDefaultAsync(t => t.Id == transactionId);
 
         if (transaction == null) throw new EntityNotFoundException<UserTransaction>(transactionId);
 
@@ -55,7 +57,6 @@ public class TransactionsService
         var orderedTransactions = _appDbContext.Transactions
             .Include(t => t.Category)
             .Include(t => t.InnerCategory)
-            .Include(t => t.User)
             .Where(t => t.UserId == userId)
             .OrderByDescending(t => t.Date);
 
