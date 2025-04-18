@@ -1,15 +1,16 @@
-using Microsoft.EntityFrameworkCore;
-using Finance_Manager_Backend.DataBase;
-using Serilog;
 using Finance_Manager_Backend.BusinessLogic.Services;
-using Finance_Manager_Backend.Middleware;
-using System.Reflection;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
+using Finance_Manager_Backend.DataBase;
+using Finance_Manager_Backend.Middleware;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Serilog;
+using System.Reflection;
+using System.Text;
 
 public class Program
-{    
+{
     public static void Main()
     {
         var builder = WebApplication.CreateBuilder();
@@ -37,6 +38,34 @@ public class Program
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             options.IncludeXmlComments(xmlPath);
+
+            // Jwt token support
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Description = "Enter JWT token in format: Bearer {token}",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer"
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement()
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        },
+                        Scheme = "oauth2",
+                        Name = "Bearer",
+                        In = ParameterLocation.Header,
+                    },
+                    new List<string>()
+                }
+            });
         });
 
         // JwtAuthentication
@@ -77,6 +106,8 @@ public class Program
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            DataSeeder.ClearDb(app.Services).Wait();
+            DataSeeder.Seed(app.Services).Wait();
         }
 
         // Middleware
@@ -90,5 +121,5 @@ public class Program
         app.Run();
 
         Console.WriteLine("It's all good man.");
-    }  
+    }
 }
