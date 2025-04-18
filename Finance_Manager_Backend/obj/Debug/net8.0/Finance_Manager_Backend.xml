@@ -37,6 +37,28 @@
             <response code="404">Not found some resource.</response>
             <response code="500">Internal server error.</response> 
         </member>
+        <member name="M:Finance_Manager_Backend.Controllers.AuthController.Register(System.String,System.String)">
+            <summary>
+            Register new user.
+            </summary>
+            <param name="email">User email.</param>
+            <param name="password">User password.</param>
+            <returns>AuthUserTokenDTO - user object with jwt token.</returns>
+            <response code="200">Success.</response>
+            <response code="400">Invalid credentials.</response>    
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.AuthController.Authenticate(System.String,System.String)">
+            <summary>
+            Authenticate user.
+            </summary>
+            <param name="email">User email.</param>
+            <param name="password">User password.</param>
+            <returns>AuthUserTokenDTO - user object with jwt token.</returns>
+            <response code="200">Success.</response>
+            <response code="400">Invalid credentials.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
         <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Create(Finance_Manager_Backend.BusinessLogic.Models.Saving)">
             <summary>
             Create saving.
@@ -45,6 +67,7 @@
             <returns>Returns the ID of the created saving.</returns>
             <response code="201">Saving successfully created.</response>
             <response code="404">User not found.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response>
         </member>
         <member name="M:Finance_Manager_Backend.Controllers.SavingsController.GetById(System.Int32)">
@@ -54,7 +77,7 @@
             <param name="id">Saving id.</param>
             <returns>Returns saving object.</returns>
             <response code="200">Success.</response>
-            <response code="404">Not found saving.</response>
+            <response code="404">Not found saving.</response>     
             <response code="500">Internal server error.</response> 
         </member>
         <member name="M:Finance_Manager_Backend.Controllers.SavingsController.GetSavings(System.Int32,System.Int32,System.Int32)">
@@ -77,6 +100,7 @@
             <param name="topUpAmount">Amount of top up.</param>
             <response code="204">Success.</response>
             <response code="404">Not found some resource.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
         <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Delete(System.Int32)">
@@ -87,6 +111,7 @@
             <returns>Returns NoContent</returns>
             <response code="204">Success.</response>
             <response code="404">Not found saving.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
         <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Create(Finance_Manager_Backend.BusinessLogic.Models.Transaction)">
@@ -97,6 +122,7 @@
             <returns>Returns the ID of the created transaction.</returns>
             <response code="201">Transaction successfully created.</response>
             <response code="404">User not found.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response>
         </member>
         <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.GetById(System.Int32)">
@@ -129,6 +155,7 @@
             <returns>Returns NoContent</returns>
             <response code="204">Success.</response>
             <response code="404">Not found some resource.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
         <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Delete(System.Int32)">
@@ -139,6 +166,7 @@
             <returns>Returns NoContent</returns>
             <response code="204">Success.</response>
             <response code="404">Not found transaction.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
         <member name="T:Finance_Manager_Backend.Migrations.InitializeDb">
@@ -187,6 +215,18 @@
             <inheritdoc />
         </member>
         <member name="M:Finance_Manager_Backend.Migrations.ChangedCurrentAmountInSavingsToNotNullableDecimal.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

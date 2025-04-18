@@ -217,17 +217,5 @@
         <member name="M:Finance_Manager_Backend.Migrations.ChangedCurrentAmountInSavingsToNotNullableDecimal.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
-        <member name="T:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk">
-            <inheritdoc />
-        </member>
-        <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
     </members>
 </doc>

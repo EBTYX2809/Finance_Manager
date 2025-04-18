@@ -5,13 +5,16 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Finance_Manager_Backend.runtimeconfig.json
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Finance_Manager_Backend.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Finance_Manager_Backend.pdb
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Finance_Manager_Backend.xml
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Azure.Core.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Azure.Identity.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Google.Apis.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Google.Apis.Auth.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Google.Apis.Core.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Humanizer.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.Build.Locator.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -190,8 +193,8 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_.A22CD024.Up2Date
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_Manager_Backend.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\refint\Finance_Manager_Backend.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_Manager_Backend.xml
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_Manager_Backend.pdb
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_Manager_Backend.genruntimeconfig.cache
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\ref\Finance_Manager_Backend.dll
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Finance_Manager_Backend.xml
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_Manager_Backend.xml
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
