@@ -42,6 +42,10 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired(false);
 
+        builder.Property(c => c.ParentCategoryId)
+            .IsRequired(false)
+            .HasColumnName("parent_category_fk");
+
         builder.HasIndex(c => c.ParentCategoryId);
     }
 }
