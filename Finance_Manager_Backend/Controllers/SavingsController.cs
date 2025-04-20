@@ -1,4 +1,5 @@
 ﻿using Finance_Manager_Backend.BusinessLogic.Models;
+using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ public class SavingsController : ControllerBase
     /// <summary>
     /// Create saving.
     /// </summary>
-    /// <param name="saving">The saving to create.</param>
+    /// <param name="savingDTO">The savingDTO to create.</param>
     /// <returns>Returns the ID of the created saving.</returns>
     /// <response code="201">Saving successfully created.</response>
     /// <response code="404">User not found.</response>
@@ -30,18 +31,18 @@ public class SavingsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
     [HttpPost]
-    public async Task<ActionResult<int>> Create([FromBody] Saving saving)
+    public async Task<ActionResult<int>> Create([FromBody] SavingDTO savingDTO)
     {
-        await _savingsService.CreateSavingAsync(saving);
+        await _savingsService.CreateSavingAsync(savingDTO);
 
-        return CreatedAtAction(nameof(GetById), new { id = saving.Id }, saving.Id);
+        return CreatedAtAction(nameof(GetById), new { id = savingDTO.Id }, savingDTO.Id);
     }
 
     /// <summary>
     /// Get saving by id.
     /// </summary>
     /// <param name="id">Saving id.</param>
-    /// <returns>Returns saving object.</returns>
+    /// <returns>Returns savingDTO object.</returns>
     /// <response code="200">Success.</response>
     /// <response code="404">Not found saving.</response>     
     /// <response code="500">Internal server error.</response> 
@@ -51,9 +52,9 @@ public class SavingsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Saving>> GetById(int id)
     {
-        var saving = await _savingsService.GetSavingByIdAsync(id);
+        var savingDTO = await _savingsService.GetSavingByIdAsync(id);
 
-        return Ok(saving);
+        return Ok(savingDTO);
     }
 
     /// <summary>
@@ -62,22 +63,22 @@ public class SavingsController : ControllerBase
     /// <param name="userId">User id that want to get his savings.</param>
     /// <param name="previousSavingId">Last saving id from which savings must be loaded.</param>
     /// <param name="pageSize">Amount of savings.</param>
-    /// <returns>Returns list with savings objects.</returns>
+    /// <returns>Returns list with savingsDTO objects.</returns>
     /// <response code="200">Success.</response>
     /// <response code="404">Not found some resource.</response>
     /// <response code="500">Internal server error.</response>
-    [ProducesResponseType(typeof(List<Saving>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(List<SavingDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpGet]
-    public async Task<ActionResult<List<Saving>>> GetSavings(
+    public async Task<ActionResult<List<SavingDTO>>> GetSavings(
         [FromQuery] int userId,
         [FromQuery] int previousSavingId,
         [FromQuery] int pageSize = 5)
     {
-        var savings = await _savingsService.GetSavingsAsync(userId, previousSavingId, pageSize);
+        var savingsDTO = await _savingsService.GetSavingsAsync(userId, previousSavingId, pageSize);
 
-        return Ok(savings);
+        return Ok(savingsDTO);
     }
 
     /// <summary>

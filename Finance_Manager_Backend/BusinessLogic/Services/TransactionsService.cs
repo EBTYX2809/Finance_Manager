@@ -3,6 +3,8 @@ using System.Data;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend.Exceptions;
 using UserTransaction = Finance_Manager_Backend.BusinessLogic.Models.Transaction;
+using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
+using AutoMapper;
 
 namespace Finance_Manager_Backend.BusinessLogic.Services;
 
@@ -12,28 +14,37 @@ public class TransactionsService
     private DbTransactionTemplate _dbTransactionTemplate;
     private ILogger<TransactionsService> _logger;
     private UsersService _usersService;
+    private CategoriesService _categoriesService;
+    private readonly IMapper _mapper;
     public TransactionsService(AppDbContext appDbContext, DbTransactionTemplate dbTransactionTemplate,
-        ILogger<TransactionsService> logger, UsersService usersService)
+        ILogger<TransactionsService> logger, UsersService usersService, IMapper mapper, CategoriesService categoriesService)
     {
         _appDbContext = appDbContext;
         _dbTransactionTemplate = dbTransactionTemplate;
         _logger = logger;
         _usersService = usersService;
+        _mapper = mapper;
+        _categoriesService = categoriesService;
     }
 
     // Db Transactions required due to changing user balance
-    public async Task CreateTransactionAsync(UserTransaction userTransaction)
+    public async Task CreateTransactionAsync(TransactionDTO userTransactionDTO)
     {
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
         {
             _logger.LogInformation("Executing CreateTransactionAsync method.");
             
-            var user = await _usersService.GetUserByIdAsync(userTransaction.UserId);
+            var user = await _usersService.GetUserByIdAsync(userTransactionDTO.UserId);
 
-            await _appDbContext.Transactions.AddAsync(userTransaction);
+            var transaction = _mapper.Map<UserTransaction>(userTransactionDTO);
+            transaction.Category = await _categoriesService.GetCategoryByIdAsync(userTransactionDTO.CategoryId);
 
-            if (userTransaction.Category.IsIncome) user.Balance += userTransaction.Price;
-            else user.Balance -= userTransaction.Price;            
+            await _appDbContext.Transactions.AddAsync(transaction);
+
+            userTransactionDTO.Id = transaction.Id;
+
+            if (transaction.Category.IsIncome) user.Balance += transaction.Price;
+            else user.Balance -= transaction.Price;            
         });
     }
 
@@ -49,58 +60,65 @@ public class TransactionsService
         return transaction;
     }
 
-
-    public async Task<List<UserTransaction>> GetTransactionsAsync(int userId, DateTime? lastDate, int pageSize)
+    public async Task<TransactionDTO> GetTransactionDTOByIdAsync(int transactionId)
     {
-        var user = await _usersService.GetUserByIdAsync(userId);
+        var transaction = await _appDbContext.Transactions
+            .FirstOrDefaultAsync(t => t.Id == transactionId);
+
+        if (transaction == null) throw new EntityNotFoundException<UserTransaction>(transactionId);
+
+        return _mapper.Map<TransactionDTO>(transaction);
+    }
+
+
+    public async Task<List<TransactionDTO>> GetTransactionsAsync(int userId, DateTime? lastDate, int pageSize)
+    {
+        var user = await _usersService.GetUserByIdAsync(userId); // Validation userId
 
         var orderedTransactions = _appDbContext.Transactions
-            .Include(t => t.Category)
-            .Include(t => t.InnerCategory)
-            .Where(t => t.UserId == userId)
+            .Where(t => t.UserId == userId) // && t.Date < lastDate
             .OrderByDescending(t => t.Date);
 
         if (lastDate.HasValue)
         {
             orderedTransactions = orderedTransactions
-                .Where(t => t.Date < lastDate.Value) 
-                as IOrderedQueryable<UserTransaction>;
+                .Where(t => t.Date<lastDate.Value)
+                .OrderByDescending(t => t.Date);
         }
 
-        return await orderedTransactions
+        var transactions = await orderedTransactions
             .Take(pageSize)
             .ToListAsync();
+
+        return _mapper.Map<List<TransactionDTO>>(transactions);
     }
 
-    public async Task UpdateTransactionAsync(UserTransaction newUserTransaction)
+    public async Task UpdateTransactionAsync(TransactionDTO newUserTransactionDTO)
     {
         _logger.LogInformation("Executing UpdateTransactionAsync method.");
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
         {
-            var user = await _usersService.GetUserByIdAsync(newUserTransaction.UserId);
+            var user = await _usersService.GetUserByIdAsync(newUserTransactionDTO.UserId);
 
-            var oldUserTransaction = await GetTransactionByIdAsync(newUserTransaction.Id);
+            var oldUserTransaction = await GetTransactionByIdAsync(newUserTransactionDTO.Id);
 
-            if (newUserTransaction.Price >= oldUserTransaction.Price)
+            if (newUserTransactionDTO.Price >= oldUserTransaction.Price)
             {
-                user.Balance -= newUserTransaction.Price - oldUserTransaction.Price;
+                user.Balance -= newUserTransactionDTO.Price - oldUserTransaction.Price;
             }
-            else if (newUserTransaction.Price <= oldUserTransaction.Price)
+            else if (newUserTransactionDTO.Price <= oldUserTransaction.Price)
             {
-                user.Balance += oldUserTransaction.Price - newUserTransaction.Price;
+                user.Balance += oldUserTransaction.Price - newUserTransactionDTO.Price;
             }
 
-            oldUserTransaction.Name = newUserTransaction.Name;
-            oldUserTransaction.Price = newUserTransaction.Price;
-            oldUserTransaction.Date = newUserTransaction.Date;
+            oldUserTransaction.Name = newUserTransactionDTO.Name;
+            oldUserTransaction.Price = newUserTransactionDTO.Price;
+            oldUserTransaction.Date = newUserTransactionDTO.Date;
 
-            oldUserTransaction.CategoryId = newUserTransaction.CategoryId;
-            oldUserTransaction.Category = newUserTransaction.Category;
+            oldUserTransaction.CategoryId = newUserTransactionDTO.CategoryId;            
+            oldUserTransaction.InnerCategoryId = newUserTransactionDTO.InnerCategoryId;            
 
-            oldUserTransaction.InnerCategoryId = newUserTransaction.InnerCategoryId;
-            oldUserTransaction.InnerCategory = newUserTransaction.InnerCategory;
-
-            oldUserTransaction.Photo = newUserTransaction.Photo;
+            //oldUserTransaction.Photo = newUserTransactionDTO.Photo;
         });
     }
 

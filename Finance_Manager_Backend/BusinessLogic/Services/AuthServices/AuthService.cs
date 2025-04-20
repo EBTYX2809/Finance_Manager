@@ -2,6 +2,8 @@
 using Finance_Manager_Backend.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Finance_Manager_Backend.BusinessLogic.Models;
+using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
+using AutoMapper;
 
 namespace Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 
@@ -9,13 +11,15 @@ public class AuthService
 {
     private readonly AppDbContext _dbContext;
     private readonly JwtTokenGenerator _tokenGenerator;
-    public AuthService(AppDbContext dbContext, JwtTokenGenerator tokenGenerator)
+    private readonly IMapper _mapper;
+    public AuthService(AppDbContext dbContext, JwtTokenGenerator tokenGenerator, IMapper mapper)
     {
         _dbContext = dbContext;
         _tokenGenerator = tokenGenerator;
-    }   
+        _mapper = mapper;
+    }
 
-    public async Task<(User, string)> RegisterUserAsync(string email, string password)
+    public async Task<(UserDTO, string)> RegisterUserAsync(string email, string password)
     {
         var userCheck = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
         if (userCheck != null) throw new InvalidOperationException("Error, this email already registered.");
@@ -25,12 +29,15 @@ public class AuthService
 
         User user = new User(email, salt, hashedPassword, 0);
         await _dbContext.Users.AddAsync(user);
-        await _dbContext.SaveChangesAsync();        
+        await _dbContext.SaveChangesAsync();
 
-        return (user, _tokenGenerator.GenerateToken());
+        var userDTO = _mapper.Map<UserDTO>(user);
+        var token = _tokenGenerator.GenerateToken(user);
+
+        return (userDTO, token);
     }
 
-    public async Task<(User, string)> AuthenticateUserAsync(string email, string password)
+    public async Task<(UserDTO, string)> AuthenticateUserAsync(string email, string password)
     {
         var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
         if (user == null) throw new InvalidOperationException("Error, this email not registered.");
@@ -39,7 +46,10 @@ public class AuthService
 
         if (user.PasswordHash == hashedInput) 
         {
-            return (user, _tokenGenerator.GenerateToken());
+            var userDTO = _mapper.Map<UserDTO>(user);
+            var token = _tokenGenerator.GenerateToken(user);
+
+            return (userDTO, token);
         }
         else throw new InvalidOperationException("Invalid password. Please try again.");
     }

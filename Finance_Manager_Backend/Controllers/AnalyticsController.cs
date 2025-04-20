@@ -1,4 +1,5 @@
 ﻿using Finance_Manager_Backend.BusinessLogic.Models;
+using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,7 +44,7 @@ public class AnalyticsController : ControllerBase
 
         foreach (var a in analytics)
         {
-            categoryPercentDTOs.Add(new CategoryPercentDTO { Category = a.Key, Percent = a.Value });
+            categoryPercentDTOs.Add(new CategoryPercentDTO { CategoryDTO = a.Key, Percent = a.Value });
         }
 
         return Ok(categoryPercentDTOs);
@@ -80,7 +81,7 @@ public class AnalyticsController : ControllerBase
 
         foreach (var a in analytics)
         {
-            categoryPercentDTOs.Add(new CategoryPercentDTO { Category = a.Key, Percent = a.Value });
+            categoryPercentDTOs.Add(new CategoryPercentDTO { CategoryDTO = a.Key, Percent = a.Value });
         }
 
         return Ok(categoryPercentDTOs);
@@ -89,6 +90,6 @@ public class AnalyticsController : ControllerBase
 
 public class CategoryPercentDTO
 {
-    public Category Category { get; set; }
+    public CategoryDTO CategoryDTO { get; set; }
     public float Percent { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using Finance_Manager_Backend.BusinessLogic.Models;
+using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ public class TransactionsController : ControllerBase
     /// <summary>
     /// Create transaction.
     /// </summary>
-    /// <param name="transaction">The transaction to create.</param>
+    /// <param name="transactionDTO">The transactionDTO to create.</param>
     /// <returns>Returns the ID of the created transaction.</returns>
     /// <response code="201">Transaction successfully created.</response>
     /// <response code="404">User not found.</response>
@@ -31,11 +32,11 @@ public class TransactionsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
     [HttpPost]
-    public async Task<ActionResult<int>> Create([FromBody] Transaction transaction)
+    public async Task<ActionResult<int>> Create([FromBody] TransactionDTO transactionDTO)
     {
-        await _transactionsService.CreateTransactionAsync(transaction);
+        await _transactionsService.CreateTransactionAsync(transactionDTO);
 
-        return CreatedAtAction(nameof(GetById), new { id = transaction.Id }, transaction.Id);
+        return CreatedAtAction(nameof(GetById), new { id = transactionDTO.Id }, transactionDTO.Id);
     }
 
     /// <summary>
@@ -50,11 +51,11 @@ public class TransactionsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpGet("{id}")]
-    public async Task<ActionResult<Transaction>> GetById(int id)
+    public async Task<ActionResult<TransactionDTO>> GetById(int id)
     {
-        var transaction = await _transactionsService.GetTransactionByIdAsync(id);
+        var transactionDTO = await _transactionsService.GetTransactionDTOByIdAsync(id);
 
-        return Ok(transaction);
+        return Ok(transactionDTO);
     }
 
     /// <summary>
@@ -63,17 +64,17 @@ public class TransactionsController : ControllerBase
     /// <param name="userId">User id.</param>
     /// <param name="lastDate">Last date from which transactions must be loaded(null if from first).</param>
     /// <param name="pageSize">Amount of transactions.</param>
-    /// <returns>Returns list with transaction objects.</returns>
+    /// <returns>Returns list with transactionDTO objects.</returns>
     /// <response code="200">Success.</response>
     /// <response code="404">Not found some resource.</response>
     /// <response code="500">Internal server error.</response> 
-    [ProducesResponseType(typeof(List<Transaction>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(List<TransactionDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpGet]
-    public async Task<ActionResult<List<Transaction>>> GetTransactions(
+    public async Task<ActionResult<List<TransactionDTO>>> GetTransactions(
     [FromQuery] int userId,
-    [FromQuery] DateTime? lastDate,
+    [FromQuery] DateTime? lastDate, //? ПОМЕНЯТЬ ПОТОМ ДОКУ
     [FromQuery] int pageSize = 20)
     {
         var transactions = await _transactionsService.GetTransactionsAsync(userId, lastDate, pageSize);
@@ -84,7 +85,7 @@ public class TransactionsController : ControllerBase
     /// <summary>
     /// Update transaction with new data.
     /// </summary>
-    /// <param name="transaction">New transaction object.</param>
+    /// <param name="transactionDTO">New transactionDTO object.</param>
     /// <returns>Returns NoContent</returns>
     /// <response code="204">Success.</response>
     /// <response code="404">Not found some resource.</response>
@@ -96,9 +97,9 @@ public class TransactionsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
     [HttpPut]
-    public async Task<ActionResult> Update([FromBody] Transaction transaction)
+    public async Task<ActionResult> Update([FromBody] TransactionDTO transactionDTO)
     {
-        await _transactionsService.UpdateTransactionAsync(transaction);
+        await _transactionsService.UpdateTransactionAsync(transactionDTO);
 
         return NoContent();
     }
