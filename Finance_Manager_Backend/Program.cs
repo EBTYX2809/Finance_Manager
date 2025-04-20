@@ -1,3 +1,4 @@
+using Finance_Manager_Backend.BusinessLogic.Models;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 using Finance_Manager_Backend.DataBase;
@@ -30,6 +31,8 @@ public class Program
         builder.Services.AddScoped<AnalyticsService>();
         builder.Services.AddScoped<UsersService>();
         builder.Services.AddScoped<CategoriesService>();
+
+        builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
