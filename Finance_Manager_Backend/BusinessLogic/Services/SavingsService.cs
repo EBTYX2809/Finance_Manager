@@ -31,17 +31,16 @@ public class SavingsService
         var saving = _mapper.Map<Saving>(savingDTO);
 
         await _appDbContext.Savings.AddAsync(saving);
+        await _appDbContext.SaveChangesAsync();
 
         savingDTO.Id = saving.Id;
-
-        await _appDbContext.SaveChangesAsync();
     }
 
     public async Task<Saving> GetSavingByIdAsync(int savingId)
     {
         var saving = await _appDbContext.Savings.FirstOrDefaultAsync(s => s.Id == savingId);
 
-        if (saving == null) throw new EntityNotFoundException<Category>(savingId);
+        if (saving == null) throw new EntityNotFoundException<Saving>(savingId);
 
         return saving;
     }
@@ -50,7 +49,7 @@ public class SavingsService
     {
         var saving = await _appDbContext.Savings.FirstOrDefaultAsync(s => s.Id == savingId);
 
-        if (saving == null) throw new EntityNotFoundException<Category>(savingId);
+        if (saving == null) throw new EntityNotFoundException<Saving>(savingId);
 
         return _mapper.Map<SavingDTO>(saving);
     }

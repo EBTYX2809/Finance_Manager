@@ -41,10 +41,12 @@ public class TransactionsService
 
             await _appDbContext.Transactions.AddAsync(transaction);
 
-            userTransactionDTO.Id = transaction.Id;
-
             if (transaction.Category.IsIncome) user.Balance += transaction.Price;
-            else user.Balance -= transaction.Price;            
+            else user.Balance -= transaction.Price;
+
+            await _appDbContext.SaveChangesAsync();
+
+            userTransactionDTO.Id = transaction.Id;
         });
     }
 
@@ -61,7 +63,7 @@ public class TransactionsService
     }
 
     public async Task<TransactionDTO> GetTransactionDTOByIdAsync(int transactionId)
-    {
+    {        
         var transaction = await _appDbContext.Transactions
             .FirstOrDefaultAsync(t => t.Id == transactionId);
 
