@@ -1,5 +1,7 @@
-﻿using Finance_Manager_Backend.BusinessLogic.Models;
+﻿using AutoMapper;
+using Finance_Manager_Backend.BusinessLogic.Models;
 using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace Finance_Manager_Backend.DataBase;
@@ -11,8 +13,11 @@ public static class DataSeeder
         using var scope = serviceProvider.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         var authService = scope.ServiceProvider.GetRequiredService<AuthService>();
+        var mapper = scope.ServiceProvider.GetRequiredService<IMapper>();
 
-        var (user1, token) = await authService.RegisterUserAsync("test@email.com", "test_password");
+        var (userDTO, token) = await authService.RegisterUserAsync("test@email.com", "test_password");
+
+        var user1 = await dbContext.Users.FirstOrDefaultAsync(u => u.Id  == userDTO.Id);
 
         // categories
         var eatCategory = new Category("eat", false, "eat_icon.png", "yellow");
