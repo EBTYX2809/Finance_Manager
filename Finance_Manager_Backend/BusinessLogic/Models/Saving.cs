@@ -24,5 +24,5 @@ public class Saving : IEntity
     public decimal Goal { get; set; }
     public decimal CurrentAmount { get; set; } = 0;
     public int UserId { get; set; }
-    public User User { get; set; } = new();   
+    public User? User { get; set; } // = new();
 }

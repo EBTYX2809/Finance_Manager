@@ -26,11 +26,11 @@ public class Transaction : IEntity
     public string Name { get; set; } = string.Empty;
     public decimal Price { get; set; }
     public DateTime Date { get; set; } = DateTime.Now;
-    public Category Category { get; set; } = new();
+    public Category? Category { get; set; }
     public int CategoryId { get; set; }
     public Category? InnerCategory { get; set; }
     public int? InnerCategoryId { get; set; }
     public string? Photo { get; set; }
     public int UserId { get; set; }
-    public User User { get; set; } = new();
+    public User? User { get; set; }
 }
