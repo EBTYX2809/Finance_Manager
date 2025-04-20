@@ -1,5 +1,4 @@
-﻿using Finance_Manager_Backend.BusinessLogic.Models;
-using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
+﻿using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -46,11 +45,11 @@ public class SavingsController : ControllerBase
     /// <response code="200">Success.</response>
     /// <response code="404">Not found saving.</response>     
     /// <response code="500">Internal server error.</response> 
-    [ProducesResponseType(typeof(Saving), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(SavingDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpGet("{id}")]
-    public async Task<ActionResult<Saving>> GetById(int id)
+    public async Task<ActionResult<SavingDTO>> GetById(int id)
     {
         var savingDTO = await _savingsService.GetSavingByIdAsync(id);
 
