@@ -195,6 +195,32 @@
     ]
   },
   {
+    "ContainingType": "Finance_Manager_Backend.Controllers.CategoriesController",
+    "Method": "GetCategoryById",
+    "RelativePath": "api/Categories/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.CategoryDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "Finance_Manager_Backend.Controllers.SavingsController",
     "Method": "Create",
     "RelativePath": "api/Savings",
@@ -203,8 +229,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "saving",
-        "Type": "Finance_Manager_Backend.BusinessLogic.Models.Saving",
+        "Name": "savingDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.SavingDTO",
         "IsRequired": true
       }
     ],
@@ -269,7 +295,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.Saving, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.SavingDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -437,8 +463,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "transaction",
-        "Type": "Finance_Manager_Backend.BusinessLogic.Models.Transaction",
+        "Name": "transactionDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.TransactionDTO",
         "IsRequired": true
       }
     ],
@@ -503,7 +529,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.Transaction, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.TransactionDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -536,8 +562,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "transaction",
-        "Type": "Finance_Manager_Backend.BusinessLogic.Models.Transaction",
+        "Name": "transactionDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.TransactionDTO",
         "IsRequired": true
       }
     ],

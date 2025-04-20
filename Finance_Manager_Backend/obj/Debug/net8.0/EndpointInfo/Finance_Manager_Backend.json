@@ -338,6 +338,46 @@
         }
       }
     },
+    "/api/Categories/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/Savings": {
       "post": {
         "tags": [
@@ -345,21 +385,21 @@
         ],
         "summary": "Create saving.",
         "requestBody": {
-          "description": "The saving to create.",
+          "description": "The savingDTO to create.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Saving"
+                "$ref": "#/components/schemas/SavingDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Saving"
+                "$ref": "#/components/schemas/SavingDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Saving"
+                "$ref": "#/components/schemas/SavingDTO"
               }
             }
           }
@@ -476,7 +516,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Saving"
+                    "$ref": "#/components/schemas/SavingDTO"
                   }
                 }
               },
@@ -484,7 +524,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Saving"
+                    "$ref": "#/components/schemas/SavingDTO"
                   }
                 }
               },
@@ -492,7 +532,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Saving"
+                    "$ref": "#/components/schemas/SavingDTO"
                   }
                 }
               }
@@ -736,21 +776,21 @@
         ],
         "summary": "Create transaction.",
         "requestBody": {
-          "description": "The transaction to create.",
+          "description": "The transactionDTO to create.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Transaction"
+                "$ref": "#/components/schemas/TransactionDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Transaction"
+                "$ref": "#/components/schemas/TransactionDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Transaction"
+                "$ref": "#/components/schemas/TransactionDTO"
               }
             }
           }
@@ -867,7 +907,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Transaction"
+                    "$ref": "#/components/schemas/TransactionDTO"
                   }
                 }
               },
@@ -875,7 +915,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Transaction"
+                    "$ref": "#/components/schemas/TransactionDTO"
                   }
                 }
               },
@@ -883,7 +923,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Transaction"
+                    "$ref": "#/components/schemas/TransactionDTO"
                   }
                 }
               }
@@ -920,21 +960,21 @@
         ],
         "summary": "Update transaction with new data.",
         "requestBody": {
-          "description": "New transaction object.",
+          "description": "New transactionDTO object.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Transaction"
+                "$ref": "#/components/schemas/TransactionDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Transaction"
+                "$ref": "#/components/schemas/TransactionDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Transaction"
+                "$ref": "#/components/schemas/TransactionDTO"
               }
             }
           }
@@ -1126,8 +1166,8 @@
       "AuthUserTokenDTO": {
         "type": "object",
         "properties": {
-          "user": {
-            "$ref": "#/components/schemas/User"
+          "userDTO": {
+            "$ref": "#/components/schemas/UserDTO"
           },
           "token": {
             "type": "string",
@@ -1176,11 +1216,48 @@
         },
         "additionalProperties": false
       },
+      "CategoryDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "isIncome": {
+            "type": "boolean"
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true
+          },
+          "colorForBackground": {
+            "type": "string",
+            "nullable": true
+          },
+          "parentCategoryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "innerCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CategoryPercentDTO": {
         "type": "object",
         "properties": {
-          "category": {
-            "$ref": "#/components/schemas/Category"
+          "categoryDTO": {
+            "$ref": "#/components/schemas/CategoryDTO"
           },
           "percent": {
             "type": "number",
@@ -1245,6 +1322,32 @@
         },
         "additionalProperties": false
       },
+      "SavingDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "goal": {
+            "type": "number",
+            "format": "double"
+          },
+          "currentAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "Transaction": {
         "type": "object",
         "properties": {
@@ -1293,6 +1396,41 @@
         },
         "additionalProperties": false
       },
+      "TransactionDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "innerCategoryId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "User": {
         "type": "object",
         "properties": {
@@ -1329,6 +1467,24 @@
               "$ref": "#/components/schemas/Saving"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "balance": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false

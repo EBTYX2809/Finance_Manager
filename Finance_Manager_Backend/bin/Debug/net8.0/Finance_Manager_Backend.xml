@@ -43,7 +43,7 @@
             </summary>
             <param name="email">User email.</param>
             <param name="password">User password.</param>
-            <returns>AuthUserTokenDTO - user object with jwt token.</returns>
+            <returns>AuthUserTokenDTO - userDTO with jwt token.</returns>
             <response code="200">Success.</response>
             <response code="400">Invalid credentials.</response>    
             <response code="500">Internal server error.</response> 
@@ -54,16 +54,16 @@
             </summary>
             <param name="email">User email.</param>
             <param name="password">User password.</param>
-            <returns>AuthUserTokenDTO - user object with jwt token.</returns>
+            <returns>AuthUserTokenDTO - userDTO with jwt token.</returns>
             <response code="200">Success.</response>
             <response code="400">Invalid credentials.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Create(Finance_Manager_Backend.BusinessLogic.Models.Saving)">
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Create(Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.SavingDTO)">
             <summary>
             Create saving.
             </summary>
-            <param name="saving">The saving to create.</param>
+            <param name="savingDTO">The savingDTO to create.</param>
             <returns>Returns the ID of the created saving.</returns>
             <response code="201">Saving successfully created.</response>
             <response code="404">User not found.</response>
@@ -75,7 +75,7 @@
             Get saving by id.
             </summary>
             <param name="id">Saving id.</param>
-            <returns>Returns saving object.</returns>
+            <returns>Returns savingDTO object.</returns>
             <response code="200">Success.</response>
             <response code="404">Not found saving.</response>     
             <response code="500">Internal server error.</response> 
@@ -87,7 +87,7 @@
             <param name="userId">User id that want to get his savings.</param>
             <param name="previousSavingId">Last saving id from which savings must be loaded.</param>
             <param name="pageSize">Amount of savings.</param>
-            <returns>Returns list with savings objects.</returns>
+            <returns>Returns list with savingsDTO objects.</returns>
             <response code="200">Success.</response>
             <response code="404">Not found some resource.</response>
             <response code="500">Internal server error.</response>
@@ -114,11 +114,11 @@
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Create(Finance_Manager_Backend.BusinessLogic.Models.Transaction)">
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Create(Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.TransactionDTO)">
             <summary>
             Create transaction.
             </summary>
-            <param name="transaction">The transaction to create.</param>
+            <param name="transactionDTO">The transactionDTO to create.</param>
             <returns>Returns the ID of the created transaction.</returns>
             <response code="201">Transaction successfully created.</response>
             <response code="404">User not found.</response>
@@ -142,16 +142,16 @@
             <param name="userId">User id.</param>
             <param name="lastDate">Last date from which transactions must be loaded(null if from first).</param>
             <param name="pageSize">Amount of transactions.</param>
-            <returns>Returns list with transaction objects.</returns>
+            <returns>Returns list with transactionDTO objects.</returns>
             <response code="200">Success.</response>
             <response code="404">Not found some resource.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Update(Finance_Manager_Backend.BusinessLogic.Models.Transaction)">
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Update(Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.TransactionDTO)">
             <summary>
             Update transaction with new data.
             </summary>
-            <param name="transaction">New transaction object.</param>
+            <param name="transactionDTO">New transactionDTO object.</param>
             <returns>Returns NoContent</returns>
             <response code="204">Success.</response>
             <response code="404">Not found some resource.</response>
