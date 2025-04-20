@@ -59,6 +59,24 @@
             <response code="400">Invalid credentials.</response>
             <response code="500">Internal server error.</response> 
         </member>
+        <member name="M:Finance_Manager_Backend.Controllers.CategoriesController.GetCategoryById(System.Int32)">
+            <summary>
+            Get category by id.
+            </summary>
+            <param name="id">Category id.</param>
+            <returns>Returns CategoryDTO object.</returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found category.</response>     
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.CategoriesController.GetAllCategories">
+            <summary>
+            Get list of all categories.
+            </summary>
+            <returns>Returns list woth categoryDTO objects.</returns>
+            <response code="200">Success.</response>    
+            <response code="500">Internal server error.</response>
+        </member>
         <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Create(Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.SavingDTO)">
             <summary>
             Create saving.

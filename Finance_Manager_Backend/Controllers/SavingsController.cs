@@ -51,7 +51,7 @@ public class SavingsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<SavingDTO>> GetById(int id)
     {
-        var savingDTO = await _savingsService.GetSavingByIdAsync(id);
+        var savingDTO = await _savingsService.GetSavingDTOByIdAsync(id);
 
         return Ok(savingDTO);
     }

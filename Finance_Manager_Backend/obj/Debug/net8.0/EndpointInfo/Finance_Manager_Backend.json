@@ -343,10 +343,12 @@
         "tags": [
           "Categories"
         ],
+        "summary": "Get category by id.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "description": "Category id.",
             "required": true,
             "schema": {
               "type": "integer",
@@ -356,7 +358,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success.",
             "content": {
               "text/plain": {
                 "schema": {
@@ -374,6 +376,71 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not found category.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/Categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get list of all categories.",
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryDTO"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryDTO"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryDTO"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
           }
         }
       }
@@ -662,17 +729,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Saving"
+                  "$ref": "#/components/schemas/SavingDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Saving"
+                  "$ref": "#/components/schemas/SavingDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Saving"
+                  "$ref": "#/components/schemas/SavingDTO"
                 }
               }
             }

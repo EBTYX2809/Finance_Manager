@@ -1,5 +1,4 @@
-﻿using Finance_Manager_Backend.BusinessLogic.Models;
-using Finance_Manager_Backend.Exceptions;
+﻿using Finance_Manager_Backend.Exceptions;
 using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using System.Text.Json;
@@ -38,7 +37,7 @@ public class ExceptionsHandler
 
         switch (exception)
         {
-            case EntityNotFoundException<IEntity> entityIsNotExist:
+            case EntityNotFoundException entityIsNotExist:
                 response.StatusCode = (int)HttpStatusCode.NotFound;
                 errorDetails = new ErrorResponse
                 {
