@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
+using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 
 namespace Finance_Manager_Backend.BusinessLogic.Models;
 
@@ -10,9 +10,11 @@ public class AutoMapperProfile : Profile
         CreateMap<User, UserDTO>().ReverseMap();
 
         CreateMap<TransactionDTO, Transaction>()
-            .ForMember(dest => dest.Category, opt => opt.Ignore())            
+            .ForMember(dest => dest.Category, opt => opt.Ignore())
             .ForMember(dest => dest.User, opt => opt.Ignore())
-            .ForMember(dest => dest.InnerCategory, opt => opt.Ignore());
+            .ForMember(dest => dest.InnerCategory, opt => opt.Ignore())
+            .ForMember(dest => dest.InnerCategoryId, opt =>
+                opt.MapFrom(src => src.InnerCategoryId == 0 ? null : src.InnerCategoryId));
         CreateMap<Transaction, TransactionDTO>();
 
         CreateMap<SavingDTO, Saving>()
