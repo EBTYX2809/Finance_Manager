@@ -48,7 +48,7 @@ public class DbTransactionTemplate
                 {
                     _logger.LogError("Failed transaction: {ex}", ex.Message);
                     await dbTransaction.RollbackAsync();
-                    return;
+                    throw;
                 }
             }
         }
