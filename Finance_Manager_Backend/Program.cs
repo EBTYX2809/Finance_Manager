@@ -9,12 +9,20 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Reflection;
 using System.Text;
+//using FluentValidation;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using System.Globalization;
 
 public class Program
 {
     public static void Main()
     {
         var builder = WebApplication.CreateBuilder();
+
+        var cultureInfo = new CultureInfo("en-GB");
+        CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
         // DI
         builder.Services.AddDbContext<AppDbContext>(options =>
@@ -34,7 +42,14 @@ public class Program
 
         builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
-        builder.Services.AddControllers();
+        builder.Services.AddControllers(options =>
+        {
+            options.Filters.Add<ValidationFilter>();
+        });
+        // Auto Validation without async filter:
+        /*builder.Services.AddControllers();
+        builder.Services.AddFluentValidationAutoValidation();*/
+        builder.Services.AddValidatorsFromAssemblyContaining<Program>();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(options =>
         {
