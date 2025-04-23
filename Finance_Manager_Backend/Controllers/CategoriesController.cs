@@ -1,4 +1,4 @@
-﻿using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
+﻿using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
 

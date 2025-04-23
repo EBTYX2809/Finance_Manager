@@ -1,5 +1,4 @@
-﻿using Finance_Manager_Backend.BusinessLogic.Models;
-using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
+﻿using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,27 +17,27 @@ public class AnalyticsController : ControllerBase
     /// <summary>
     /// Get spending analytics in date range.
     /// </summary>
-    /// <param name="userId">User id.</param>
-    /// <param name="minDate">Start date of the filter range.</param>
-    /// <param name="maxDate">End date of the filter range.</param>
+    /// <param name="queryDTO">QueryDTO with parameters:
+    /// userId - User id;
+    /// minDate - Start date of the filter range;
+    /// maxDate - End date of the filter range.</param>
     /// <returns>
     /// Returns spending analytics grouped by category in a given date range.
     /// Each result shows the category and the percentage of total spending it represents.
     /// For example: { "Home" → 32.5, "Transport" → 15.0 }.
     /// </returns>
     /// <response code="200">Success.</response>
+    /// <response code="400">Validation failed.</response>
     /// <response code="404">Not found some resource.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(List<CategoryPercentDTO>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpGet("overview")]
-    public async Task<ActionResult<List<CategoryPercentDTO>>> GetAnalytics(
-        [FromQuery] int userId,
-        [FromQuery] DateTime minDate, 
-        [FromQuery] DateTime maxDate)
+    public async Task<ActionResult<List<CategoryPercentDTO>>> GetAnalytics([FromQuery] AnalyticsQueryDTO queryDTO)
     {
-        var analytics = await _analyticsService.GetAlalyticFromDateAsync(userId, minDate, maxDate);
+        var analytics = await _analyticsService.GetAlalyticFromDateAsync(queryDTO.userId, queryDTO.minDate, queryDTO.maxDate);
 
         List<CategoryPercentDTO> categoryPercentDTOs = new();
 
@@ -53,29 +52,28 @@ public class AnalyticsController : ControllerBase
     /// <summary>
     /// Get spending analytics from general category in date range.
     /// </summary>
-    /// <param name="parentCategoryId">Id parent category, that inner stats want to know.</param>
-    /// <param name="userId">User id.</param>
-    /// <param name="minDate">Start date of the filter range.</param>
-    /// <param name="maxDate">End date of the filter range.</param>
+    /// <param name="queryDTO">QueryDTO with parameters:
+    /// parentCategoryId - Id parent category, that inner stats want to know;
+    /// userId - User id;
+    /// minDate - Start date of the filter range;
+    /// maxDate - End date of the filter range.</param>
     /// <returns>
     /// Returns spending analytics grouped by category in a given date range.
     /// Each result shows the category and the percentage of total spending it represents.
     /// For example: { "Rent" → 32.5, "Furniture" → 15.0 }.
     /// </returns>
     /// <response code="200">Success.</response>
+    /// <response code="400">Validation failed.</response>
     /// <response code="404">Not found some resource.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(List<CategoryPercentDTO>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpGet("inner_categories")]
-    public async Task<ActionResult<List<CategoryPercentDTO>>> GetInnerAnalytics(
-        [FromQuery] int parentCategoryId,
-        [FromQuery] int userId,
-        [FromQuery] DateTime minDate,
-        [FromQuery] DateTime maxDate)
+    public async Task<ActionResult<List<CategoryPercentDTO>>> GetInnerAnalytics([FromQuery] InnerAnalyticsQueryDTO queryDTO)
     {
-        var analytics = await _analyticsService.GetInnerAlalyticFromDateAsync(userId, parentCategoryId, minDate, maxDate);
+        var analytics = await _analyticsService.GetInnerAlalyticFromDateAsync(queryDTO.userId, queryDTO.parentCategoryId, queryDTO.minDate, queryDTO.maxDate);
 
         List<CategoryPercentDTO> categoryPercentDTOs = new();
 
@@ -86,10 +84,4 @@ public class AnalyticsController : ControllerBase
 
         return Ok(categoryPercentDTOs);
     }
-}
-
-public class CategoryPercentDTO
-{
-    public CategoryDTO CategoryDTO { get; set; }
-    public float Percent { get; set; }
 }
