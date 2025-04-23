@@ -2,7 +2,7 @@
 using Finance_Manager_Backend.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Finance_Manager_Backend.BusinessLogic.Models;
-using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
+using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using AutoMapper;
 
 namespace Finance_Manager_Backend.BusinessLogic.Services.AuthServices;

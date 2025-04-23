@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Finance_Manager_Backend.BusinessLogic.Models;
-using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
+using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend.Exceptions;
 using Microsoft.EntityFrameworkCore;

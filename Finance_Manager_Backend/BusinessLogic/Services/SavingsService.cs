@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Finance_Manager_Backend.BusinessLogic.Models;
-using Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO;
+using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend.Exceptions;
 using Microsoft.EntityFrameworkCore;
@@ -72,10 +72,22 @@ public class SavingsService
         {
             var saving = await GetSavingByIdAsync(savingId);
 
+            if (topUpAmount > saving.Goal) throw new InvalidOperationException("Saving top up can't be geater than goal.");
+
             var user = await _usersService.GetUserByIdAsync(saving.UserId);
 
-            saving.CurrentAmount += topUpAmount;
-            user.Balance -= topUpAmount;
+            // Have to test
+            if (saving.CurrentAmount + topUpAmount > saving.Goal)
+            {
+                decimal excess = saving.CurrentAmount + topUpAmount - saving.Goal;
+                saving.CurrentAmount += topUpAmount - excess;
+                user.Balance -= topUpAmount - excess;
+            }
+            else
+            {
+                saving.CurrentAmount += topUpAmount;
+                user.Balance -= topUpAmount;
+            }
         });
     }
 
