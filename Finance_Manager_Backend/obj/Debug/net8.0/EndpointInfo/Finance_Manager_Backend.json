@@ -15,7 +15,6 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "User id.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -24,7 +23,6 @@
           {
             "name": "minDate",
             "in": "query",
-            "description": "Start date of the filter range.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -33,7 +31,6 @@
           {
             "name": "maxDate",
             "in": "query",
-            "description": "End date of the filter range.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -66,6 +63,26 @@
                   "items": {
                     "$ref": "#/components/schemas/CategoryPercentDTO"
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation failed.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -106,7 +123,6 @@
           {
             "name": "parentCategoryId",
             "in": "query",
-            "description": "Id parent category, that inner stats want to know.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -115,7 +131,6 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "User id.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -124,7 +139,6 @@
           {
             "name": "minDate",
             "in": "query",
-            "description": "Start date of the filter range.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -133,7 +147,6 @@
           {
             "name": "maxDate",
             "in": "query",
-            "description": "End date of the filter range.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -170,6 +183,26 @@
               }
             }
           },
+          "400": {
+            "description": "Validation failed.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "404": {
             "description": "Not found some resource.",
             "content": {
@@ -202,24 +235,26 @@
           "Auth"
         ],
         "summary": "Register new user.",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "description": "User email.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "User password.",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "description": "AuthDataDTO with email and password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDataDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDataDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDataDTO"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Success.",
@@ -273,24 +308,26 @@
           "Auth"
         ],
         "summary": "Authenticate user.",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "description": "User email.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "User password.",
-            "schema": {
-              "type": "string"
+        "requestBody": {
+          "description": "AuthDataDTO with email and password",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDataDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDataDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthDataDTO"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Success.",
@@ -495,6 +532,26 @@
               }
             }
           },
+          "400": {
+            "description": "Validation failed.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "404": {
             "description": "User not found.",
             "content": {
@@ -549,7 +606,6 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "User id that want to get his savings.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -558,7 +614,6 @@
           {
             "name": "previousSavingId",
             "in": "query",
-            "description": "Last saving id from which savings must be loaded.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -567,11 +622,9 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "Amount of savings.",
             "schema": {
               "type": "integer",
-              "format": "int32",
-              "default": 5
+              "format": "int32"
             }
           }
         ],
@@ -601,6 +654,26 @@
                   "items": {
                     "$ref": "#/components/schemas/SavingDTO"
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation failed.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -635,29 +708,49 @@
           "Savings"
         ],
         "summary": "Update saving with new top up.",
-        "parameters": [
-          {
-            "name": "savingId",
-            "in": "query",
-            "description": "Saving id.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "topUpAmount",
-            "in": "query",
-            "description": "Amount of top up.",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+        "requestBody": {
+          "description": "TopUpDTO with parameters:\r\n            savingId - Saving id;\r\n            topUpAmount - Amount of top up.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SavingTopUpDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SavingTopUpDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SavingTopUpDTO"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "204": {
             "description": "Success."
+          },
+          "400": {
+            "description": "Validation failed.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not found some resource.",
@@ -886,6 +979,26 @@
               }
             }
           },
+          "400": {
+            "description": "Validation failed.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "404": {
             "description": "User not found.",
             "content": {
@@ -940,7 +1053,6 @@
           {
             "name": "userId",
             "in": "query",
-            "description": "User id.",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -949,7 +1061,6 @@
           {
             "name": "lastDate",
             "in": "query",
-            "description": "Last date from which transactions must be loaded(null if from first).",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -958,11 +1069,9 @@
           {
             "name": "pageSize",
             "in": "query",
-            "description": "Amount of transactions.",
             "schema": {
               "type": "integer",
-              "format": "int32",
-              "default": 20
+              "format": "int32"
             }
           }
         ],
@@ -992,6 +1101,26 @@
                   "items": {
                     "$ref": "#/components/schemas/TransactionDTO"
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation failed.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
                 }
               }
             }
@@ -1049,6 +1178,26 @@
         "responses": {
           "204": {
             "description": "Success."
+          },
+          "400": {
+            "description": "Validation failed.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not found some resource.",
@@ -1230,6 +1379,20 @@
   },
   "components": {
     "schemas": {
+      "AuthDataDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "AuthUserTokenDTO": {
         "type": "object",
         "properties": {
@@ -1409,6 +1572,20 @@
             "format": "double"
           },
           "userId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SavingTopUpDTO": {
+        "type": "object",
+        "properties": {
+          "savingId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "topUpAmount": {
             "type": "integer",
             "format": "int32"
           }

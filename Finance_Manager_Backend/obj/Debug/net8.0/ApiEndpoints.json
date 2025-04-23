@@ -30,13 +30,22 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.Controllers.CategoryPercentDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.DTOs.CategoryPercentDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
         "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -80,13 +89,22 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.Controllers.CategoryPercentDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.DTOs.CategoryPercentDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
         "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -113,19 +131,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "password",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "authDataDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Finance_Manager_Backend.Controllers.AuthUserTokenDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthUserTokenDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -158,19 +171,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "email",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "password",
-        "Type": "System.String",
-        "IsRequired": false
+        "Name": "authDataDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Finance_Manager_Backend.Controllers.AuthUserTokenDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthUserTokenDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -204,7 +212,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.CategoryDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.DTOs.CategoryDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -235,7 +243,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.CategoryDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.CategoryDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -269,7 +277,7 @@
     "Parameters": [
       {
         "Name": "savingDTO",
-        "Type": "Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.SavingDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingDTO",
         "IsRequired": true
       }
     ],
@@ -282,6 +290,15 @@
           "text/json"
         ],
         "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -334,13 +351,22 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.SavingDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
         "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -367,14 +393,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "savingId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "topUpAmount",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "topUpDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingTopUpDTO",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -382,6 +403,15 @@
         "Type": "System.Void",
         "MediaTypes": [],
         "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -424,7 +454,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.SavingDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -503,7 +533,7 @@
     "Parameters": [
       {
         "Name": "transactionDTO",
-        "Type": "Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.TransactionDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.TransactionDTO",
         "IsRequired": true
       }
     ],
@@ -516,6 +546,15 @@
           "text/json"
         ],
         "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -568,13 +607,22 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.TransactionDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Finance_Manager_Backend.BusinessLogic.Models.DTOs.TransactionDTO, Finance_Manager_Backend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
         "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -602,7 +650,7 @@
     "Parameters": [
       {
         "Name": "transactionDTO",
-        "Type": "Finance_Manager_Backend.BusinessLogic.Models.ModelsDTO.TransactionDTO",
+        "Type": "Finance_Manager_Backend.BusinessLogic.Models.DTOs.TransactionDTO",
         "IsRequired": true
       }
     ],
@@ -611,6 +659,15 @@
         "Type": "System.Void",
         "MediaTypes": [],
         "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 400
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
