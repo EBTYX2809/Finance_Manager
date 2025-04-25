@@ -1,7 +1,11 @@
-﻿using Finance_Manager_Backend.BusinessLogic.Models;
+﻿using AutoMapper;
+using Finance_Manager_Backend.BusinessLogic.Models;
+using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend_Tests.DataBase;
+using Finance_Manager_Tests.ServicesTests;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -19,15 +23,17 @@ public class SavingsServiceTests
     private SavingsService _savingsService;
     private readonly ITestOutputHelper _output;
     private readonly UsersService _usersService;
+    private readonly IMapper _mapper;
 
     public SavingsServiceTests(TestDbContextFixture fixture, ITestOutputHelper output)
     {
         _appDbContext = fixture.dbContext;
+        _mapper = AutoMapperFotTests.GetMapper();
         _mockLoggerTS = new Mock<ILogger<SavingsService>>();
         _mockLoggerTT = new Mock<ILogger<DbTransactionTemplate>>();
         _transactionTemplate = new DbTransactionTemplate(_appDbContext, _mockLoggerTT.Object);
         _usersService = new UsersService(_appDbContext);
-        _savingsService = new SavingsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object, _usersService);
+        _savingsService = new SavingsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object, _usersService, _mapper);
         _output = output;
     }
 
@@ -37,13 +43,15 @@ public class SavingsServiceTests
         // Arrange
         var user = await _appDbContext.Users.FirstOrDefaultAsync();
         var saving = new Saving("Test Saving", 10000, user);
+        var savingDTO = _mapper.Map<SavingDTO>(saving);
         
         // Act
-        await _savingsService.CreateSavingAsync(saving);
-        var createdSaving = await _appDbContext.Savings.FirstOrDefaultAsync(s => s.Id == saving.Id);
+        await _savingsService.CreateSavingAsync(savingDTO);
+        var createdSaving = await _appDbContext.Savings.FirstOrDefaultAsync(s => s.Id == savingDTO.Id);
+        var createdSavingDTO = _mapper.Map<SavingDTO>(createdSaving);
 
         // Assert
-        Assert.Equal(saving, createdSaving);
+        createdSavingDTO.Should().BeEquivalentTo(savingDTO);
     }
 
     [Fact]
@@ -71,6 +79,7 @@ public class SavingsServiceTests
     {
         // Arrange
         var oldSaving = await _appDbContext.Savings.FirstOrDefaultAsync();
+        var starterBalance = oldSaving.User.Balance;
         decimal topUpAmount = 100.50m;
 
         // Act
@@ -80,6 +89,28 @@ public class SavingsServiceTests
 
         // Assert
         Assert.Equal(topUpAmount, newSaving.CurrentAmount);
+        Assert.Equal(oldSaving.User.Balance, starterBalance - topUpAmount);
+    }
+
+    [Fact]
+    public async Task UpdateWithExcessSavingAsync_Test()
+    {
+        // Arrange
+        var oldSaving = await _appDbContext.Savings.FirstOrDefaultAsync();
+        var starterBalance = oldSaving.User.Balance;
+        var requiredTopUp = 50m;
+        oldSaving.CurrentAmount = oldSaving.Goal - requiredTopUp;
+        await _appDbContext.SaveChangesAsync();
+        decimal topUpAmount = 100.50m;
+
+        // Act
+        await _savingsService.UpdateSavingAsync(oldSaving.Id, topUpAmount);
+
+        var newSaving = await _appDbContext.Savings.FirstOrDefaultAsync(s => s.Id == oldSaving.Id);
+
+        // Assert
+        Assert.Equal(oldSaving.Goal, newSaving.CurrentAmount);
+        Assert.Equal(newSaving.User.Balance, starterBalance - requiredTopUp);
     }
 
     [Fact]
