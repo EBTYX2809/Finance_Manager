@@ -1,9 +1,8 @@
-﻿using Xunit;
-using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
-using Microsoft.EntityFrameworkCore;
+﻿using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 using Microsoft.Extensions.Configuration;
-using Finance_Manager_Backend.BusinessLogic.Models;
-using Newtonsoft.Json.Linq;
+using Finance_Manager_Tests.ServicesTests;
+using AutoMapper;
+using FluentAssertions;
 
 namespace Finance_Manager_Backend_Tests.ServicesTests.AuthTests;
 
@@ -12,6 +11,7 @@ public class AuthenticateTest
     private readonly string email = "test@example.com";
     private readonly string password = "qwerty";
     private readonly JwtTokenGenerator tokenGenerator;
+    private readonly IMapper _mapper;
 
     public AuthenticateTest()
     {
@@ -21,6 +21,7 @@ public class AuthenticateTest
         .Build();
 
         tokenGenerator = new JwtTokenGenerator(config);
+        _mapper = AutoMapperFotTests.GetMapper();
     }
 
     [Fact]
@@ -29,14 +30,14 @@ public class AuthenticateTest
         // Arrange
         using var dbContext = TestInMemoryDbContext.Create();
 
-        var authSevice = new AuthService(dbContext, tokenGenerator);
+        var authSevice = new AuthService(dbContext, tokenGenerator, _mapper);
 
         // Act
         var (User, Token) = await authSevice.RegisterUserAsync(email, password);
         var (user, token) = await authSevice.AuthenticateUserAsync(email, password);
 
         // Assert
-        Assert.Equal(User, user);
+        user.Should().BeEquivalentTo(User); 
         Assert.Equal(Token, token);        
     }
 
@@ -46,7 +47,7 @@ public class AuthenticateTest
         // Arrange
         using var dbContext = TestInMemoryDbContext.Create();
 
-        var authSevice = new AuthService(dbContext, tokenGenerator);
+        var authSevice = new AuthService(dbContext, tokenGenerator, _mapper);
 
         // Act
         var (User, Token) = await authSevice.RegisterUserAsync(email, password);

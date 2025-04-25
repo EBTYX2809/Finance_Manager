@@ -3,6 +3,8 @@ using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 using Microsoft.EntityFrameworkCore;
 using Castle.Components.DictionaryAdapter.Xml;
 using Microsoft.Extensions.Configuration;
+using AutoMapper;
+using Finance_Manager_Tests.ServicesTests;
 
 namespace Finance_Manager_Backend_Tests.ServicesTests.AuthTests;
 
@@ -11,6 +13,7 @@ public class RegisterTest
     private readonly string email = "test@example.com";
     private readonly string password = "qwerty";
     private readonly JwtTokenGenerator tokenGenerator;
+    private readonly IMapper _mapper;
 
     public RegisterTest()
     {
@@ -20,6 +23,7 @@ public class RegisterTest
         .Build();
 
         tokenGenerator = new JwtTokenGenerator(config);
+        _mapper = AutoMapperFotTests.GetMapper();
     }
 
     [Fact]
@@ -28,7 +32,7 @@ public class RegisterTest
         // Arrange
         using var dbContext = TestInMemoryDbContext.Create();
 
-        var authSevice = new AuthService(dbContext, tokenGenerator);
+        var authSevice = new AuthService(dbContext, tokenGenerator, _mapper);
 
         // Act
         var (User, Token) = await authSevice.RegisterUserAsync(email, password);
@@ -50,7 +54,7 @@ public class RegisterTest
         // Arrange
         using var dbContext = TestInMemoryDbContext.Create();
 
-        var authSevice = new AuthService(dbContext, tokenGenerator);
+        var authSevice = new AuthService(dbContext, tokenGenerator, _mapper);
 
         // Act
         var (User, Token) = await authSevice.RegisterUserAsync(email, password);
