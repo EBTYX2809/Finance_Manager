@@ -37,6 +37,22 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.Balance)
             .IsRequired()
             .HasColumnType("decimal(12,2)")
-            .HasColumnName("balance");       
+            .HasColumnName("balance");
+
+        builder.Property(u => u.PrimaryCurrency)
+            .IsRequired()
+            .HasMaxLength(3)
+            .HasDefaultValue("USD")
+            .HasColumnName("primary_currency");
+
+        builder.Property(u => u.SecondaryCurrency1)
+            .IsRequired(false)
+            .HasMaxLength(3)
+            .HasColumnName("secondary_currency_1");
+
+        builder.Property(u => u.SecondaryCurrency2)
+            .IsRequired(false)
+            .HasMaxLength(3)
+            .HasColumnName("secondary_currency_2");
     }
 }

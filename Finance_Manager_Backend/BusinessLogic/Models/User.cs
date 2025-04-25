@@ -24,6 +24,9 @@ public class User : IEntity
     public string Salt { get; set; } = string.Empty;
     public string PasswordHash { get; set; } = string.Empty;
     public decimal Balance { get; set; }
+    public string PrimaryCurrency { get; set; }
+    public string? SecondaryCurrency1 { get; set; }
+    public string? SecondaryCurrency2 { get; set; }
     public List<Transaction> Transactions { get; set; } = new();
     public List<Saving> Savings { get; set; } = new();    
 }
