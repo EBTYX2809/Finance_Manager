@@ -1,6 +1,8 @@
-﻿using Finance_Manager_Backend.BusinessLogic.Services;
+﻿using AutoMapper;
+using Finance_Manager_Backend.BusinessLogic.Services;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend_Tests.DataBase;
+using Finance_Manager_Tests.ServicesTests;
 using Microsoft.EntityFrameworkCore;
 using Xunit.Abstractions;
 
@@ -12,16 +14,14 @@ public class AnalyticsServiceTests
     private readonly AppDbContext _appDbContext;
     private AnalyticsService _analyticsService;
     private readonly ITestOutputHelper _output;
-    private readonly UsersService _usersService;
-    private readonly CategoriesService _categoriesService;
+    private readonly IMapper _mapper;
 
     public AnalyticsServiceTests(TestDbContextFixture fixture, ITestOutputHelper output)
     {
         _appDbContext = fixture.dbContext;       
         _output = output;
-        _usersService = new UsersService(_appDbContext);
-        _categoriesService = new CategoriesService(_appDbContext);
-        _analyticsService = new AnalyticsService(_appDbContext, _usersService , _categoriesService);
+        _mapper = AutoMapperFotTests.GetMapper();
+        _analyticsService = new AnalyticsService(_appDbContext, _mapper);
     }
 
     [Fact]
