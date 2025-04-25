@@ -9,8 +9,6 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Reflection;
 using System.Text;
-//using FluentValidation;
-using FluentValidation.AspNetCore;
 using FluentValidation;
 using System.Globalization;
 

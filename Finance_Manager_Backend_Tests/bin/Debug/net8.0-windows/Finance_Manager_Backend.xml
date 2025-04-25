@@ -4,68 +4,89 @@
         <name>Finance_Manager_Backend</name>
     </assembly>
     <members>
-        <member name="M:Finance_Manager_Backend.Controllers.AnalyticsController.GetAnalytics(System.Int32,System.DateTime,System.DateTime)">
+        <member name="M:Finance_Manager_Backend.Controllers.AnalyticsController.GetAnalytics(Finance_Manager_Backend.BusinessLogic.Models.DTOs.AnalyticsQueryDTO)">
             <summary>
             Get spending analytics in date range.
             </summary>
-            <param name="userId">User id.</param>
-            <param name="minDate">Start date of the filter range.</param>
-            <param name="maxDate">End date of the filter range.</param>
+            <param name="queryDTO">QueryDTO with parameters:
+            userId - User id;
+            minDate - Start date of the filter range;
+            maxDate - End date of the filter range.</param>
             <returns>
             Returns spending analytics grouped by category in a given date range.
             Each result shows the category and the percentage of total spending it represents.
             For example: { "Home" → 32.5, "Transport" → 15.0 }.
             </returns>
             <response code="200">Success.</response>
+            <response code="400">Validation failed.</response>
             <response code="404">Not found some resource.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.AnalyticsController.GetInnerAnalytics(System.Int32,System.Int32,System.DateTime,System.DateTime)">
+        <member name="M:Finance_Manager_Backend.Controllers.AnalyticsController.GetInnerAnalytics(Finance_Manager_Backend.BusinessLogic.Models.DTOs.InnerAnalyticsQueryDTO)">
             <summary>
             Get spending analytics from general category in date range.
             </summary>
-            <param name="parentCategoryId">Id parent category, that inner stats want to know.</param>
-            <param name="userId">User id.</param>
-            <param name="minDate">Start date of the filter range.</param>
-            <param name="maxDate">End date of the filter range.</param>
+            <param name="queryDTO">QueryDTO with parameters:
+            parentCategoryId - Id parent category, that inner stats want to know;
+            userId - User id;
+            minDate - Start date of the filter range;
+            maxDate - End date of the filter range.</param>
             <returns>
             Returns spending analytics grouped by category in a given date range.
             Each result shows the category and the percentage of total spending it represents.
             For example: { "Rent" → 32.5, "Furniture" → 15.0 }.
             </returns>
             <response code="200">Success.</response>
+            <response code="400">Validation failed.</response>
             <response code="404">Not found some resource.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.AuthController.Register(System.String,System.String)">
+        <member name="M:Finance_Manager_Backend.Controllers.AuthController.Register(Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO)">
             <summary>
             Register new user.
             </summary>
-            <param name="email">User email.</param>
-            <param name="password">User password.</param>
-            <returns>AuthUserTokenDTO - user object with jwt token.</returns>
+            <param name="authDataDTO">AuthDataDTO with email and password</param>
+            <returns>AuthUserTokenDTO - userDTO with jwt token.</returns>
             <response code="200">Success.</response>
             <response code="400">Invalid credentials.</response>    
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.AuthController.Authenticate(System.String,System.String)">
+        <member name="M:Finance_Manager_Backend.Controllers.AuthController.Authenticate(Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO)">
             <summary>
             Authenticate user.
             </summary>
-            <param name="email">User email.</param>
-            <param name="password">User password.</param>
-            <returns>AuthUserTokenDTO - user object with jwt token.</returns>
+            <param name="authDataDTO">AuthDataDTO with email and password</param>
+            <returns>AuthUserTokenDTO - userDTO with jwt token.</returns>
             <response code="200">Success.</response>
             <response code="400">Invalid credentials.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Create(Finance_Manager_Backend.BusinessLogic.Models.Saving)">
+        <member name="M:Finance_Manager_Backend.Controllers.CategoriesController.GetCategoryById(System.Int32)">
+            <summary>
+            Get category by id.
+            </summary>
+            <param name="id">Category id.</param>
+            <returns>Returns CategoryDTO object.</returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found category.</response>     
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.CategoriesController.GetAllCategories">
+            <summary>
+            Get list of all categories.
+            </summary>
+            <returns>Returns list woth categoryDTO objects.</returns>
+            <response code="200">Success.</response>    
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Create(Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingDTO)">
             <summary>
             Create saving.
             </summary>
-            <param name="saving">The saving to create.</param>
+            <param name="savingDTO">The savingDTO to create.</param>
             <returns>Returns the ID of the created saving.</returns>
             <response code="201">Saving successfully created.</response>
+            <response code="400">Validation failed.</response>
             <response code="404">User not found.</response>
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response>
@@ -75,30 +96,34 @@
             Get saving by id.
             </summary>
             <param name="id">Saving id.</param>
-            <returns>Returns saving object.</returns>
+            <returns>Returns savingDTO object.</returns>
             <response code="200">Success.</response>
             <response code="404">Not found saving.</response>     
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.GetSavings(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.GetSavings(Finance_Manager_Backend.BusinessLogic.Models.DTOs.GetUserSavingsQueryDTO)">
             <summary>
             Get list of savings.
             </summary>
-            <param name="userId">User id that want to get his savings.</param>
-            <param name="previousSavingId">Last saving id from which savings must be loaded.</param>
-            <param name="pageSize">Amount of savings.</param>
-            <returns>Returns list with savings objects.</returns>
+            <param name="queryDTO">QueryDTO with parameters:
+            userId - User id that want to get his savings;
+            previousSavingId - Last saving id from which savings must be loaded;
+            pageSize - Amount of savings.</param>
+            <returns>Returns list with savingsDTO objects.</returns>
             <response code="200">Success.</response>
+            <response code="400">Validation failed.</response>
             <response code="404">Not found some resource.</response>
             <response code="500">Internal server error.</response>
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Update(System.Int32,System.Int32)">
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Update(Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingTopUpDTO)">
             <summary>
             Update saving with new top up.
             </summary>
-            <param name="savingId">Saving id.</param>
-            <param name="topUpAmount">Amount of top up.</param>
+            <param name="topUpDTO">TopUpDTO with parameters:
+            savingId - Saving id;
+            topUpAmount - Amount of top up.</param>
             <response code="204">Success.</response>
+            <response code="400">Validation failed.</response>
             <response code="404">Not found some resource.</response>
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
@@ -114,13 +139,14 @@
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Create(Finance_Manager_Backend.BusinessLogic.Models.Transaction)">
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Create(Finance_Manager_Backend.BusinessLogic.Models.DTOs.TransactionDTO)">
             <summary>
             Create transaction.
             </summary>
-            <param name="transaction">The transaction to create.</param>
+            <param name="transactionDTO">The transactionDTO to create.</param>
             <returns>Returns the ID of the created transaction.</returns>
             <response code="201">Transaction successfully created.</response>
+            <response code="400">Validation failed.</response>
             <response code="404">User not found.</response>
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response>
@@ -135,25 +161,28 @@
             <response code="404">Not found transaction.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.GetTransactions(System.Int32,System.Nullable{System.DateTime},System.Int32)">
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.GetTransactions(Finance_Manager_Backend.BusinessLogic.Models.DTOs.GetUserTransactionsQueryDTO)">
             <summary>
             Get list of transactions.
             </summary>
-            <param name="userId">User id.</param>
-            <param name="lastDate">Last date from which transactions must be loaded(null if from first).</param>
-            <param name="pageSize">Amount of transactions.</param>
-            <returns>Returns list with transaction objects.</returns>
+            <param name="queryDTO">QueryDTO with:
+            userId - User id; 
+            lastDate - Last date from which transactions must be loaded(null if from first);
+            pageSize - Amount of transactions.</param>
+            <returns>Returns list with transactionDTO objects.</returns>
             <response code="200">Success.</response>
+            <response code="400">Validation failed.</response>
             <response code="404">Not found some resource.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Update(Finance_Manager_Backend.BusinessLogic.Models.Transaction)">
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Update(Finance_Manager_Backend.BusinessLogic.Models.DTOs.TransactionDTO)">
             <summary>
             Update transaction with new data.
             </summary>
-            <param name="transaction">New transaction object.</param>
+            <param name="transactionDTO">New transactionDTO object.</param>
             <returns>Returns NoContent</returns>
             <response code="204">Success.</response>
+            <response code="400">Validation failed.</response>
             <response code="404">Not found some resource.</response>
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
@@ -215,6 +244,18 @@
             <inheritdoc />
         </member>
         <member name="M:Finance_Manager_Backend.Migrations.ChangedCurrentAmountInSavingsToNotNullableDecimal.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

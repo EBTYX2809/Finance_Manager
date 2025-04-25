@@ -10,6 +10,9 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Azure.Core.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Azure.Identity.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\FluentValidation.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Google.Apis.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Google.Apis.Auth.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Google.Apis.Core.dll
@@ -199,7 +202,3 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_Manager_Backend.pdb
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_Manager_Backend.genruntimeconfig.cache
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\ref\Finance_Manager_Backend.dll
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\FluentValidation.dll
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
