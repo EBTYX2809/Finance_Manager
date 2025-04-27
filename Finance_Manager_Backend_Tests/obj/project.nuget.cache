@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FFQ6NOKtYZQ=",
+  "dgSpecHash": "KWFAL9sIR+Y=",
   "success": true,
   "projectFilePath": "G:\\ARTEM\\Проэкты С++, C#\\Visual Studio projects\\C# Projects\\Finance_Manager_Backend\\Finance_Manager_Backend_Tests\\Finance_Manager_Backend_Tests.csproj",
   "expectedPackageFiles": [
@@ -12,7 +12,6 @@
     "C:\\Users\\ebtyx\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\ebtyx\\.nuget\\packages\\fluentassertions\\8.2.0\\fluentassertions.8.2.0.nupkg.sha512",
     "C:\\Users\\ebtyx\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
-    "C:\\Users\\ebtyx\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\ebtyx\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "C:\\Users\\ebtyx\\.nuget\\packages\\google.apis\\1.69.0\\google.apis.1.69.0.nupkg.sha512",
     "C:\\Users\\ebtyx\\.nuget\\packages\\google.apis.auth\\1.69.0\\google.apis.auth.1.69.0.nupkg.sha512",

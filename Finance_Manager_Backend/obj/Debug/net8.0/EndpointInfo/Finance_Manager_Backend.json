@@ -1375,6 +1375,167 @@
           }
         }
       }
+    },
+    "/api/User/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get user balance by id.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User id.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserBalanceDTO"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserBalanceDTO"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserBalanceDTO"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found user.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/api/User": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user currency.",
+        "requestBody": {
+          "description": "currencyQueryDTO with parameters:\r\n            UserId - user id;\r\n            CurrencyRang - rang of currency that will be update, can be \"Primary\", \"Secondary1\" or \"Secondary2\".\r\n            CurrencyCode - code for this currency.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserCurrencyQueryDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserCurrencyQueryDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserCurrencyQueryDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success."
+          },
+          "400": {
+            "description": "Validation failed.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found some resource.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized. Possible invalid token.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1492,6 +1653,20 @@
           "percent": {
             "type": "number",
             "format": "float"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurrencyBalanceDTO": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "balance": {
+            "type": "number",
+            "format": "double"
           }
         },
         "additionalProperties": false
@@ -1675,6 +1850,24 @@
         },
         "additionalProperties": false
       },
+      "UpdateUserCurrencyQueryDTO": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currencyRang": {
+            "type": "string",
+            "nullable": true
+          },
+          "currencyCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "User": {
         "type": "object",
         "properties": {
@@ -1698,6 +1891,18 @@
             "type": "number",
             "format": "double"
           },
+          "primaryCurrency": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondaryCurrency1": {
+            "type": "string",
+            "nullable": true
+          },
+          "secondaryCurrency2": {
+            "type": "string",
+            "nullable": true
+          },
           "transactions": {
             "type": "array",
             "items": {
@@ -1711,6 +1916,21 @@
               "$ref": "#/components/schemas/Saving"
             },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserBalanceDTO": {
+        "type": "object",
+        "properties": {
+          "primaryBalance": {
+            "$ref": "#/components/schemas/CurrencyBalanceDTO"
+          },
+          "secondaryBalance1": {
+            "$ref": "#/components/schemas/CurrencyBalanceDTO"
+          },
+          "secondaryBalance2": {
+            "$ref": "#/components/schemas/CurrencyBalanceDTO"
           }
         },
         "additionalProperties": false

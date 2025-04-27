@@ -198,6 +198,34 @@
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
+        <member name="M:Finance_Manager_Backend.Controllers.UserController.GetBalanceById(System.Int32)">
+            <summary>
+            Get user balance by id.
+            </summary>
+            <param name="id">User id.</param>
+            <returns>Returns UserBalanceDTO with parameters: 
+            PrimaryBalance - tuple with currency code and balance in primary currency; 
+            SecondaryBalance1 - tuple with currency code and balance converted from primary to this; 
+            SecondaryBalance2 - tuple with currency code and balance converted from primary to this.</returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found user.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.UserController.UpdateCurrency(Finance_Manager_Backend.BusinessLogic.Models.DTOs.UpdateUserCurrencyQueryDTO)">
+            <summary>
+            Update user currency.
+            </summary>
+            <param name="currencyQueryDTO">currencyQueryDTO with parameters:
+            UserId - user id;
+            CurrencyRang - rang of currency that will be update, can be "Primary", "Secondary1" or "Secondary2".
+            CurrencyCode - code for this currency.</param>
+            <returns>Returns NoContent</returns>
+            <response code="204">Success.</response>
+            <response code="400">Validation failed.</response>
+            <response code="404">Not found some resource.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
         <member name="T:Finance_Manager_Backend.Migrations.InitializeDb">
             <inheritdoc />
         </member>
@@ -256,6 +284,18 @@
             <inheritdoc />
         </member>
         <member name="M:Finance_Manager_Backend.Migrations.ChangedParentCategoryIdColumnNameToparent_category_fk.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Finance_Manager_Backend.Migrations.AddedCurrencyToUser">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.AddedCurrencyToUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.AddedCurrencyToUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.AddedCurrencyToUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

@@ -26,7 +26,6 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Azure.Identity.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Castle.Core.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\FluentValidation.dll
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\FluentValidation.AspNetCore.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\FluentValidation.DependencyInjectionExtensions.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Google.Apis.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend_Tests\bin\Debug\net8.0-windows\Google.Apis.Auth.dll

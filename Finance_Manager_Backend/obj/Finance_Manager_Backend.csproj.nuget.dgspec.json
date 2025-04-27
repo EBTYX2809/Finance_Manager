@@ -62,10 +62,6 @@
               "target": "Package",
               "version": "[11.11.0, )"
             },
-            "FluentValidation.AspNetCore": {
-              "target": "Package",
-              "version": "[11.3.0, )"
-            },
             "FluentValidation.DependencyInjectionExtensions": {
               "target": "Package",
               "version": "[11.11.0, )"
@@ -117,10 +113,6 @@
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[8.8.0, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",
