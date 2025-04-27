@@ -26,6 +26,8 @@ public class Program
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+        builder.Services.AddHttpClient<CurrencyConverterService>();
+
         builder.Services.AddTransient<JwtTokenGenerator>();
 
         builder.Services.AddScoped<DbTransactionTemplate>();
@@ -101,6 +103,9 @@ public class Program
                         Encoding.UTF8.GetBytes(jwtSettings["Key"]))
                 };
             });
+
+        // Cache
+        builder.Services.AddMemoryCache();
 
         // Logger
         Log.Logger = new LoggerConfiguration()

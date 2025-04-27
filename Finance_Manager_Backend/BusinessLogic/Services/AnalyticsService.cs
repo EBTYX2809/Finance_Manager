@@ -46,7 +46,7 @@ public class AnalyticsService
                      && s.CategoryId == parentCategoryId
                      && s.Date > minDate
                      && s.Date < maxDate)
-            .GroupBy(s => s.InnerCategory ?? new Category()) // ?? new Category() suppress null alerts.
+            .GroupBy(s => s.InnerCategory) // ?? new Category() suppress null alerts.
             .ToDictionaryAsync(g => g.Key, g => g.Sum(x => x.Price));
 
         decimal generalSpends = spendsByCategory.Values.Sum();
