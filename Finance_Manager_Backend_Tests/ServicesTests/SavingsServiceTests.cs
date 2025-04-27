@@ -32,7 +32,7 @@ public class SavingsServiceTests
         _mockLoggerTS = new Mock<ILogger<SavingsService>>();
         _mockLoggerTT = new Mock<ILogger<DbTransactionTemplate>>();
         _transactionTemplate = new DbTransactionTemplate(_appDbContext, _mockLoggerTT.Object);
-        _usersService = new UsersService(_appDbContext);
+        _usersService = new UsersService(_appDbContext, null); // converter not need
         _savingsService = new SavingsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object, _usersService, _mapper);
         _output = output;
     }

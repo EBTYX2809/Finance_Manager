@@ -34,7 +34,7 @@ public class TransactionsServiceTests
         _mockLoggerTT = new Mock<ILogger<DbTransactionTemplate>>();
         _transactionTemplate = new DbTransactionTemplate(_appDbContext, _mockLoggerTT.Object);
         _categoriesService = new CategoriesService(_appDbContext, _mapper);
-        _usersService = new UsersService(_appDbContext);
+        _usersService = new UsersService(_appDbContext, null); // converter not need
         _transactionsService = new TransactionsService(_appDbContext, _transactionTemplate, 
             _mockLoggerTS.Object, _usersService, _mapper, _categoriesService);
         _output = output;        
