@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Finance_Manager_Backend.BusinessLogic.Models;
 using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using AutoMapper;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 
@@ -12,11 +13,13 @@ public class AuthService
     private readonly AppDbContext _dbContext;
     private readonly JwtTokenGenerator _tokenGenerator;
     private readonly IMapper _mapper;
-    public AuthService(AppDbContext dbContext, JwtTokenGenerator tokenGenerator, IMapper mapper)
+    private readonly IMemoryCache _cache;
+    public AuthService(AppDbContext dbContext, JwtTokenGenerator tokenGenerator, IMapper mapper, IMemoryCache cache)
     {
         _dbContext = dbContext;
         _tokenGenerator = tokenGenerator;
         _mapper = mapper;
+        _cache = cache;
     }
 
     public async Task<(UserDTO, string)> RegisterUserAsync(string email, string password)
@@ -30,6 +33,10 @@ public class AuthService
         User user = new User(email, salt, hashedPassword, 0);
         await _dbContext.Users.AddAsync(user);
         await _dbContext.SaveChangesAsync();
+
+        // Saving user in cache for 1 hour
+        var cacheKey = $"User_{user.Id}";
+        _cache.Set(cacheKey, user, TimeSpan.FromHours(1));
 
         var userDTO = _mapper.Map<UserDTO>(user);
         var token = _tokenGenerator.GenerateToken(user);
@@ -46,6 +53,10 @@ public class AuthService
 
         if (user.PasswordHash == hashedInput) 
         {
+            // Saving user in cache for 1 hour
+            var cacheKey = $"User_{user.Id}";
+            _cache.Set(cacheKey, user, TimeSpan.FromHours(1));
+
             var userDTO = _mapper.Map<UserDTO>(user);
             var token = _tokenGenerator.GenerateToken(user);
 

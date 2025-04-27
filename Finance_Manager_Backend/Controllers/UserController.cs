@@ -59,7 +59,7 @@ public class UserController : ControllerBase
     [HttpPut]
     public async Task<ActionResult> UpdateCurrency([FromBody] UpdateUserCurrencyQueryDTO currencyQueryDTO)
     {
-        await _usersService.UpdateUserCurrency(currencyQueryDTO.UserId, currencyQueryDTO.CurrencyRang, currencyQueryDTO.CurrencyCode);
+        await _usersService.UpdateUserCurrencyAsync(currencyQueryDTO.UserId, currencyQueryDTO.CurrencyRang, currencyQueryDTO.CurrencyCode);
 
         return NoContent();
     }

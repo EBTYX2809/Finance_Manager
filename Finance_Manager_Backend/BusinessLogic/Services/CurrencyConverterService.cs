@@ -18,7 +18,7 @@ public class CurrencyConverterService
         url = _configuration["ExchangeRateAPI:URL"];
         _cache = cache;
     }
-    public async Task<decimal?> Convert(decimal amount, string from, string to)
+    public async Task<decimal?> ConvertAsync(decimal amount, string from, string to)
     {    
         if(string.IsNullOrWhiteSpace(to)) return null;
 
@@ -43,8 +43,7 @@ public class CurrencyConverterService
 
         if (data == null) throw new InvalidOperationException("Invalid API response.");
 
-        _cache.Set(cacheKeyCurrencyPair, data.conversion_rate, 
-            new MemoryCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(7) });
+        _cache.Set(cacheKeyCurrencyPair, data.conversion_rate, TimeSpan.FromDays(1));
 
         return amount * data.conversion_rate;
     }

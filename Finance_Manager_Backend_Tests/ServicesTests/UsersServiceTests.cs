@@ -33,8 +33,8 @@ public class UsersServiceTests
         // Arrange
         var user = await _appDbContext.Users.FirstOrDefaultAsync();
         //user.PrimaryCurrency = "USD"; // Theoreticaly USD will be in default
-        await _usersService.UpdateUserCurrency(user.Id, "Secondary1", "EUR");
-        await _usersService.UpdateUserCurrency(user.Id, "Secondary2", "UAH");
+        await _usersService.UpdateUserCurrencyAsync(user.Id, "Secondary1", "EUR");
+        await _usersService.UpdateUserCurrencyAsync(user.Id, "Secondary2", "UAH");
         //user.SecondaryCurrency1 = "EUR";
         //user.SecondaryCurrency2 = "UAH";
 

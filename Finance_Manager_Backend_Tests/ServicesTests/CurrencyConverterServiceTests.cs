@@ -29,7 +29,7 @@ public class CurrencyConverterServiceTests
         decimal realCourse = 41.79m;
 
         // Act
-        decimal APIresult = (decimal)await _converter.Convert(amount, fromCurrency, toCurrency);
+        decimal APIresult = (decimal)await _converter.ConvertAsync(amount, fromCurrency, toCurrency);
         decimal TESTresult = amount * realCourse;
 
         // Assert

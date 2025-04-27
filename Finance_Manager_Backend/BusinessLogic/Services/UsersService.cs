@@ -3,6 +3,7 @@ using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Finance_Manager_Backend.BusinessLogic.Services;
 
@@ -10,17 +11,28 @@ public class UsersService
 {
     private AppDbContext _appDbContext;
     private readonly CurrencyConverterService _converter;
-    public UsersService(AppDbContext appDbContext, CurrencyConverterService converter)
+    private readonly IMemoryCache _cache;
+    public UsersService(AppDbContext appDbContext, CurrencyConverterService converter, IMemoryCache cache)
     {
         _appDbContext = appDbContext;
         _converter = converter;
+        _cache = cache;
     }
 
     public async Task<User> GetUserByIdAsync(int userId)
     {
+        var cacheKey = $"User_{userId}";
+
+        if (_cache.TryGetValue(cacheKey, out User cachedUser))
+        {
+            return cachedUser;
+        }
+
         var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
         if (user == null) throw new EntityNotFoundException<User>(userId);
+
+        _cache.Set(cacheKey, user, TimeSpan.FromHours(1));
 
         return user;
     }
@@ -29,8 +41,8 @@ public class UsersService
     {
         var user = await GetUserByIdAsync(userId);
 
-        var cur1 = await _converter.Convert(user.Balance, user.PrimaryCurrency, user.SecondaryCurrency1);
-        var cur2 = await _converter.Convert(user.Balance, user.PrimaryCurrency, user.SecondaryCurrency2);
+        var cur1 = await _converter.ConvertAsync(user.Balance, user.PrimaryCurrency, user.SecondaryCurrency1);
+        var cur2 = await _converter.ConvertAsync(user.Balance, user.PrimaryCurrency, user.SecondaryCurrency2);
 
         return new UserBalanceDTO()
         {
@@ -40,7 +52,7 @@ public class UsersService
         };
     }
 
-    public async Task UpdateUserCurrency(int id, string currencyRang, string currencyCode)
+    public async Task UpdateUserCurrencyAsync(int id, string currencyRang, string currencyCode)
     {
         var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
