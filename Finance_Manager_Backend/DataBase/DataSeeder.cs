@@ -14,9 +14,9 @@ public static class DataSeeder
         var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         var authService = scope.ServiceProvider.GetRequiredService<AuthService>();
 
-        var (userDTO, token) = await authService.RegisterUserAsync("test@email.com", "test_password");
+        var authData = await authService.RegisterUserAsync("test@email.com", "test_password");
 
-        var user1 = await dbContext.Users.FirstOrDefaultAsync(u => u.Id  == userDTO.Id);
+        var user1 = await dbContext.Users.FirstOrDefaultAsync(u => u.Id  == authData.UserDTO.Id);
 
         // categories
         var eatCategory = new Category("eat", false, "eat_icon.png", "yellow");
