@@ -8,5 +8,5 @@ public class CategoryDTO
     public string Icon { get; set; } = string.Empty;
     public string ColorForBackground { get; set; } = string.Empty;
     public int? ParentCategoryId { get; set; }
-    public List<Category>? InnerCategories { get; set; }
+    public List<CategoryDTO>? InnerCategories { get; set; }
 }

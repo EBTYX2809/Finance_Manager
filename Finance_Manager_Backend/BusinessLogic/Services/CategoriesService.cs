@@ -10,7 +10,7 @@ namespace Finance_Manager_Backend.BusinessLogic.Services;
 public class CategoriesService
 {
     private AppDbContext _appDbContext;
-    private readonly IMapper _mapper;
+    private readonly IMapper _mapper;   
     public CategoriesService(AppDbContext appDbContext, IMapper mapper)
     {
         _appDbContext = appDbContext;
@@ -40,5 +40,55 @@ public class CategoriesService
         var categories = await _appDbContext.Categories.ToListAsync();
 
         return _mapper.Map<List<CategoryDTO>>(categories);
+    }
+
+    // Admin methods
+    public async Task CreateAllCategoriesAsync()
+    {
+        await DataSeeder.SeedCategories(_appDbContext);
+    }
+
+    public async Task CreateNewCategoryAsync(CategoryDTO categoryDTO)
+    {
+        if (categoryDTO.ParentCategoryId != null && categoryDTO.ParentCategoryId != 0) // ParentCategoryId validation
+        {
+            var existParentCategory = await GetCategoryByIdAsync((int)categoryDTO.ParentCategoryId);
+        }
+
+        var category = _mapper.Map<Category>(categoryDTO);
+
+        await _appDbContext.AddAsync(category);
+        await _appDbContext.SaveChangesAsync();
+
+        categoryDTO.Id = category.Id;
+    }
+    
+    public async Task UpdateCategoryAsync(CategoryDTO categoryDTO)
+    {
+        var oldCategory = await GetCategoryByIdAsync(categoryDTO.Id);
+
+        oldCategory.Name = categoryDTO.Name;
+        oldCategory.Icon = oldCategory.Icon;
+        oldCategory.ColorForBackground = categoryDTO.ColorForBackground;
+        oldCategory.IsIncome = categoryDTO.IsIncome;
+
+        if (categoryDTO.ParentCategoryId != null && categoryDTO.ParentCategoryId != 0) // ParentCategoryId validation
+        {
+            var existParentCategory = await GetCategoryByIdAsync((int)categoryDTO.ParentCategoryId);
+        }
+
+        if (categoryDTO.ParentCategoryId == 0) oldCategory.ParentCategoryId = null;
+        else oldCategory.ParentCategoryId = categoryDTO.ParentCategoryId;
+
+        await _appDbContext.SaveChangesAsync();
+    }
+
+    public async Task DeleteCategoryAsync(int id)
+    {
+        var category = await GetCategoryByIdAsync(id);
+
+        _appDbContext.Categories.Remove(category);
+
+        await _appDbContext.SaveChangesAsync();
     }
 }

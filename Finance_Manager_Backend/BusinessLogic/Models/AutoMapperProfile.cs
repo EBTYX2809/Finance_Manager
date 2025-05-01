@@ -22,7 +22,11 @@ public class AutoMapperProfile : Profile
         CreateMap<Saving, SavingDTO>();
 
         CreateMap<CategoryDTO, Category>()
-            .ForMember(dest => dest.ParentCategory, opt => opt.Ignore());
-        CreateMap<Category, CategoryDTO>();
+            .ForMember(dest => dest.ParentCategory, opt => opt.Ignore())
+            .ForMember(dest => dest.ParentCategoryId, opt =>
+                opt.MapFrom(src => src.ParentCategoryId == 0 ? null : src.ParentCategoryId));
+        CreateMap<Category, CategoryDTO>()
+            .ForMember(dest => dest.InnerCategories, 
+               opt => opt.MapFrom(src => src.InnerCategories));
     }
 }
