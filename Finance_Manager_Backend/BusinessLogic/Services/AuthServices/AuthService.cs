@@ -96,6 +96,10 @@ public class AuthService
         existingToken.IsRevoked = true;
         await _appDbContext.SaveChangesAsync();
 
+        // Saving user in cache for 1 hour
+        var cacheKey = $"User_{user.Id}";
+        _cache.Set(cacheKey, user, TimeSpan.FromHours(1));
+
         var userDTO = _mapper.Map<UserDTO>(user);
         var newAaccessToken = _tokenGenerator.GenerateAccessJwtToken(user);
         var newRefreshToken = _tokenGenerator.GenerateRefreshToken(user);

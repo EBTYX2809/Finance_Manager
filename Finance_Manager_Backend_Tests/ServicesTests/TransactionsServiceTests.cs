@@ -10,6 +10,7 @@ using AutoMapper;
 using Finance_Manager_Tests.ServicesTests;
 using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using FluentAssertions;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Finance_Manager_Backend_Tests.ServicesTests;
 
@@ -34,7 +35,7 @@ public class TransactionsServiceTests
         _mockLoggerTT = new Mock<ILogger<DbTransactionTemplate>>();
         _transactionTemplate = new DbTransactionTemplate(_appDbContext, _mockLoggerTT.Object);
         _categoriesService = new CategoriesService(_appDbContext, _mapper);
-        _usersService = new UsersService(_appDbContext, null); // converter not need
+        _usersService = new UsersService(_appDbContext, null, new MemoryCache(new MemoryCacheOptions())); // converter not need
         _transactionsService = new TransactionsService(_appDbContext, _transactionTemplate, 
             _mockLoggerTS.Object, _usersService, _mapper, _categoriesService);
         _output = output;        

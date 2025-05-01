@@ -5,6 +5,8 @@ using Castle.Components.DictionaryAdapter.Xml;
 using Microsoft.Extensions.Configuration;
 using AutoMapper;
 using Finance_Manager_Tests.ServicesTests;
+using Finance_Manager_Backend.DataBase;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Finance_Manager_Backend_Tests.ServicesTests.AuthTests;
 
@@ -12,8 +14,10 @@ public class RegisterTest
 {
     private readonly string email = "test@example.com";
     private readonly string password = "qwerty";
-    private readonly JwtTokenGenerator tokenGenerator;
+    private readonly TokenGenerator _tokenGenerator;
     private readonly IMapper _mapper;
+    private readonly AppDbContext _appDbContext;
+    private readonly AuthService _authService;
 
     public RegisterTest()
     {
@@ -22,25 +26,23 @@ public class RegisterTest
         .AddJsonFile("appsettings.Test.json")
         .Build();
 
-        tokenGenerator = new JwtTokenGenerator(config);
+        _appDbContext = TestInMemoryDbContext.Create();
+        _tokenGenerator = new TokenGenerator(config, _appDbContext);
         _mapper = AutoMapperFotTests.GetMapper();
+        _authService = new AuthService(_appDbContext, _tokenGenerator, _mapper, new MemoryCache(new MemoryCacheOptions()));
     }
 
     [Fact]
     public async void RegisterUserInDataBase_Test()
     {
         // Arrange
-        using var dbContext = TestInMemoryDbContext.Create();
-
-        var authSevice = new AuthService(dbContext, tokenGenerator, _mapper);
 
         // Act
-        var (User, Token) = await authSevice.RegisterUserAsync(email, password);
-        var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+        var userDTO = await _authService.RegisterUserAsync(email, password);
+        var user = await _appDbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
 
         // Assert
-        Assert.NotNull(User);
-        Assert.NotNull(Token);
+        Assert.NotNull(userDTO);        
         Assert.NotNull(user);
         Assert.Equal(email, user.Email);
         Assert.NotNull(user.PasswordHash);
@@ -52,15 +54,12 @@ public class RegisterTest
     public async void RegisterUserInDataBaseWithExistedEmail_Test()
     {
         // Arrange
-        using var dbContext = TestInMemoryDbContext.Create();
-
-        var authSevice = new AuthService(dbContext, tokenGenerator, _mapper);
 
         // Act
-        var (User, Token) = await authSevice.RegisterUserAsync(email, password);
+        var userDTO = await _authService.RegisterUserAsync(email, password);
 
         // Assert
         await Assert.ThrowsAsync<InvalidOperationException>(async () => 
-            await authSevice.RegisterUserAsync(email, "new password"));
+            await _authService.RegisterUserAsync(email, "new password"));
     }
 }

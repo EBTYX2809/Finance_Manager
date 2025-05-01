@@ -7,6 +7,7 @@ using Finance_Manager_Backend_Tests.DataBase;
 using Finance_Manager_Tests.ServicesTests;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit.Abstractions;
@@ -32,7 +33,7 @@ public class SavingsServiceTests
         _mockLoggerTS = new Mock<ILogger<SavingsService>>();
         _mockLoggerTT = new Mock<ILogger<DbTransactionTemplate>>();
         _transactionTemplate = new DbTransactionTemplate(_appDbContext, _mockLoggerTT.Object);
-        _usersService = new UsersService(_appDbContext, null); // converter not need
+        _usersService = new UsersService(_appDbContext, null, new MemoryCache(new MemoryCacheOptions())); // converter not need
         _savingsService = new SavingsService(_appDbContext, _transactionTemplate, _mockLoggerTS.Object, _usersService, _mapper);
         _output = output;
     }

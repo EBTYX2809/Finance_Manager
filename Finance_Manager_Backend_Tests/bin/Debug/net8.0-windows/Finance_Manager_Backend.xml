@@ -4,6 +4,62 @@
         <name>Finance_Manager_Backend</name>
     </assembly>
     <members>
+        <member name="M:Finance_Manager_Backend.Controllers.AdministratorController.GetCategoryById(System.Int32)">
+            <summary>
+            Get category by id.
+            </summary>
+            <param name="id">Category id.</param>
+            <returns>Returns CategoryDTO object.</returns>
+            <response code="200">Success.</response>
+            <response code="404">Not found category.</response>     
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.AdministratorController.CreateAllCategories">
+            <summary>
+            Create all categories and seed them in data base.
+            </summary>
+            <returns>Ok</returns>
+            <response code="204">Success.</response>
+            <response code="403">Authorization failed.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.AdministratorController.CreateCategory(Finance_Manager_Backend.BusinessLogic.Models.DTOs.CategoryDTO)">
+            <summary>
+            Create category.
+            </summary>
+            <param name="categoryDTO">CategoryDTO to create.</param>
+            <returns>Returns the ID of the created category.</returns>
+            <response code="201">Category successfully created.</response>
+            <response code="400">Validation failed.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
+            <response code="403">Authorization failed.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.AdministratorController.UpdateCategory(Finance_Manager_Backend.BusinessLogic.Models.DTOs.CategoryDTO)">
+            <summary>
+            Update category.
+            </summary>
+            <param name="categoryDTO">New categoryDTO object.</param>
+            <returns>Returns NoContent</returns>
+            <response code="204">Success.</response>
+            <response code="400">Validation failed.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
+            <response code="403">Authorization failed.</response>
+            <response code="404">Not found some resource.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.AdministratorController.DeleteCategory(System.Int32)">
+            <summary>
+            Delete category by id.
+            </summary>
+            <param name="id">Category id.</param>
+            <returns>Returns NoContent</returns>
+            <response code="204">Success.</response>
+            <response code="401">Not authorized. Possible invalid token.</response>
+            <response code="403">Authorization failed.</response>
+            <response code="404">Not found category.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
         <member name="M:Finance_Manager_Backend.Controllers.AnalyticsController.GetAnalytics(Finance_Manager_Backend.BusinessLogic.Models.DTOs.AnalyticsQueryDTO)">
             <summary>
             Get spending analytics in date range.
@@ -46,7 +102,10 @@
             Register new user.
             </summary>
             <param name="authDataDTO">AuthDataDTO with email and password</param>
-            <returns>AuthUserTokenDTO - userDTO with jwt token.</returns>
+            <returns>AuthUserTokensDTO with parameters:
+            UserDTO - user dto object with id, email, and balance;
+            AccessJwtToken - new generated jwt token;
+            RefreshToken - new generated refresh token.</returns>
             <response code="200">Success.</response>
             <response code="400">Invalid credentials.</response>    
             <response code="500">Internal server error.</response> 
@@ -56,9 +115,26 @@
             Authenticate user.
             </summary>
             <param name="authDataDTO">AuthDataDTO with email and password</param>
-            <returns>AuthUserTokenDTO - userDTO with jwt token.</returns>
+            <returns>AuthUserTokensDTO with parameters:
+            UserDTO - user dto object with id, email, and balance;
+            AccessJwtToken - new generated jwt token;
+            RefreshToken - new generated refresh token.</returns>
             <response code="200">Success.</response>
             <response code="400">Invalid credentials.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
+        <member name="M:Finance_Manager_Backend.Controllers.AuthController.RefreshToken(System.String)">
+            <summary>
+            Authenticate user with refresh token.
+            </summary>
+            <param name="refreshToken">Refresh token.</param>
+            <returns>AuthUserTokensDTO with parameters:
+            UserDTO - user dto object with id, email, and balance;
+            AccessJwtToken - new generated jwt token;
+            RefreshToken - new generated refresh token.</returns>    
+            <response code="200">Success.</response>
+            <response code="400">Invalid refresh token.</response>
+            <response code="404">User with this token not found.</response>
             <response code="500">Internal server error.</response> 
         </member>
         <member name="M:Finance_Manager_Backend.Controllers.CategoriesController.GetCategoryById(System.Int32)">
@@ -204,9 +280,9 @@
             </summary>
             <param name="id">User id.</param>
             <returns>Returns UserBalanceDTO with parameters: 
-            PrimaryBalance - tuple with currency code and balance in primary currency; 
-            SecondaryBalance1 - tuple with currency code and balance converted from primary to this; 
-            SecondaryBalance2 - tuple with currency code and balance converted from primary to this.</returns>
+            PrimaryBalance - object with currency code and balance in primary currency; 
+            SecondaryBalance1 - object with currency code and balance converted from primary to this; 
+            SecondaryBalance2 - object with currency code and balance converted from primary to this.</returns>
             <response code="200">Success.</response>
             <response code="404">Not found user.</response>
             <response code="500">Internal server error.</response> 
@@ -296,6 +372,30 @@
             <inheritdoc />
         </member>
         <member name="M:Finance_Manager_Backend.Migrations.AddedCurrencyToUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Finance_Manager_Backend.Migrations.AddedRolesForUsers">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.AddedRolesForUsers.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.AddedRolesForUsers.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.AddedRolesForUsers.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Finance_Manager_Backend.Migrations.CreatedRefreshTokensTable">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.CreatedRefreshTokensTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.CreatedRefreshTokensTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.CreatedRefreshTokensTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

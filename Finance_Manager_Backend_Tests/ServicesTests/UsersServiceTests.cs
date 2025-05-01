@@ -24,7 +24,7 @@ public class UsersServiceTests
             .Build();
 
         CurrencyConverterService converter = new CurrencyConverterService(client, config, new MemoryCache(new MemoryCacheOptions()));
-        _usersService = new UsersService(_appDbContext, converter);
+        _usersService = new UsersService(_appDbContext, converter, new MemoryCache(new MemoryCacheOptions()));
     }
 
     [Fact]
@@ -43,8 +43,8 @@ public class UsersServiceTests
 
         // Assert
         Assert.NotNull(result);
-        Console.WriteLine($"First currency({result.PrimaryBalance.Item1}) balance: {result.PrimaryBalance.Item2}.");
-        Console.WriteLine($"Second currency({result.SecondaryBalance1.Value.Item1}) balance: {result.SecondaryBalance1.Value.Item2}.");
-        Console.WriteLine($"Third currency({result.SecondaryBalance2.Value.Item1}) balance: {result.SecondaryBalance2.Value.Item2}.");
+        Console.WriteLine($"First currency({result.PrimaryBalance.Currency}) balance: {result.PrimaryBalance.Balance}.");
+        Console.WriteLine($"Second currency({result.SecondaryBalance1?.Currency}) balance: {result.SecondaryBalance1?.Balance}.");
+        Console.WriteLine($"Third currency({result.SecondaryBalance2?.Currency}) balance: {result.SecondaryBalance2?.Balance}.");
     }
 }

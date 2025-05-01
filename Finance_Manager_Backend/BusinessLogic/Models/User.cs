@@ -25,7 +25,7 @@ public class User : IEntity
     public string PasswordHash { get; set; } = string.Empty;
     public string Role { get; set; } = "User";
     public decimal Balance { get; set; }
-    public string PrimaryCurrency { get; set; }
+    public string PrimaryCurrency { get; set; } = "USD";
     public string? SecondaryCurrency1 { get; set; }
     public string? SecondaryCurrency2 { get; set; }
     public List<Transaction> Transactions { get; set; } = new();
