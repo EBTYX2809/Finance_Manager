@@ -30,7 +30,7 @@ public class AuthController : ControllerBase
     {
         var (userDTO, token) = await _authService.RegisterUserAsync(authDataDTO.email, authDataDTO.password);
 
-        return Ok(new AuthUserTokenDTO { UserDTO = userDTO, Token = token });
+        return Ok(new AuthUserTokenDTO { UserDTO = userDTO, AccessJwtToken = token });
     }
 
     /// <summary>
@@ -49,6 +49,6 @@ public class AuthController : ControllerBase
     {
         var (userDTO, token) = await _authService.AuthenticateUserAsync(authDataDTO.email, authDataDTO.password);
 
-        return Ok(new AuthUserTokenDTO { UserDTO = userDTO, Token = token });
+        return Ok(new AuthUserTokenDTO { UserDTO = userDTO, AccessJwtToken = token });
     }
 }

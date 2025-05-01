@@ -366,5 +366,17 @@
         <member name="M:Finance_Manager_Backend.Migrations.AddedRolesForUsers.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Finance_Manager_Backend.Migrations.CreatedRefreshTokensTable">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.CreatedRefreshTokensTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.CreatedRefreshTokensTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.CreatedRefreshTokensTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>
