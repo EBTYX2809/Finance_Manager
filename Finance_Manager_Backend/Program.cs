@@ -28,6 +28,8 @@ public class Program
 
         builder.Services.AddHttpClient<CurrencyConverterService>();
 
+        builder.Services.AddHostedService<RefreshTokenCleanupService>();
+
         builder.Services.AddTransient<TokenGenerator>();
 
         builder.Services.AddScoped<DbTransactionTemplate>();

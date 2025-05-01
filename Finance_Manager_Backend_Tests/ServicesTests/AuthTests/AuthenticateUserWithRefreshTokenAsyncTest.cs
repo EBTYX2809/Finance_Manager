@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
-using Finance_Manager_Backend.BusinessLogic.Models;
 using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 using Finance_Manager_Backend.DataBase;
 using Finance_Manager_Backend_Tests.ServicesTests.AuthTests;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Finance_Manager_Tests.ServicesTests.AuthTests;
 
