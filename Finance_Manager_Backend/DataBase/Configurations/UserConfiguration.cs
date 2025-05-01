@@ -34,6 +34,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(30)
             .HasColumnName("salt");
 
+        builder.Property(u => u.Role)
+            .IsRequired()
+            .HasDefaultValue("User")
+            .HasMaxLength(5)
+            .HasColumnName("role");
+
         builder.Property(u => u.Balance)
             .IsRequired()
             .HasColumnType("decimal(12,2)")

@@ -44,6 +44,20 @@ public class AuthService
         return (userDTO, token);
     }
 
+    public async Task RegisterAdminAsync(string email, string password)
+    {
+        var userCheck = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+        if (userCheck != null) throw new InvalidOperationException("Error, this email already registered.");
+
+        string salt = GenerateSalt();
+        string hashedPassword = HashPassword(password, salt);
+
+        User user = new User(email, salt, hashedPassword, 100000) { Role = "Admin" };
+
+        await _dbContext.Users.AddAsync(user);
+        await _dbContext.SaveChangesAsync();
+    }
+
     public async Task<(UserDTO, string)> AuthenticateUserAsync(string email, string password)
     {
         var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);

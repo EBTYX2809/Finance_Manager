@@ -104,6 +104,10 @@ public class Program
                 };
             });
 
+        builder.Services.AddAuthorizationBuilder()
+            .AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"))
+            .AddPolicy("UserPolicy", policy => policy.RequireRole("User", "Admin"));
+
         // Cache
         builder.Services.AddMemoryCache();
 
@@ -128,7 +132,13 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
             DataSeeder.ClearDb(app.Services).Wait();
-            DataSeeder.Seed(app.Services).Wait();
+            DataSeeder.SeedData(app.Services).Wait();
+            // Delete later
+            DataSeeder.SeedAdmin(app.Services, app.Configuration).Wait();
+        }
+        else if(app.Environment.IsProduction())
+        {
+            DataSeeder.SeedAdmin(app.Services, app.Configuration).Wait();
         }
 
         // Middleware

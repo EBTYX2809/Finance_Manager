@@ -19,10 +19,11 @@ public class User : IEntity
         PasswordHash = passwordHash;
         Balance = balance;
     }
-    public int Id { get; set; }
+    public int Id { get; set; }    
     public string Email { get; set; } = string.Empty;
     public string Salt { get; set; } = string.Empty;
     public string PasswordHash { get; set; } = string.Empty;
+    public string Role { get; set; } = "User";
     public decimal Balance { get; set; }
     public string PrimaryCurrency { get; set; }
     public string? SecondaryCurrency1 { get; set; }
