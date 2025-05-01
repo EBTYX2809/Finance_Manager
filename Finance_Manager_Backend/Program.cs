@@ -28,7 +28,7 @@ public class Program
 
         builder.Services.AddHttpClient<CurrencyConverterService>();
 
-        builder.Services.AddTransient<JwtTokenGenerator>();
+        builder.Services.AddTransient<TokenGenerator>();
 
         builder.Services.AddScoped<DbTransactionTemplate>();
 

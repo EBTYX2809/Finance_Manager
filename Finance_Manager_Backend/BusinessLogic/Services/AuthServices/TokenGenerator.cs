@@ -1,20 +1,25 @@
 ﻿using Finance_Manager_Backend.BusinessLogic.Models;
+using Finance_Manager_Backend.DataBase;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 
-public class JwtTokenGenerator
+public class TokenGenerator
 {
     private readonly IConfiguration _config;
-    public JwtTokenGenerator(IConfiguration config)
+    private readonly AppDbContext _appDbContext;
+    public TokenGenerator(IConfiguration config, AppDbContext appDbContext)
     {
         _config = config;
+        _appDbContext = appDbContext;
     }
 
-    public string GenerateToken(User user)
+    public string GenerateAccessJwtToken(User user)
     {
         var jwtSettings = _config.GetSection("JwtSettings");
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]!));
@@ -36,5 +41,22 @@ public class JwtTokenGenerator
         );
 
         return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+
+    public string GenerateRefreshToken(User user) 
+    {
+        var refreshToken = new RefreshToken
+        {
+            Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+            ExpiresAt = DateTime.UtcNow.AddDays(7),
+            CreatedAt = DateTime.UtcNow,
+            IsRevoked = false,
+            UserId = user.Id
+        };
+
+        _appDbContext.RefreshTokens.Add(refreshToken);
+        _appDbContext.SaveChanges();
+
+        return refreshToken.Token;
     }
 }

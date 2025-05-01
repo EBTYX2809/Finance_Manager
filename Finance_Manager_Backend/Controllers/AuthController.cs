@@ -18,37 +18,67 @@ public class AuthController : ControllerBase
     /// Register new user.
     /// </summary>
     /// <param name="authDataDTO">AuthDataDTO with email and password</param>
-    /// <returns>AuthUserTokenDTO - userDTO with jwt token.</returns>
+    /// <returns>AuthUserTokensDTO with parameters:
+    /// UserDTO - user dto object with id, email, and balance;
+    /// AccessJwtToken - new generated jwt token;
+    /// RefreshToken - new generated refresh token.</returns>
     /// <response code="200">Success.</response>
     /// <response code="400">Invalid credentials.</response>    
     /// <response code="500">Internal server error.</response> 
-    [ProducesResponseType(typeof(AuthUserTokenDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AuthUserTokensDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]    
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpPost("register")]
-    public async Task<ActionResult<AuthUserTokenDTO>> Register([FromBody] AuthDataDTO authDataDTO)
+    public async Task<ActionResult<AuthUserTokensDTO>> Register([FromBody] AuthDataDTO authDataDTO)
     {
-        var (userDTO, token) = await _authService.RegisterUserAsync(authDataDTO.email, authDataDTO.password);
+        var authUserTokensDTO = await _authService.RegisterUserAsync(authDataDTO.email, authDataDTO.password);
 
-        return Ok(new AuthUserTokenDTO { UserDTO = userDTO, AccessJwtToken = token });
+        return Ok(authUserTokensDTO);
     }
 
     /// <summary>
     /// Authenticate user.
     /// </summary>
     /// <param name="authDataDTO">AuthDataDTO with email and password</param>
-    /// <returns>AuthUserTokenDTO - userDTO with jwt token.</returns>
+    /// <returns>AuthUserTokensDTO with parameters:
+    /// UserDTO - user dto object with id, email, and balance;
+    /// AccessJwtToken - new generated jwt token;
+    /// RefreshToken - new generated refresh token.</returns>
     /// <response code="200">Success.</response>
     /// <response code="400">Invalid credentials.</response>
     /// <response code="500">Internal server error.</response> 
-    [ProducesResponseType(typeof(AuthUserTokenDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(AuthUserTokensDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpPost("authenticate")]
-    public async Task<ActionResult<AuthUserTokenDTO>> Authenticate([FromBody] AuthDataDTO authDataDTO)
+    public async Task<ActionResult<AuthUserTokensDTO>> Authenticate([FromBody] AuthDataDTO authDataDTO)
     {
-        var (userDTO, token) = await _authService.AuthenticateUserAsync(authDataDTO.email, authDataDTO.password);
+        var authUserTokensDTO = await _authService.AuthenticateUserAsync(authDataDTO.email, authDataDTO.password);
 
-        return Ok(new AuthUserTokenDTO { UserDTO = userDTO, AccessJwtToken = token });
+        return Ok(authUserTokensDTO);
+    }
+
+    /// <summary>
+    /// Authenticate user with refresh token.
+    /// </summary>
+    /// <param name="refreshToken">Refresh token.</param>
+    /// <returns>AuthUserTokensDTO with parameters:
+    /// UserDTO - user dto object with id, email, and balance;
+    /// AccessJwtToken - new generated jwt token;
+    /// RefreshToken - new generated refresh token.</returns>    
+    /// <response code="200">Success.</response>
+    /// <response code="400">Invalid refresh token.</response>
+    /// <response code="404">User with this token not found.</response>
+    /// <response code="500">Internal server error.</response> 
+    [ProducesResponseType(typeof(AuthUserTokensDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [HttpPost("refresh-token")]
+    public async Task<ActionResult<AuthUserTokensDTO>> RefreshToken([FromBody] string refreshToken)
+    {
+        var authUserTokensDTO = await _authService.AuthenticateUserWithRefreshTokenAsync(refreshToken);
+
+        return Ok(authUserTokensDTO);
     }
 }
