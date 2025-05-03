@@ -2,6 +2,7 @@
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Finance_Manager_Backend.Controllers;
 
@@ -31,12 +32,13 @@ public class SavingsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
+    [SwaggerOperation(OperationId = "CreateSaving")]
     [HttpPost]
-    public async Task<ActionResult<int>> Create([FromBody] SavingDTO savingDTO)
+    public async Task<ActionResult<int>> CreateSaving([FromBody] SavingDTO savingDTO)
     {
         await _savingsService.CreateSavingAsync(savingDTO);
 
-        return CreatedAtAction(nameof(GetById), new { id = savingDTO.Id }, savingDTO.Id);
+        return CreatedAtAction(nameof(GetSavingById), new { id = savingDTO.Id }, savingDTO.Id);
     }
 
     /// <summary>
@@ -50,8 +52,9 @@ public class SavingsController : ControllerBase
     [ProducesResponseType(typeof(SavingDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetSaving")]
     [HttpGet("{id}")]
-    public async Task<ActionResult<SavingDTO>> GetById(int id)
+    public async Task<ActionResult<SavingDTO>> GetSavingById(int id)
     {
         var savingDTO = await _savingsService.GetSavingDTOByIdAsync(id);
 
@@ -74,6 +77,7 @@ public class SavingsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetSavings")]
     [HttpGet]
     public async Task<ActionResult<List<SavingDTO>>> GetSavings([FromQuery] GetUserSavingsQueryDTO queryDTO)
     {
@@ -99,8 +103,9 @@ public class SavingsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
+    [SwaggerOperation(OperationId = "UpdateSaving")]
     [HttpPut]
-    public async Task<ActionResult> Update([FromBody] SavingTopUpDTO topUpDTO)
+    public async Task<ActionResult> UpdateSaving([FromBody] SavingTopUpDTO topUpDTO)
     {
         await _savingsService.UpdateSavingAsync(topUpDTO.savingId, topUpDTO.topUpAmount);
 
@@ -121,8 +126,9 @@ public class SavingsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
+    [SwaggerOperation(OperationId = "DeleteSaving")]
     [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(int id)
+    public async Task<ActionResult> DeleteSaving(int id)
     {
         await _savingsService.DeleteSavingAsync(id);
 

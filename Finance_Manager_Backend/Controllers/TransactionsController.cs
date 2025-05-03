@@ -3,6 +3,7 @@ using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Finance_Manager_Backend.Controllers;
 
@@ -33,12 +34,13 @@ public class TransactionsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
+    [SwaggerOperation(OperationId = "CreateTransaction")]
     [HttpPost]
-    public async Task<ActionResult<int>> Create([FromBody] TransactionDTO transactionDTO)
+    public async Task<ActionResult<int>> CreateTransaction([FromBody] TransactionDTO transactionDTO)
     {
         await _transactionsService.CreateTransactionAsync(transactionDTO);
 
-        return CreatedAtAction(nameof(GetById), new { id = transactionDTO.Id }, transactionDTO.Id);
+        return CreatedAtAction(nameof(GetTransactionById), new { id = transactionDTO.Id }, transactionDTO.Id);
     }
 
     /// <summary>
@@ -52,8 +54,9 @@ public class TransactionsController : ControllerBase
     [ProducesResponseType(typeof(Transaction), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetTransaction")]
     [HttpGet("{id}")]
-    public async Task<ActionResult<TransactionDTO>> GetById(int id)
+    public async Task<ActionResult<TransactionDTO>> GetTransactionById(int id)
     {
         var transactionDTO = await _transactionsService.GetTransactionDTOByIdAsync(id);
 
@@ -76,6 +79,7 @@ public class TransactionsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetTransactions")]
     [HttpGet]
     public async Task<ActionResult<List<TransactionDTO>>> GetTransactions([FromQuery] GetUserTransactionsQueryDTO queryDTO)
     {
@@ -100,8 +104,9 @@ public class TransactionsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
+    [SwaggerOperation(OperationId = "UpdateTransaction")]
     [HttpPut]
-    public async Task<ActionResult> Update([FromBody] TransactionDTO transactionDTO)
+    public async Task<ActionResult> UpdateTransaction([FromBody] TransactionDTO transactionDTO)
     {
         await _transactionsService.UpdateTransactionAsync(transactionDTO);
 
@@ -122,8 +127,9 @@ public class TransactionsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
+    [SwaggerOperation(OperationId = "DeleteTransaction")]
     [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(int id)
+    public async Task<ActionResult> DeleteTransaction(int id)
     {
         await _transactionsService.DeleteTransactionAsync(id);
 

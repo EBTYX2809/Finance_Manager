@@ -155,7 +155,7 @@
             <response code="200">Success.</response>    
             <response code="500">Internal server error.</response>
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Create(Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingDTO)">
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.CreateSaving(Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingDTO)">
             <summary>
             Create saving.
             </summary>
@@ -167,7 +167,7 @@
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response>
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.GetById(System.Int32)">
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.GetSavingById(System.Int32)">
             <summary>
             Get saving by id.
             </summary>
@@ -191,7 +191,7 @@
             <response code="404">Not found some resource.</response>
             <response code="500">Internal server error.</response>
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Update(Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingTopUpDTO)">
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.UpdateSaving(Finance_Manager_Backend.BusinessLogic.Models.DTOs.SavingTopUpDTO)">
             <summary>
             Update saving with new top up.
             </summary>
@@ -204,7 +204,7 @@
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.Delete(System.Int32)">
+        <member name="M:Finance_Manager_Backend.Controllers.SavingsController.DeleteSaving(System.Int32)">
             <summary>
             Delete saving by id.
             </summary>
@@ -215,7 +215,7 @@
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Create(Finance_Manager_Backend.BusinessLogic.Models.DTOs.TransactionDTO)">
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.CreateTransaction(Finance_Manager_Backend.BusinessLogic.Models.DTOs.TransactionDTO)">
             <summary>
             Create transaction.
             </summary>
@@ -227,7 +227,7 @@
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response>
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.GetById(System.Int32)">
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.GetTransactionById(System.Int32)">
             <summary>
             Get transaction by id.
             </summary>
@@ -251,7 +251,7 @@
             <response code="404">Not found some resource.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Update(Finance_Manager_Backend.BusinessLogic.Models.DTOs.TransactionDTO)">
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.UpdateTransaction(Finance_Manager_Backend.BusinessLogic.Models.DTOs.TransactionDTO)">
             <summary>
             Update transaction with new data.
             </summary>
@@ -263,7 +263,7 @@
             <response code="401">Not authorized. Possible invalid token.</response>
             <response code="500">Internal server error.</response> 
         </member>
-        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.Delete(System.Int32)">
+        <member name="M:Finance_Manager_Backend.Controllers.TransactionsController.DeleteTransaction(System.Int32)">
             <summary>
             Delete transaction by id.
             </summary>

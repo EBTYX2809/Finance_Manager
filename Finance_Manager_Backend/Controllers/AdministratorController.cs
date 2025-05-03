@@ -2,6 +2,7 @@
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Finance_Manager_Backend.Controllers;
 
@@ -27,6 +28,7 @@ public class AdministratorController : ControllerBase
     [ProducesResponseType(typeof(CategoryDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetCategory")]
     [HttpGet("{id}")]
     public async Task<ActionResult<CategoryDTO>> GetCategoryById(int id)
     {
@@ -43,6 +45,7 @@ public class AdministratorController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "CreateAllCategories")]
     [HttpPost("seed")]
     public async Task<ActionResult> CreateAllCategories()
     {
@@ -66,6 +69,7 @@ public class AdministratorController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "CreateCategory")]
     [HttpPost("create")]
     public async Task<ActionResult<int>> CreateCategory([FromBody] CategoryDTO categoryDTO)
     {
@@ -91,6 +95,7 @@ public class AdministratorController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "UpdateCategory")]
     [HttpPut]
     public async Task<ActionResult> UpdateCategory([FromBody] CategoryDTO categoryDTO)
     {
@@ -114,6 +119,7 @@ public class AdministratorController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "DeleteCategory")]
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteCategory(int id)
     {

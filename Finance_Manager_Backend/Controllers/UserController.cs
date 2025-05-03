@@ -2,6 +2,7 @@
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Finance_Manager_Backend.Controllers;
 
@@ -29,6 +30,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(typeof(UserBalanceDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetBalance")]
     [HttpGet("{id}")]
     public async Task<ActionResult<UserBalanceDTO>> GetBalanceById(int id)
     {
@@ -56,6 +58,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [Authorize]
+    [SwaggerOperation(OperationId = "UpdateCurrency")]
     [HttpPut]
     public async Task<ActionResult> UpdateCurrency([FromBody] UpdateUserCurrencyQueryDTO currencyQueryDTO)
     {

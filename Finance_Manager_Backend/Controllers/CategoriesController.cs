@@ -1,6 +1,7 @@
 ﻿using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Finance_Manager_Backend.Controllers;
 
@@ -26,6 +27,7 @@ public class CategoriesController : ControllerBase
     [ProducesResponseType(typeof(CategoryDTO), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetCategory")]
     [HttpGet("{id}")]
     public async Task<ActionResult<CategoryDTO>> GetCategoryById(int id)
     {
@@ -38,8 +40,9 @@ public class CategoriesController : ControllerBase
     /// <returns>Returns list woth categoryDTO objects.</returns>
     /// <response code="200">Success.</response>    
     /// <response code="500">Internal server error.</response>
-    [ProducesResponseType(typeof(List<CategoryDTO>), StatusCodes.Status200OK)]    
+    [ProducesResponseType(typeof(List<CategoryDTO>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetAllCategories")]
     [HttpGet]
     public async Task<ActionResult<List<CategoryDTO>>> GetAllCategories()
     {

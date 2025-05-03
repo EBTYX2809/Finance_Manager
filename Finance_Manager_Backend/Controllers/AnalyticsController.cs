@@ -1,6 +1,7 @@
 ﻿using Finance_Manager_Backend.BusinessLogic.Models.DTOs;
 using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Finance_Manager_Backend.Controllers;
 
@@ -34,6 +35,7 @@ public class AnalyticsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetAnalytics")]
     [HttpGet("overview")]
     public async Task<ActionResult<List<CategoryPercentDTO>>> GetAnalytics([FromQuery] AnalyticsQueryDTO queryDTO)
     {
@@ -70,6 +72,7 @@ public class AnalyticsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetInnerAnalytics")]
     [HttpGet("inner_categories")]
     public async Task<ActionResult<List<CategoryPercentDTO>>> GetInnerAnalytics([FromQuery] InnerAnalyticsQueryDTO queryDTO)
     {
