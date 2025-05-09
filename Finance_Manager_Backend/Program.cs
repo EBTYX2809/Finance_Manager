@@ -11,6 +11,7 @@ using System.Reflection;
 using System.Text;
 using FluentValidation;
 using System.Globalization;
+// using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 public class Program
 {
@@ -47,7 +48,8 @@ public class Program
         builder.Services.AddControllers(options =>
         {
             options.Filters.Add<ValidationFilter>();
-        });
+        })
+        .AddNewtonsoftJson();
         // Auto Validation without async filter:
         /*builder.Services.AddControllers();
         builder.Services.AddFluentValidationAutoValidation();*/
@@ -58,6 +60,9 @@ public class Program
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             options.IncludeXmlComments(xmlPath);
+            options.EnableAnnotations();
+            options.SchemaFilter<JsonRequiredSchemaFilter>();
+            options.UseAllOfToExtendReferenceSchemas();
 
             // Jwt token support
             options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -138,7 +143,7 @@ public class Program
             // Delete later
             DataSeeder.SeedAdmin(app.Services, app.Configuration).Wait();
         }
-        else if(app.Environment.IsProduction())
+        else if (app.Environment.IsProduction())
         {
             DataSeeder.SeedAdmin(app.Services, app.Configuration).Wait();
         }
