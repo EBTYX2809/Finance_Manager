@@ -6,6 +6,11 @@ namespace Finance_Manager_Backend.Middleware;
 
 public class ValidationFilter : IAsyncActionFilter
 {
+    public readonly ILogger<ValidationFilter> _logger;
+    public ValidationFilter(ILogger<ValidationFilter> logger)
+    {
+        _logger = logger;
+    }
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
         foreach (var argument in context.ActionArguments)
@@ -27,6 +32,8 @@ public class ValidationFilter : IAsyncActionFilter
                     Field = e.PropertyName,
                     Error = e.ErrorMessage
                 });
+
+                _logger.LogError("Validation failed. Errors: {errors}", errors);
 
                 context.Result = new BadRequestObjectResult(new
                 {
