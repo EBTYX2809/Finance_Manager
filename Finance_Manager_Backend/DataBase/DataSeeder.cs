@@ -16,14 +16,15 @@ public static class DataSeeder
 
         var authData = await authService.RegisterUserAsync("test@email.com", "test_password");
 
-        var user1 = await dbContext.Users.FirstOrDefaultAsync(u => u.Id  == authData.UserDTO.Id);
+        var user1 = await dbContext.Users.FirstOrDefaultAsync(u => u.Id == authData.UserDTO.Id);
 
         // categories
-        var eatCategory = new Category("eat", false, "eat_icon.png", "yellow");
-        var homeCategory = new Category("home", false, "home_icon.png", "brown");
-        var entertaimentCategory = new Category("entertaiment", false, "entertaiment_icon.png", "blue");
-        var salaryCategory = new Category("salary", true, "salary_icon.png", "green");
-        var medicineCategory = new Category("medicine", false, "medicine_icon.png", "red");
+        var eatCategory = new Category("eat", false, "eat_icon.png", "#FFFF00"); // yellow
+        var homeCategory = new Category("home", false, "home_icon.png", "#A52A2A"); // brown
+        var entertaimentCategory = new Category("entertaiment", false, "entertaiment_icon.png", "#0000FF"); // blue
+        var salaryCategory = new Category("salary", true, "salary_icon.png", "#008000"); // green
+        var medicineCategory = new Category("medicine", false, "medicine_icon.png", "#FF0000"); // red
+
 
         // user 1
         var user_transaction1 = new Transaction("Bread", 10.90m, new DateTime(2025, 1, 8), eatCategory, user1);
@@ -35,7 +36,7 @@ public static class DataSeeder
         var user_transaction7 = new Transaction("March salary", 8000, new DateTime(2025, 3, 23), salaryCategory, user1);
         var user_transaction8 = new Transaction("Rent for april payment", 4000, new DateTime(2025, 4, 7), homeCategory, user1);
         var user_transaction9 = new Transaction("Ski", 2000, new DateTime(2025, 4, 21), entertaimentCategory, user1);
-        var user_transaction10 = new Transaction("Ambulance call", 750.75m, new DateTime(2025, 5, 15), medicineCategory, user1);        
+        var user_transaction10 = new Transaction("Ambulance call", 750.75m, new DateTime(2025, 5, 15), medicineCategory, user1);
         var user_transaction11 = new Transaction("Video game", 800, new DateTime(2025, 1, 4), entertaimentCategory, user1);
         var user_transaction12 = new Transaction("Pizza", 300.30m, new DateTime(2025, 1, 12), eatCategory, user1);
         var user_transaction13 = new Transaction("Invest in building house", 2000, new DateTime(2025, 1, 25), homeCategory, user1);
@@ -45,7 +46,7 @@ public static class DataSeeder
         var user_transaction17 = new Transaction("A lot of chocolatte", 770.34m, new DateTime(2025, 3, 11), eatCategory, user1);
         var user_transaction18 = new Transaction("March salary", 20000, new DateTime(2025, 3, 27), salaryCategory, user1);
         var user_transaction19 = new Transaction("Concert", 2000, new DateTime(2025, 4, 29), entertaimentCategory, user1);
-        var user_transaction20 = new Transaction("Injector", 300.94m, new DateTime(2025, 5, 6), medicineCategory, user1);        
+        var user_transaction20 = new Transaction("Injector", 300.94m, new DateTime(2025, 5, 6), medicineCategory, user1);
 
         // savings
         var user_saving1 = new Saving("Phone", 20000, user1);
@@ -56,10 +57,10 @@ public static class DataSeeder
         await dbContext.Categories.AddRangeAsync(eatCategory, homeCategory, entertaimentCategory, salaryCategory, medicineCategory);
         await dbContext.SaveChangesAsync();
 
-        await dbContext.Transactions.AddRangeAsync(user_transaction1, user_transaction2, user_transaction3, 
-            user_transaction4, user_transaction5, user_transaction6, user_transaction7, user_transaction8, 
-            user_transaction9, user_transaction10, user_transaction11, user_transaction12, user_transaction13, 
-            user_transaction14, user_transaction15, user_transaction16, user_transaction17, user_transaction18, 
+        await dbContext.Transactions.AddRangeAsync(user_transaction1, user_transaction2, user_transaction3,
+            user_transaction4, user_transaction5, user_transaction6, user_transaction7, user_transaction8,
+            user_transaction9, user_transaction10, user_transaction11, user_transaction12, user_transaction13,
+            user_transaction14, user_transaction15, user_transaction16, user_transaction17, user_transaction18,
             user_transaction19, user_transaction20);
         await dbContext.SaveChangesAsync();
 
