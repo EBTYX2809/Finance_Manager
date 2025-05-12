@@ -19,11 +19,12 @@ public static class DataSeeder
         var user1 = await dbContext.Users.FirstOrDefaultAsync(u => u.Id == authData.UserDTO.Id);
 
         // categories
-        var eatCategory = new Category("eat", false, "eat_icon.png", "#FFFF00"); // yellow
-        var homeCategory = new Category("home", false, "home_icon.png", "#A52A2A"); // brown
-        var entertaimentCategory = new Category("entertaiment", false, "entertaiment_icon.png", "#0000FF"); // blue
-        var salaryCategory = new Category("salary", true, "salary_icon.png", "#008000"); // green
-        var medicineCategory = new Category("medicine", false, "medicine_icon.png", "#FF0000"); // red
+        var eatCategory = new Category("eat", false, "eat_icon.png", "#f2e563");         // light yellow (LemonChiffon)
+        var homeCategory = new Category("home", false, "home_icon.png", "#db5139");      // indian red (приглушённо-коричневый)
+        var entertaimentCategory = new Category("entertaiment", false, "entertaiment_icon.png", "#3e7ef0"); // cornflower blue
+        var salaryCategory = new Category("salary", true, "salary_icon.png", "#3de0a9"); // medium aquamarine
+        var medicineCategory = new Category("medicine", false, "medicine_icon.png", "#ff4f3b"); // salmon (приглушённо-красный)
+
 
 
         // user 1
