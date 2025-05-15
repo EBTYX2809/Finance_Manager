@@ -25,6 +25,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
         builder.Property(t => t.Price)
             .IsRequired()
             .HasColumnType("decimal(10,2)")
+            .HasDefaultValue(0m)
             .HasColumnName("price");
 
         builder.Property(t => t.Date)
@@ -35,7 +36,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 
         builder.HasOne(t => t.Category)
             .WithMany()
-            .HasForeignKey(t => t.CategoryId)            
+            .HasForeignKey(t => t.CategoryId)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.Property(t => t.CategoryId)

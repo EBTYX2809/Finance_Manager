@@ -24,7 +24,7 @@ public class User : IEntity
     public string Salt { get; set; } = string.Empty;
     public string PasswordHash { get; set; } = string.Empty;
     public string Role { get; set; } = "User";
-    public decimal Balance { get; set; }
+    public decimal Balance { get; set; } = 0m;
     public string PrimaryCurrency { get; set; } = "USD";
     public string? SecondaryCurrency1 { get; set; }
     public string? SecondaryCurrency2 { get; set; }

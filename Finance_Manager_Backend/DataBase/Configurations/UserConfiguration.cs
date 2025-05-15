@@ -43,6 +43,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.Balance)
             .IsRequired()
             .HasColumnType("decimal(12,2)")
+            .HasDefaultValue(0m)
             .HasColumnName("balance");
 
         builder.Property(u => u.PrimaryCurrency)

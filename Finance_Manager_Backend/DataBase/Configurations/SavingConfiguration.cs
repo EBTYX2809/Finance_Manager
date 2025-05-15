@@ -25,11 +25,12 @@ public class SavingConfiguration : IEntityTypeConfiguration<Saving>
         builder.Property(s => s.Goal)
             .IsRequired()
             .HasColumnType("decimal(10,2)")
+            .HasDefaultValue(0m)
             .HasColumnName("goal");
 
         builder.Property(s => s.CurrentAmount)
             .HasDefaultValue(0m)
-            .HasColumnType("decimal(10,2)")            
+            .HasColumnType("decimal(10,2)")
             .HasColumnName("current_amount");
 
         builder.HasOne(s => s.User)
