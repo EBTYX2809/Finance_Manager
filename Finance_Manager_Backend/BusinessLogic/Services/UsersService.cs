@@ -54,9 +54,14 @@ public class UsersService
 
     public async Task UpdateUserCurrencyAsync(int id, string currencyRang, string currencyCode)
     {
-        var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
+        var user = await GetUserByIdAsync(id);
 
-        if (currencyRang == "Primary") user.PrimaryCurrency = currencyCode;
+        if (currencyRang == "Primary")
+        {
+            user.PrimaryCurrency = currencyCode;
+            var newBalance = await _converter.ConvertAsync(user.Balance, user.PrimaryCurrency, currencyCode);
+            user.Balance = (decimal)newBalance;
+        }
         else if (currencyRang == "Secondary1") user.SecondaryCurrency1 = currencyCode;
         else if (currencyRang == "Secondary2") user.SecondaryCurrency2 = currencyCode;
         else throw new InvalidOperationException("Invalid currencyRang.");
