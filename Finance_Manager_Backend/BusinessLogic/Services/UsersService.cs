@@ -58,9 +58,9 @@ public class UsersService
 
         if (currencyRang == "Primary")
         {
-            user.PrimaryCurrency = currencyCode;
             var newBalance = await _converter.ConvertAsync(user.Balance, user.PrimaryCurrency, currencyCode);
             user.Balance = (decimal)newBalance;
+            user.PrimaryCurrency = currencyCode;
         }
         else if (currencyRang == "Secondary1") user.SecondaryCurrency1 = currencyCode;
         else if (currencyRang == "Secondary2") user.SecondaryCurrency2 = currencyCode;
