@@ -76,6 +76,8 @@ public class SavingsService
 
             var user = await _usersService.GetUserByIdAsync(saving.UserId);
 
+            _appDbContext.Attach(user);
+
             // Have to test
             if (saving.CurrentAmount + topUpAmount > saving.Goal)
             {
@@ -99,6 +101,8 @@ public class SavingsService
             var saving = await GetSavingByIdAsync(savingId);
 
             var user = await _usersService.GetUserByIdAsync(saving.UserId);
+
+            _appDbContext.Attach(user);
 
             user.Balance += saving.CurrentAmount;
 

@@ -32,8 +32,10 @@ public class TransactionsService
     {
         _logger.LogInformation("Executing CreateTransactionAsync method.");
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
-        {                       
+        {
             var user = await _usersService.GetUserByIdAsync(userTransactionDTO.UserId);
+
+            _appDbContext.Attach(user);
 
             var transaction = _mapper.Map<UserTransaction>(userTransactionDTO);
             transaction.Category = await _categoriesService.GetCategoryByIdAsync(userTransactionDTO.CategoryId);
@@ -50,7 +52,7 @@ public class TransactionsService
     }
 
     public async Task<UserTransaction> GetTransactionByIdAsync(int transactionId)
-    {             
+    {
         var transaction = await _appDbContext.Transactions
             .Include(t => t.Category)
             .Include(t => t.InnerCategory)
@@ -62,7 +64,7 @@ public class TransactionsService
     }
 
     public async Task<TransactionDTO> GetTransactionDTOByIdAsync(int transactionId)
-    {        
+    {
         var transaction = await _appDbContext.Transactions
             .FirstOrDefaultAsync(t => t.Id == transactionId);
 
@@ -73,7 +75,7 @@ public class TransactionsService
 
 
     public async Task<List<TransactionDTO>> GetTransactionsAsync(int userId, DateTime? lastDate, int pageSize)
-    {      
+    {
         var orderedTransactions = _appDbContext.Transactions
             .Where(t => t.UserId == userId)
             .OrderByDescending(t => t.Date);
@@ -81,7 +83,7 @@ public class TransactionsService
         if (lastDate.HasValue)
         {
             orderedTransactions = orderedTransactions
-                .Where(t => t.Date<lastDate.Value)
+                .Where(t => t.Date < lastDate.Value)
                 .OrderByDescending(t => t.Date);
         }
 
@@ -99,7 +101,9 @@ public class TransactionsService
         {
             var user = await _usersService.GetUserByIdAsync(newUserTransactionDTO.UserId);
 
-            var oldUserTransaction = await GetTransactionByIdAsync(newUserTransactionDTO.Id);            
+            _appDbContext.Attach(user);
+
+            var oldUserTransaction = await GetTransactionByIdAsync(newUserTransactionDTO.Id);
 
             if (newUserTransactionDTO.Price >= oldUserTransaction.Price)
             {
@@ -127,14 +131,16 @@ public class TransactionsService
     {
         _logger.LogInformation("Executing DeleteTransactionAsync method.");
         await _dbTransactionTemplate.ExecuteTransactionAsync(async () =>
-        {            
+        {
             var transaction = await GetTransactionByIdAsync(transactionId);
 
             var user = await _usersService.GetUserByIdAsync(transaction.UserId);
+
+            _appDbContext.Attach(user);
 
             user.Balance += transaction.Price;
 
             _appDbContext.Transactions.Remove(transaction);
         });
-    }    
+    }
 }
