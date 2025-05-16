@@ -138,7 +138,8 @@ public class TransactionsService
 
             _appDbContext.Attach(user);
 
-            user.Balance += transaction.Price;
+            if (transaction.Category.IsIncome) user.Balance -= transaction.Price;
+            else user.Balance += transaction.Price;
 
             _appDbContext.Transactions.Remove(transaction);
         });

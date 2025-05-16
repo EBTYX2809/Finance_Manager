@@ -1875,3 +1875,1603 @@ WHERE [id] = @p0;
 2025-05-16 08:56:02.910 +03:00 [INF] Application is shutting down...
 2025-05-16 08:56:02.913 +03:00 [DBG] Hosting stopping
 2025-05-16 08:56:02.975 +03:00 [DBG] Hosting stopped
+2025-05-16 08:59:02.297 +03:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-05-16 08:59:03.087 +03:00 [DBG] Entity Framework Core 9.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.4' with options: EngineType=SqlServer 
+2025-05-16 08:59:03.183 +03:00 [DBG] Compiling query expression: 
+'DbSet<User>()'
+2025-05-16 08:59:03.406 +03:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<User>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.Balance (decimal) Required ValueGenerated.OnAdd, 1], [Property: User.Email (string) Required Index MaxLength(50), 2], [Property: User.PasswordHash (string) Required MaxLength(50), 3], [Property: User.PrimaryCurrency (string) Required ValueGenerated.OnAdd MaxLength(3), 4], [Property: User.Role (string) Required ValueGenerated.OnAdd MaxLength(5), 5], [Property: User.Salt (string) Required MaxLength(30), 6], [Property: User.SecondaryCurrency1 (string) MaxLength(3), 7], [Property: User.SecondaryCurrency2 (string) MaxLength(3), 8] }
+        SELECT u.id, u.balance, u.email, u.password_hash, u.primary_currency, u.role, u.salt, u.secondary_currency_1, u.secondary_currency_2
+        FROM users AS u) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.Balance (decimal) Required ValueGenerated.OnAdd, 1], [Property: User.Email (string) Required Index MaxLength(50), 2], [Property: User.PasswordHash (string) Required MaxLength(50), 3], [Property: User.PrimaryCurrency (string) Required ValueGenerated.OnAdd MaxLength(3), 4], [Property: User.Role (string) Required ValueGenerated.OnAdd MaxLength(5), 5], [Property: User.Salt (string) Required MaxLength(30), 6], [Property: User.SecondaryCurrency1 (string) MaxLength(3), 7], [Property: User.SecondaryCurrency2 (string) MaxLength(3), 8] }
+        SELECT u.id, u.balance, u.email, u.password_hash, u.primary_currency, u.role, u.salt, u.secondary_currency_1, u.secondary_currency_2
+        FROM users AS u, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        User entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            User instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(User);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: User.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (User)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User")]: 
+                        {
+                            return 
+                            {
+                                User instance;
+                                instance = new User();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<Balance>k__BackingField = dataReader.GetDecimal(1);
+                                instance.<Email>k__BackingField = dataReader.GetString(2);
+                                instance.<PasswordHash>k__BackingField = dataReader.GetString(3);
+                                instance.<PrimaryCurrency>k__BackingField = dataReader.GetString(4);
+                                instance.<Role>k__BackingField = dataReader.GetString(5);
+                                instance.<Salt>k__BackingField = dataReader.GetString(6);
+                                instance.<SecondaryCurrency1>k__BackingField = dataReader.IsDBNull(7) ? default(string) : dataReader.GetString(7);
+                                instance.<SecondaryCurrency2>k__BackingField = dataReader.IsDBNull(8) ? default(string) : dataReader.GetString(8);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(User)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: Finance_Manager_Backend.DataBase.AppDbContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-05-16 08:59:03.508 +03:00 [DBG] Creating DbConnection.
+2025-05-16 08:59:03.532 +03:00 [DBG] Created DbConnection. (22ms).
+2025-05-16 08:59:03.538 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:03.845 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:03.851 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:03.858 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (6ms).
+2025-05-16 08:59:03.861 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (12ms).
+2025-05-16 08:59:03.870 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+2025-05-16 08:59:03.899 +03:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+2025-05-16 08:59:03.938 +03:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:03.981 +03:00 [DBG] An entity of type 'User' tracked by 'AppDbContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:03.992 +03:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:03.994 +03:00 [DBG] An entity of type 'User' tracked by 'AppDbContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:03.999 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.007 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 100ms reading results.
+2025-05-16 08:59:04.011 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.019 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (8ms).
+2025-05-16 08:59:04.024 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 08:59:04.029 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 08:59:04.053 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 08:59:04.126 +03:00 [DBG] Executing 2 update commands as a batch.
+2025-05-16 08:59:04.132 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.137 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.140 +03:00 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2025-05-16 08:59:04.149 +03:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2025-05-16 08:59:04.154 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:04.156 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:04.161 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+2025-05-16 08:59:04.165 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [users]
+OUTPUT 1
+WHERE [id] = @p0;
+DELETE FROM [users]
+OUTPUT 1
+WHERE [id] = @p1;
+2025-05-16 08:59:04.273 +03:00 [INF] Executed DbCommand (109ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [users]
+OUTPUT 1
+WHERE [id] = @p0;
+DELETE FROM [users]
+OUTPUT 1
+WHERE [id] = @p1;
+2025-05-16 08:59:04.293 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.298 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 15ms reading results.
+2025-05-16 08:59:04.306 +03:00 [DBG] Committing transaction.
+2025-05-16 08:59:04.310 +03:00 [DBG] Committed transaction.
+2025-05-16 08:59:04.313 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.315 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:04.319 +03:00 [DBG] Disposing transaction.
+2025-05-16 08:59:04.323 +03:00 [DBG] An entity of type 'User' tracked by 'AppDbContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.325 +03:00 [DBG] An entity of type 'User' tracked by 'AppDbContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.330 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 2 entities written to the database.
+2025-05-16 08:59:04.332 +03:00 [DBG] Compiling query expression: 
+'DbSet<Category>()'
+2025-05-16 08:59:04.339 +03:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<Category>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Category.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Category.ColorForBackground (string) Required MaxLength(7), 1], [Property: Category.Icon (string) Required MaxLength(100), 2], [Property: Category.IsIncome (bool) Required, 3], [Property: Category.Name (string) Required MaxLength(50), 4], [Property: Category.ParentCategoryId (int?) FK Index, 5] }
+        SELECT c.id, c.background_color, c.icon_path, c.is_income, c.name, c.parent_category_fk
+        FROM categories AS c) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Category.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Category.ColorForBackground (string) Required MaxLength(7), 1], [Property: Category.Icon (string) Required MaxLength(100), 2], [Property: Category.IsIncome (bool) Required, 3], [Property: Category.Name (string) Required MaxLength(50), 4], [Property: Category.ParentCategoryId (int?) FK Index, 5] }
+        SELECT c.id, c.background_color, c.icon_path, c.is_income, c.name, c.parent_category_fk
+        FROM categories AS c, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        Category entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            Category instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(Category);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: Category.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (Category)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: Category | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: Category | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category")]: 
+                        {
+                            return 
+                            {
+                                Category instance;
+                                instance = new Category();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<ColorForBackground>k__BackingField = dataReader.GetString(1);
+                                instance.<Icon>k__BackingField = dataReader.GetString(2);
+                                instance.<IsIncome>k__BackingField = dataReader.GetBoolean(3);
+                                instance.<Name>k__BackingField = dataReader.GetString(4);
+                                instance.<ParentCategoryId>k__BackingField = dataReader.IsDBNull(5) ? default(int?) : (int?)dataReader.GetInt32(5);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: Category | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(Category)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: Finance_Manager_Backend.DataBase.AppDbContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-05-16 08:59:04.343 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.347 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.349 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:04.350 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:04.351 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 08:59:04.352 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[id], [c].[background_color], [c].[icon_path], [c].[is_income], [c].[name], [c].[parent_category_fk]
+FROM [categories] AS [c]
+2025-05-16 08:59:04.356 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[id], [c].[background_color], [c].[icon_path], [c].[is_income], [c].[name], [c].[parent_category_fk]
+FROM [categories] AS [c]
+2025-05-16 08:59:04.372 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.387 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.390 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.391 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.393 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.396 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.399 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.400 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.402 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.404 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.406 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.407 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 49ms reading results.
+2025-05-16 08:59:04.409 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.410 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:04.412 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 08:59:04.413 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 08:59:04.421 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 08:59:04.424 +03:00 [DBG] Executing 5 update commands as a batch.
+2025-05-16 08:59:04.426 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.427 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.429 +03:00 [DBG] Beginning transaction with isolation level 'Unspecified'.
+2025-05-16 08:59:04.431 +03:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2025-05-16 08:59:04.432 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:04.433 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:04.435 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 08:59:04.436 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p0;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p1;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p2;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p3;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p4;
+2025-05-16 08:59:04.457 +03:00 [INF] Executed DbCommand (21ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p0;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p1;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p2;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p3;
+DELETE FROM [categories]
+OUTPUT 1
+WHERE [id] = @p4;
+2025-05-16 08:59:04.460 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.461 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 1ms reading results.
+2025-05-16 08:59:04.464 +03:00 [DBG] Committing transaction.
+2025-05-16 08:59:04.465 +03:00 [DBG] Committed transaction.
+2025-05-16 08:59:04.466 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.468 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:04.470 +03:00 [DBG] Disposing transaction.
+2025-05-16 08:59:04.471 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.473 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.475 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.477 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.479 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.482 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 5 entities written to the database.
+2025-05-16 08:59:04.484 +03:00 [DBG] 'AppDbContext' disposed.
+2025-05-16 08:59:04.488 +03:00 [DBG] Disposing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.490 +03:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-05-16 08:59:04.672 +03:00 [DBG] Entity Framework Core 9.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.4' with options: EngineType=SqlServer 
+2025-05-16 08:59:04.685 +03:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(u => u.Email == __email_0)'
+2025-05-16 08:59:04.739 +03:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<User>(
+    asyncEnumerable: SingleQueryingEnumerable.Create<User>(
+        relationalQueryContext: (RelationalQueryContext)queryContext, 
+        relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.Balance (decimal) Required ValueGenerated.OnAdd, 1], [Property: User.Email (string) Required Index MaxLength(50), 2], [Property: User.PasswordHash (string) Required MaxLength(50), 3], [Property: User.PrimaryCurrency (string) Required ValueGenerated.OnAdd MaxLength(3), 4], [Property: User.Role (string) Required ValueGenerated.OnAdd MaxLength(5), 5], [Property: User.Salt (string) Required MaxLength(30), 6], [Property: User.SecondaryCurrency1 (string) MaxLength(3), 7], [Property: User.SecondaryCurrency2 (string) MaxLength(3), 8] }
+            SELECT TOP(1) u.id, u.balance, u.email, u.password_hash, u.primary_currency, u.role, u.salt, u.secondary_currency_1, u.secondary_currency_2
+            FROM users AS u
+            WHERE u.email == @__email_0) | Resolver: c => new RelationalCommandCache(
+            c.Dependencies.MemoryCache, 
+            c.RelationalDependencies.QuerySqlGeneratorFactory, 
+            c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.Balance (decimal) Required ValueGenerated.OnAdd, 1], [Property: User.Email (string) Required Index MaxLength(50), 2], [Property: User.PasswordHash (string) Required MaxLength(50), 3], [Property: User.PrimaryCurrency (string) Required ValueGenerated.OnAdd MaxLength(3), 4], [Property: User.Role (string) Required ValueGenerated.OnAdd MaxLength(5), 5], [Property: User.Salt (string) Required MaxLength(30), 6], [Property: User.SecondaryCurrency1 (string) MaxLength(3), 7], [Property: User.SecondaryCurrency2 (string) MaxLength(3), 8] }
+            SELECT TOP(1) u.id, u.balance, u.email, u.password_hash, u.primary_currency, u.role, u.salt, u.secondary_currency_1, u.secondary_currency_2
+            FROM users AS u
+            WHERE u.email == @__email_0, 
+            False, 
+            new HashSet<string>(
+                new string[]{ }, 
+                StringComparer.Ordinal
+            )
+        )].GetRelationalCommandTemplate(parameters), 
+        readerColumns: null, 
+        shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+        {
+            User entity;
+            entity = 
+            {
+                MaterializationContext materializationContext1;
+                IEntityType entityType1;
+                User instance1;
+                InternalEntityEntry entry1;
+                bool hasNullKey1;
+                materializationContext1 = new MaterializationContext(
+                    [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                    queryContext.Context
+                );
+                instance1 = default(User);
+                entry1 = queryContext.TryGetEntry(
+                    key: [LIFTABLE Constant: Key: User.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User").FindPrimaryKey()], 
+                    keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                    throwOnNullKey: True, 
+                    hasNullKey: hasNullKey1);
+                !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+                {
+                    entityType1 = entry1.EntityType;
+                    return instance1 = (User)entry1.Entity;
+                } : 
+                {
+                    ISnapshot shadowSnapshot1;
+                    shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                    entityType1 = [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User")];
+                    instance1 = switch (entityType1)
+                    {
+                        case [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User")]: 
+                            {
+                                return 
+                                {
+                                    User instance;
+                                    instance = new User();
+                                    instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                    instance.<Balance>k__BackingField = dataReader.GetDecimal(1);
+                                    instance.<Email>k__BackingField = dataReader.GetString(2);
+                                    instance.<PasswordHash>k__BackingField = dataReader.GetString(3);
+                                    instance.<PrimaryCurrency>k__BackingField = dataReader.GetString(4);
+                                    instance.<Role>k__BackingField = dataReader.GetString(5);
+                                    instance.<Salt>k__BackingField = dataReader.GetString(6);
+                                    instance.<SecondaryCurrency1>k__BackingField = dataReader.IsDBNull(7) ? default(string) : dataReader.GetString(7);
+                                    instance.<SecondaryCurrency2>k__BackingField = dataReader.IsDBNull(8) ? default(string) : dataReader.GetString(8);
+                                    (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                        context: materializationContext1.Context, 
+                                        entity: instance, 
+                                        queryTrackingBehavior: TrackAll, 
+                                        structuralType: [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User")]) : default(void);
+                                    return instance;
+                                }}
+                        default: 
+                            default(User)
+                    }
+                    ;
+                    entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                        entityType: entityType1, 
+                        entity: instance1, 
+                        snapshot: shadowSnapshot1);
+                    return instance1;
+                } : default(void);
+                return instance1;
+            };
+            return entity;
+        }, 
+        contextType: Finance_Manager_Backend.DataBase.AppDbContext, 
+        standAloneStateManager: False, 
+        detailedErrorsEnabled: False, 
+        threadSafetyChecksEnabled: True), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-05-16 08:59:04.767 +03:00 [DBG] Creating DbConnection.
+2025-05-16 08:59:04.768 +03:00 [DBG] Created DbConnection. (1ms).
+2025-05-16 08:59:04.770 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.771 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.773 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:04.774 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:04.776 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-05-16 08:59:04.778 +03:00 [DBG] Executing DbCommand [Parameters=[@__email_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0
+2025-05-16 08:59:04.785 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__email_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0
+2025-05-16 08:59:04.791 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.793 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 4ms reading results.
+2025-05-16 08:59:04.795 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.798 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (3ms).
+2025-05-16 08:59:04.841 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'User.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.851 +03:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.853 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 08:59:04.854 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 08:59:04.855 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 08:59:04.872 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.873 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.875 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:04.876 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:04.878 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-05-16 08:59:04.881 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (Size = 50), @p1='?' (Size = 50), @p2='?' (Size = 3), @p3='?' (Size = 5), @p4='?' (Size = 30), @p5='?' (Size = 3), @p6='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([email], [password_hash], [primary_currency], [role], [salt], [secondary_currency_1], [secondary_currency_2])
+OUTPUT INSERTED.[id], INSERTED.[balance]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-05-16 08:59:04.886 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (Size = 50), @p1='?' (Size = 50), @p2='?' (Size = 3), @p3='?' (Size = 5), @p4='?' (Size = 30), @p5='?' (Size = 3), @p6='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([email], [password_hash], [primary_currency], [role], [salt], [secondary_currency_1], [secondary_currency_2])
+OUTPUT INSERTED.[id], INSERTED.[balance]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-05-16 08:59:04.900 +03:00 [DBG] The foreign key property 'User.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:04.906 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.908 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 19ms reading results.
+2025-05-16 08:59:04.910 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:04.912 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:04.919 +03:00 [DBG] An entity of type 'User' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:04.921 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 1 entities written to the database.
+2025-05-16 08:59:05.113 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'RefreshToken.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.133 +03:00 [DBG] The navigation 'RefreshToken.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.136 +03:00 [DBG] Context 'AppDbContext' started tracking 'RefreshToken' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.139 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.140 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.151 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 08:59:05.156 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.158 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.161 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:05.162 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:05.165 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+2025-05-16 08:59:05.166 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [refresh_tokens] ([created_at], [expires_at], [is_revoked], [token], [user_fk])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-05-16 08:59:05.171 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [refresh_tokens] ([created_at], [expires_at], [is_revoked], [token], [user_fk])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-05-16 08:59:05.177 +03:00 [DBG] The foreign key property 'RefreshToken.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.179 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.181 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 7ms reading results.
+2025-05-16 08:59:05.183 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.184 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:05.186 +03:00 [DBG] An entity of type 'RefreshToken' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.189 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 1 entities written to the database.
+2025-05-16 08:59:05.191 +03:00 [DBG] Compiling query expression: 
+'DbSet<User>()
+    .FirstOrDefault(u => u.Id == __authData_UserDTO_Id_0)'
+2025-05-16 08:59:05.197 +03:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<User>(
+    asyncEnumerable: SingleQueryingEnumerable.Create<User>(
+        relationalQueryContext: (RelationalQueryContext)queryContext, 
+        relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.Balance (decimal) Required ValueGenerated.OnAdd, 1], [Property: User.Email (string) Required Index MaxLength(50), 2], [Property: User.PasswordHash (string) Required MaxLength(50), 3], [Property: User.PrimaryCurrency (string) Required ValueGenerated.OnAdd MaxLength(3), 4], [Property: User.Role (string) Required ValueGenerated.OnAdd MaxLength(5), 5], [Property: User.Salt (string) Required MaxLength(30), 6], [Property: User.SecondaryCurrency1 (string) MaxLength(3), 7], [Property: User.SecondaryCurrency2 (string) MaxLength(3), 8] }
+            SELECT TOP(1) u.id, u.balance, u.email, u.password_hash, u.primary_currency, u.role, u.salt, u.secondary_currency_1, u.secondary_currency_2
+            FROM users AS u
+            WHERE u.id == @__authData_UserDTO_Id_0) | Resolver: c => new RelationalCommandCache(
+            c.Dependencies.MemoryCache, 
+            c.RelationalDependencies.QuerySqlGeneratorFactory, 
+            c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: User.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: User.Balance (decimal) Required ValueGenerated.OnAdd, 1], [Property: User.Email (string) Required Index MaxLength(50), 2], [Property: User.PasswordHash (string) Required MaxLength(50), 3], [Property: User.PrimaryCurrency (string) Required ValueGenerated.OnAdd MaxLength(3), 4], [Property: User.Role (string) Required ValueGenerated.OnAdd MaxLength(5), 5], [Property: User.Salt (string) Required MaxLength(30), 6], [Property: User.SecondaryCurrency1 (string) MaxLength(3), 7], [Property: User.SecondaryCurrency2 (string) MaxLength(3), 8] }
+            SELECT TOP(1) u.id, u.balance, u.email, u.password_hash, u.primary_currency, u.role, u.salt, u.secondary_currency_1, u.secondary_currency_2
+            FROM users AS u
+            WHERE u.id == @__authData_UserDTO_Id_0, 
+            False, 
+            new HashSet<string>(
+                new string[]{ }, 
+                StringComparer.Ordinal
+            )
+        )].GetRelationalCommandTemplate(parameters), 
+        readerColumns: null, 
+        shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+        {
+            User entity;
+            entity = 
+            {
+                MaterializationContext materializationContext1;
+                IEntityType entityType1;
+                User instance1;
+                InternalEntityEntry entry1;
+                bool hasNullKey1;
+                materializationContext1 = new MaterializationContext(
+                    [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                    queryContext.Context
+                );
+                instance1 = default(User);
+                entry1 = queryContext.TryGetEntry(
+                    key: [LIFTABLE Constant: Key: User.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User").FindPrimaryKey()], 
+                    keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                    throwOnNullKey: True, 
+                    hasNullKey: hasNullKey1);
+                !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+                {
+                    entityType1 = entry1.EntityType;
+                    return instance1 = (User)entry1.Entity;
+                } : 
+                {
+                    ISnapshot shadowSnapshot1;
+                    shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                    entityType1 = [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User")];
+                    instance1 = switch (entityType1)
+                    {
+                        case [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User")]: 
+                            {
+                                return 
+                                {
+                                    User instance;
+                                    instance = new User();
+                                    instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                    instance.<Balance>k__BackingField = dataReader.GetDecimal(1);
+                                    instance.<Email>k__BackingField = dataReader.GetString(2);
+                                    instance.<PasswordHash>k__BackingField = dataReader.GetString(3);
+                                    instance.<PrimaryCurrency>k__BackingField = dataReader.GetString(4);
+                                    instance.<Role>k__BackingField = dataReader.GetString(5);
+                                    instance.<Salt>k__BackingField = dataReader.GetString(6);
+                                    instance.<SecondaryCurrency1>k__BackingField = dataReader.IsDBNull(7) ? default(string) : dataReader.GetString(7);
+                                    instance.<SecondaryCurrency2>k__BackingField = dataReader.IsDBNull(8) ? default(string) : dataReader.GetString(8);
+                                    (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                        context: materializationContext1.Context, 
+                                        entity: instance, 
+                                        queryTrackingBehavior: TrackAll, 
+                                        structuralType: [LIFTABLE Constant: EntityType: User | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.User")]) : default(void);
+                                    return instance;
+                                }}
+                        default: 
+                            default(User)
+                    }
+                    ;
+                    entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                        entityType: entityType1, 
+                        entity: instance1, 
+                        snapshot: shadowSnapshot1);
+                    return instance1;
+                } : default(void);
+                return instance1;
+            };
+            return entity;
+        }, 
+        contextType: Finance_Manager_Backend.DataBase.AppDbContext, 
+        standAloneStateManager: False, 
+        detailedErrorsEnabled: False, 
+        threadSafetyChecksEnabled: True), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-05-16 08:59:05.202 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.203 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.205 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:05.206 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:05.208 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 08:59:05.209 +03:00 [DBG] Executing DbCommand [Parameters=[@__authData_UserDTO_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+WHERE [u].[id] = @__authData_UserDTO_Id_0
+2025-05-16 08:59:05.213 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__authData_UserDTO_Id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+WHERE [u].[id] = @__authData_UserDTO_Id_0
+2025-05-16 08:59:05.215 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.217 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 1ms reading results.
+2025-05-16 08:59:05.219 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.221 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:05.226 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Category.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.230 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.232 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Category.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.234 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.236 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Category.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.240 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.241 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Category.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.243 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.244 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Category.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.247 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.248 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.249 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.251 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 08:59:05.255 +03:00 [DBG] Executing 5 update commands as a batch.
+2025-05-16 08:59:05.259 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.261 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.262 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:05.265 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 08:59:05.267 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+2025-05-16 08:59:05.269 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (Size = 7), @p1='?' (Size = 100), @p2='?' (DbType = Boolean), @p3='?' (Size = 50), @p4='?' (DbType = Int32), @p5='?' (Size = 7), @p6='?' (Size = 100), @p7='?' (DbType = Boolean), @p8='?' (Size = 50), @p9='?' (DbType = Int32), @p10='?' (Size = 7), @p11='?' (Size = 100), @p12='?' (DbType = Boolean), @p13='?' (Size = 50), @p14='?' (DbType = Int32), @p15='?' (Size = 7), @p16='?' (Size = 100), @p17='?' (DbType = Boolean), @p18='?' (Size = 50), @p19='?' (DbType = Int32), @p20='?' (Size = 7), @p21='?' (Size = 100), @p22='?' (DbType = Boolean), @p23='?' (Size = 50), @p24='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+MERGE [categories] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, 0),
+(@p5, @p6, @p7, @p8, @p9, 1),
+(@p10, @p11, @p12, @p13, @p14, 2),
+(@p15, @p16, @p17, @p18, @p19, 3),
+(@p20, @p21, @p22, @p23, @p24, 4)) AS i ([background_color], [icon_path], [is_income], [name], [parent_category_fk], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([background_color], [icon_path], [is_income], [name], [parent_category_fk])
+VALUES (i.[background_color], i.[icon_path], i.[is_income], i.[name], i.[parent_category_fk])
+OUTPUT INSERTED.[id], i._Position;
+2025-05-16 08:59:05.283 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (Size = 7), @p1='?' (Size = 100), @p2='?' (DbType = Boolean), @p3='?' (Size = 50), @p4='?' (DbType = Int32), @p5='?' (Size = 7), @p6='?' (Size = 100), @p7='?' (DbType = Boolean), @p8='?' (Size = 50), @p9='?' (DbType = Int32), @p10='?' (Size = 7), @p11='?' (Size = 100), @p12='?' (DbType = Boolean), @p13='?' (Size = 50), @p14='?' (DbType = Int32), @p15='?' (Size = 7), @p16='?' (Size = 100), @p17='?' (DbType = Boolean), @p18='?' (Size = 50), @p19='?' (DbType = Int32), @p20='?' (Size = 7), @p21='?' (Size = 100), @p22='?' (DbType = Boolean), @p23='?' (Size = 50), @p24='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+MERGE [categories] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, 0),
+(@p5, @p6, @p7, @p8, @p9, 1),
+(@p10, @p11, @p12, @p13, @p14, 2),
+(@p15, @p16, @p17, @p18, @p19, 3),
+(@p20, @p21, @p22, @p23, @p24, 4)) AS i ([background_color], [icon_path], [is_income], [name], [parent_category_fk], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([background_color], [icon_path], [is_income], [name], [parent_category_fk])
+VALUES (i.[background_color], i.[icon_path], i.[is_income], i.[name], i.[parent_category_fk])
+OUTPUT INSERTED.[id], i._Position;
+2025-05-16 08:59:05.288 +03:00 [DBG] The foreign key property 'Category.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.291 +03:00 [DBG] The foreign key property 'Category.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.292 +03:00 [DBG] The foreign key property 'Category.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.294 +03:00 [DBG] The foreign key property 'Category.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.295 +03:00 [DBG] The foreign key property 'Category.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.299 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.300 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 14ms reading results.
+2025-05-16 08:59:05.302 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.303 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:05.306 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.308 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.310 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.313 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.316 +03:00 [DBG] An entity of type 'Category' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.318 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 5 entities written to the database.
+2025-05-16 08:59:05.325 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.356 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.358 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.360 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.362 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.365 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.367 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.369 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.371 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.373 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.375 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.377 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.379 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.382 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.384 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.386 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.387 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.389 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.391 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.393 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.395 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.399 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.400 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.402 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.404 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.406 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.407 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.409 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.411 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.413 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.414 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.416 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.417 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.419 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.421 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.423 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.424 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.426 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.428 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Transaction.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.430 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.431 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.432 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.438 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 08:59:05.440 +03:00 [DBG] Executing 20 update commands as a batch.
+2025-05-16 08:59:05.442 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.443 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.445 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:05.446 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:05.449 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-05-16 08:59:05.450 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (Size = 50), @p4='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Int32), @p6='?' (DbType = Int32), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (Size = 50), @p10='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?' (DbType = DateTime2), @p14='?' (DbType = Int32), @p15='?' (Size = 50), @p16='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p17='?' (DbType = Int32), @p18='?' (DbType = Int32), @p19='?' (DbType = DateTime2), @p20='?' (DbType = Int32), @p21='?' (Size = 50), @p22='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p23='?' (DbType = Int32), @p24='?' (DbType = Int32), @p25='?' (DbType = DateTime2), @p26='?' (DbType = Int32), @p27='?' (Size = 50), @p28='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p29='?' (DbType = Int32), @p30='?' (DbType = Int32), @p31='?' (DbType = DateTime2), @p32='?' (DbType = Int32), @p33='?' (Size = 50), @p34='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p35='?' (DbType = Int32), @p36='?' (DbType = Int32), @p37='?' (DbType = DateTime2), @p38='?' (DbType = Int32), @p39='?' (Size = 50), @p40='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p41='?' (DbType = Int32), @p42='?' (DbType = Int32), @p43='?' (DbType = DateTime2), @p44='?' (DbType = Int32), @p45='?' (Size = 50), @p46='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p47='?' (DbType = Int32), @p48='?' (DbType = Int32), @p49='?' (DbType = DateTime2), @p50='?' (DbType = Int32), @p51='?' (Size = 50), @p52='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p53='?' (DbType = Int32), @p54='?' (DbType = Int32), @p55='?' (DbType = DateTime2), @p56='?' (DbType = Int32), @p57='?' (Size = 50), @p58='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p59='?' (DbType = Int32), @p60='?' (DbType = Int32), @p61='?' (DbType = DateTime2), @p62='?' (DbType = Int32), @p63='?' (Size = 50), @p64='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p65='?' (DbType = Int32), @p66='?' (DbType = Int32), @p67='?' (DbType = DateTime2), @p68='?' (DbType = Int32), @p69='?' (Size = 50), @p70='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p71='?' (DbType = Int32), @p72='?' (DbType = Int32), @p73='?' (DbType = DateTime2), @p74='?' (DbType = Int32), @p75='?' (Size = 50), @p76='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p77='?' (DbType = Int32), @p78='?' (DbType = Int32), @p79='?' (DbType = DateTime2), @p80='?' (DbType = Int32), @p81='?' (Size = 50), @p82='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p83='?' (DbType = Int32), @p84='?' (DbType = Int32), @p85='?' (DbType = DateTime2), @p86='?' (DbType = Int32), @p87='?' (Size = 50), @p88='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p89='?' (DbType = Int32), @p90='?' (DbType = Int32), @p91='?' (DbType = DateTime2), @p92='?' (DbType = Int32), @p93='?' (Size = 50), @p94='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p95='?' (DbType = Int32), @p96='?' (DbType = Int32), @p97='?' (DbType = DateTime2), @p98='?' (DbType = Int32), @p99='?' (Size = 50), @p100='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p101='?' (DbType = Int32), @p102='?' (DbType = Int32), @p103='?' (DbType = DateTime2), @p104='?' (DbType = Int32), @p105='?' (Size = 50), @p106='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p107='?' (DbType = Int32), @p108='?' (DbType = Int32), @p109='?' (DbType = DateTime2), @p110='?' (DbType = Int32), @p111='?' (Size = 50), @p112='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p113='?' (DbType = Int32), @p114='?' (DbType = Int32), @p115='?' (DbType = DateTime2), @p116='?' (DbType = Int32), @p117='?' (Size = 50), @p118='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p119='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+MERGE [transactions] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, 0),
+(@p6, @p7, @p8, @p9, @p10, @p11, 1),
+(@p12, @p13, @p14, @p15, @p16, @p17, 2),
+(@p18, @p19, @p20, @p21, @p22, @p23, 3),
+(@p24, @p25, @p26, @p27, @p28, @p29, 4),
+(@p30, @p31, @p32, @p33, @p34, @p35, 5),
+(@p36, @p37, @p38, @p39, @p40, @p41, 6),
+(@p42, @p43, @p44, @p45, @p46, @p47, 7),
+(@p48, @p49, @p50, @p51, @p52, @p53, 8),
+(@p54, @p55, @p56, @p57, @p58, @p59, 9),
+(@p60, @p61, @p62, @p63, @p64, @p65, 10),
+(@p66, @p67, @p68, @p69, @p70, @p71, 11),
+(@p72, @p73, @p74, @p75, @p76, @p77, 12),
+(@p78, @p79, @p80, @p81, @p82, @p83, 13),
+(@p84, @p85, @p86, @p87, @p88, @p89, 14),
+(@p90, @p91, @p92, @p93, @p94, @p95, 15),
+(@p96, @p97, @p98, @p99, @p100, @p101, 16),
+(@p102, @p103, @p104, @p105, @p106, @p107, 17),
+(@p108, @p109, @p110, @p111, @p112, @p113, 18),
+(@p114, @p115, @p116, @p117, @p118, @p119, 19)) AS i ([category_fk], [date], [inner_category_fk], [name], [price], [user_fk], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([category_fk], [date], [inner_category_fk], [name], [price], [user_fk])
+VALUES (i.[category_fk], i.[date], i.[inner_category_fk], i.[name], i.[price], i.[user_fk])
+OUTPUT INSERTED.[id], i._Position;
+2025-05-16 08:59:05.470 +03:00 [INF] Executed DbCommand (20ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (Size = 50), @p4='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Int32), @p6='?' (DbType = Int32), @p7='?' (DbType = DateTime2), @p8='?' (DbType = Int32), @p9='?' (Size = 50), @p10='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p11='?' (DbType = Int32), @p12='?' (DbType = Int32), @p13='?' (DbType = DateTime2), @p14='?' (DbType = Int32), @p15='?' (Size = 50), @p16='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p17='?' (DbType = Int32), @p18='?' (DbType = Int32), @p19='?' (DbType = DateTime2), @p20='?' (DbType = Int32), @p21='?' (Size = 50), @p22='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p23='?' (DbType = Int32), @p24='?' (DbType = Int32), @p25='?' (DbType = DateTime2), @p26='?' (DbType = Int32), @p27='?' (Size = 50), @p28='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p29='?' (DbType = Int32), @p30='?' (DbType = Int32), @p31='?' (DbType = DateTime2), @p32='?' (DbType = Int32), @p33='?' (Size = 50), @p34='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p35='?' (DbType = Int32), @p36='?' (DbType = Int32), @p37='?' (DbType = DateTime2), @p38='?' (DbType = Int32), @p39='?' (Size = 50), @p40='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p41='?' (DbType = Int32), @p42='?' (DbType = Int32), @p43='?' (DbType = DateTime2), @p44='?' (DbType = Int32), @p45='?' (Size = 50), @p46='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p47='?' (DbType = Int32), @p48='?' (DbType = Int32), @p49='?' (DbType = DateTime2), @p50='?' (DbType = Int32), @p51='?' (Size = 50), @p52='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p53='?' (DbType = Int32), @p54='?' (DbType = Int32), @p55='?' (DbType = DateTime2), @p56='?' (DbType = Int32), @p57='?' (Size = 50), @p58='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p59='?' (DbType = Int32), @p60='?' (DbType = Int32), @p61='?' (DbType = DateTime2), @p62='?' (DbType = Int32), @p63='?' (Size = 50), @p64='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p65='?' (DbType = Int32), @p66='?' (DbType = Int32), @p67='?' (DbType = DateTime2), @p68='?' (DbType = Int32), @p69='?' (Size = 50), @p70='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p71='?' (DbType = Int32), @p72='?' (DbType = Int32), @p73='?' (DbType = DateTime2), @p74='?' (DbType = Int32), @p75='?' (Size = 50), @p76='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p77='?' (DbType = Int32), @p78='?' (DbType = Int32), @p79='?' (DbType = DateTime2), @p80='?' (DbType = Int32), @p81='?' (Size = 50), @p82='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p83='?' (DbType = Int32), @p84='?' (DbType = Int32), @p85='?' (DbType = DateTime2), @p86='?' (DbType = Int32), @p87='?' (Size = 50), @p88='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p89='?' (DbType = Int32), @p90='?' (DbType = Int32), @p91='?' (DbType = DateTime2), @p92='?' (DbType = Int32), @p93='?' (Size = 50), @p94='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p95='?' (DbType = Int32), @p96='?' (DbType = Int32), @p97='?' (DbType = DateTime2), @p98='?' (DbType = Int32), @p99='?' (Size = 50), @p100='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p101='?' (DbType = Int32), @p102='?' (DbType = Int32), @p103='?' (DbType = DateTime2), @p104='?' (DbType = Int32), @p105='?' (Size = 50), @p106='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p107='?' (DbType = Int32), @p108='?' (DbType = Int32), @p109='?' (DbType = DateTime2), @p110='?' (DbType = Int32), @p111='?' (Size = 50), @p112='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p113='?' (DbType = Int32), @p114='?' (DbType = Int32), @p115='?' (DbType = DateTime2), @p116='?' (DbType = Int32), @p117='?' (Size = 50), @p118='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p119='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+MERGE [transactions] USING (
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, 0),
+(@p6, @p7, @p8, @p9, @p10, @p11, 1),
+(@p12, @p13, @p14, @p15, @p16, @p17, 2),
+(@p18, @p19, @p20, @p21, @p22, @p23, 3),
+(@p24, @p25, @p26, @p27, @p28, @p29, 4),
+(@p30, @p31, @p32, @p33, @p34, @p35, 5),
+(@p36, @p37, @p38, @p39, @p40, @p41, 6),
+(@p42, @p43, @p44, @p45, @p46, @p47, 7),
+(@p48, @p49, @p50, @p51, @p52, @p53, 8),
+(@p54, @p55, @p56, @p57, @p58, @p59, 9),
+(@p60, @p61, @p62, @p63, @p64, @p65, 10),
+(@p66, @p67, @p68, @p69, @p70, @p71, 11),
+(@p72, @p73, @p74, @p75, @p76, @p77, 12),
+(@p78, @p79, @p80, @p81, @p82, @p83, 13),
+(@p84, @p85, @p86, @p87, @p88, @p89, 14),
+(@p90, @p91, @p92, @p93, @p94, @p95, 15),
+(@p96, @p97, @p98, @p99, @p100, @p101, 16),
+(@p102, @p103, @p104, @p105, @p106, @p107, 17),
+(@p108, @p109, @p110, @p111, @p112, @p113, 18),
+(@p114, @p115, @p116, @p117, @p118, @p119, 19)) AS i ([category_fk], [date], [inner_category_fk], [name], [price], [user_fk], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([category_fk], [date], [inner_category_fk], [name], [price], [user_fk])
+VALUES (i.[category_fk], i.[date], i.[inner_category_fk], i.[name], i.[price], i.[user_fk])
+OUTPUT INSERTED.[id], i._Position;
+2025-05-16 08:59:05.475 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.477 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.479 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.481 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.482 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.484 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.486 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.487 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.489 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.490 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.492 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.493 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.494 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.496 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.498 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.499 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.501 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.503 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.505 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.506 +03:00 [DBG] The foreign key property 'Transaction.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.508 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.510 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 36ms reading results.
+2025-05-16 08:59:05.512 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.514 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (2ms).
+2025-05-16 08:59:05.517 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.520 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.522 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.524 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.526 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.528 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.531 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.534 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.536 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.538 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.541 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.543 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.545 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.549 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.551 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.553 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.556 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.558 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.560 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.563 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.566 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 20 entities written to the database.
+2025-05-16 08:59:05.570 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Saving.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.586 +03:00 [DBG] Context 'AppDbContext' started tracking 'Saving' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.588 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Saving.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.590 +03:00 [DBG] Context 'AppDbContext' started tracking 'Saving' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.592 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Saving.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.594 +03:00 [DBG] Context 'AppDbContext' started tracking 'Saving' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.597 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'Saving.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.600 +03:00 [DBG] Context 'AppDbContext' started tracking 'Saving' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.601 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.602 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.607 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 08:59:05.609 +03:00 [DBG] Executing 4 update commands as a batch.
+2025-05-16 08:59:05.611 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.614 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.615 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:05.617 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:05.618 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-05-16 08:59:05.620 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p4='?' (Size = 50), @p5='?' (DbType = Int32), @p6='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p7='?' (Size = 50), @p8='?' (DbType = Int32), @p9='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p10='?' (Size = 50), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+MERGE [savings] USING (
+VALUES (@p0, @p1, @p2, 0),
+(@p3, @p4, @p5, 1),
+(@p6, @p7, @p8, 2),
+(@p9, @p10, @p11, 3)) AS i ([goal], [name], [user_fk], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([goal], [name], [user_fk])
+VALUES (i.[goal], i.[name], i.[user_fk])
+OUTPUT INSERTED.[id], INSERTED.[current_amount], i._Position;
+2025-05-16 08:59:05.680 +03:00 [INF] Executed DbCommand (59ms) [Parameters=[@p0='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 50), @p2='?' (DbType = Int32), @p3='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p4='?' (Size = 50), @p5='?' (DbType = Int32), @p6='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p7='?' (Size = 50), @p8='?' (DbType = Int32), @p9='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p10='?' (Size = 50), @p11='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+MERGE [savings] USING (
+VALUES (@p0, @p1, @p2, 0),
+(@p3, @p4, @p5, 1),
+(@p6, @p7, @p8, 2),
+(@p9, @p10, @p11, 3)) AS i ([goal], [name], [user_fk], _Position) ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([goal], [name], [user_fk])
+VALUES (i.[goal], i.[name], i.[user_fk])
+OUTPUT INSERTED.[id], INSERTED.[current_amount], i._Position;
+2025-05-16 08:59:05.683 +03:00 [DBG] The foreign key property 'Saving.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.685 +03:00 [DBG] The foreign key property 'Saving.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.687 +03:00 [DBG] The foreign key property 'Saving.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.688 +03:00 [DBG] The foreign key property 'Saving.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.690 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.691 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 8ms reading results.
+2025-05-16 08:59:05.693 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.694 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:05.697 +03:00 [DBG] An entity of type 'Saving' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.700 +03:00 [DBG] An entity of type 'Saving' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.702 +03:00 [DBG] An entity of type 'Saving' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.704 +03:00 [DBG] An entity of type 'Saving' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.706 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 4 entities written to the database.
+2025-05-16 08:59:05.707 +03:00 [DBG] 'AppDbContext' disposed.
+2025-05-16 08:59:05.708 +03:00 [DBG] Disposing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.710 +03:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-05-16 08:59:05.726 +03:00 [DBG] Entity Framework Core 9.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.4' with options: EngineType=SqlServer 
+2025-05-16 08:59:05.731 +03:00 [DBG] Creating DbConnection.
+2025-05-16 08:59:05.733 +03:00 [DBG] Created DbConnection. (1ms).
+2025-05-16 08:59:05.734 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.735 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.737 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:05.738 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:05.739 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 08:59:05.741 +03:00 [DBG] Executing DbCommand [Parameters=[@__email_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0
+2025-05-16 08:59:05.745 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__email_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0
+2025-05-16 08:59:05.748 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.749 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 1ms reading results.
+2025-05-16 08:59:05.751 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.752 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:05.766 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'User.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.768 +03:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.770 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.771 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 08:59:05.772 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 08:59:05.774 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.775 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.777 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:05.778 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:05.781 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+2025-05-16 08:59:05.783 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (Precision = 12) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 50), @p2='?' (Size = 50), @p3='?' (Size = 3), @p4='?' (Size = 5), @p5='?' (Size = 30), @p6='?' (Size = 3), @p7='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([balance], [email], [password_hash], [primary_currency], [role], [salt], [secondary_currency_1], [secondary_currency_2])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2025-05-16 08:59:05.811 +03:00 [INF] Executed DbCommand (28ms) [Parameters=[@p0='?' (Precision = 12) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 50), @p2='?' (Size = 50), @p3='?' (Size = 3), @p4='?' (Size = 5), @p5='?' (Size = 30), @p6='?' (Size = 3), @p7='?' (Size = 3)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [users] ([balance], [email], [password_hash], [primary_currency], [role], [salt], [secondary_currency_1], [secondary_currency_2])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2025-05-16 08:59:05.814 +03:00 [DBG] The foreign key property 'User.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:05.816 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.818 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 3ms reading results.
+2025-05-16 08:59:05.820 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.822 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:05.823 +03:00 [DBG] An entity of type 'User' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:05.825 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 1 entities written to the database.
+2025-05-16 08:59:05.827 +03:00 [DBG] 'AppDbContext' disposed.
+2025-05-16 08:59:05.828 +03:00 [DBG] Disposing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:05.831 +03:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-05-16 08:59:05.922 +03:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-05-16 08:59:05.975 +03:00 [DBG] Hosting starting
+2025-05-16 08:59:05.991 +03:00 [INF] User profile is available. Using 'C:\Users\ebtyx\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-05-16 08:59:06.012 +03:00 [DBG] Reading data from file 'C:\Users\ebtyx\AppData\Local\ASP.NET\DataProtection-Keys\key-036e1e5f-5347-47d7-8236-0b64ed0a76a1.xml'.
+2025-05-16 08:59:06.013 +03:00 [DBG] Entity Framework Core 9.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.4' with options: EngineType=SqlServer 
+2025-05-16 08:59:06.020 +03:00 [DBG] Compiling query expression: 
+'DbSet<RefreshToken>()
+    .Where(rt => rt.ExpiresAt < DateTime.UtcNow)'
+2025-05-16 08:59:06.020 +03:00 [DBG] Found key {036e1e5f-5347-47d7-8236-0b64ed0a76a1}.
+2025-05-16 08:59:06.032 +03:00 [DBG] Considering key {036e1e5f-5347-47d7-8236-0b64ed0a76a1} with expiration date 2025-07-16 20:11:06Z as default key.
+2025-05-16 08:59:06.033 +03:00 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<RefreshToken>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: RefreshToken.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: RefreshToken.CreatedAt (DateTime) Required, 1], [Property: RefreshToken.ExpiresAt (DateTime) Required, 2], [Property: RefreshToken.IsRevoked (bool) Required, 3], [Property: RefreshToken.Token (string) Required Index MaxLength(200), 4], [Property: RefreshToken.UserId (int) Required FK Index, 5] }
+        SELECT r.id, r.created_at, r.expires_at, r.is_revoked, r.token, r.user_fk
+        FROM refresh_tokens AS r
+        WHERE r.expires_at < GETUTCDATE()) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: RefreshToken.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: RefreshToken.CreatedAt (DateTime) Required, 1], [Property: RefreshToken.ExpiresAt (DateTime) Required, 2], [Property: RefreshToken.IsRevoked (bool) Required, 3], [Property: RefreshToken.Token (string) Required Index MaxLength(200), 4], [Property: RefreshToken.UserId (int) Required FK Index, 5] }
+        SELECT r.id, r.created_at, r.expires_at, r.is_revoked, r.token, r.user_fk
+        FROM refresh_tokens AS r
+        WHERE r.expires_at < GETUTCDATE(), 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        RefreshToken entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            RefreshToken instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(RefreshToken);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: RefreshToken.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.RefreshToken").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (RefreshToken)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: RefreshToken | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.RefreshToken")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: RefreshToken | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.RefreshToken")]: 
+                        {
+                            return 
+                            {
+                                RefreshToken instance;
+                                instance = new RefreshToken();
+                                instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                instance.<CreatedAt>k__BackingField = dataReader.GetDateTime(1);
+                                instance.<ExpiresAt>k__BackingField = dataReader.GetDateTime(2);
+                                instance.<IsRevoked>k__BackingField = dataReader.GetBoolean(3);
+                                instance.<Token>k__BackingField = dataReader.GetString(4);
+                                instance.<UserId>k__BackingField = dataReader.GetInt32(5);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: RefreshToken | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.RefreshToken")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(RefreshToken)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: Finance_Manager_Backend.DataBase.AppDbContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-05-16 08:59:06.037 +03:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-16 08:59:06.039 +03:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-05-16 08:59:06.042 +03:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-05-16 08:59:06.042 +03:00 [DBG] Creating DbConnection.
+2025-05-16 08:59:06.044 +03:00 [DBG] Created DbConnection. (2ms).
+2025-05-16 08:59:06.045 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:06.048 +03:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-05-16 08:59:06.048 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:06.050 +03:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-05-16 08:59:06.051 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:06.053 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 08:59:06.053 +03:00 [DBG] Using key {036e1e5f-5347-47d7-8236-0b64ed0a76a1} as the default key.
+2025-05-16 08:59:06.055 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-05-16 08:59:06.056 +03:00 [DBG] Key ring with default key {036e1e5f-5347-47d7-8236-0b64ed0a76a1} was loaded during application startup.
+2025-05-16 08:59:06.057 +03:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[id], [r].[created_at], [r].[expires_at], [r].[is_revoked], [r].[token], [r].[user_fk]
+FROM [refresh_tokens] AS [r]
+WHERE [r].[expires_at] < GETUTCDATE()
+2025-05-16 08:59:06.065 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[id], [r].[created_at], [r].[expires_at], [r].[is_revoked], [r].[token], [r].[user_fk]
+FROM [refresh_tokens] AS [r]
+WHERE [r].[expires_at] < GETUTCDATE()
+2025-05-16 08:59:06.070 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:06.073 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 3ms reading results.
+2025-05-16 08:59:06.075 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:06.076 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:06.079 +03:00 [DBG] 'AppDbContext' disposed.
+2025-05-16 08:59:06.082 +03:00 [DBG] Disposing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:06.084 +03:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-05-16 08:59:06.237 +03:00 [INF] Now listening on: https://localhost:49464
+2025-05-16 08:59:06.239 +03:00 [INF] Now listening on: http://localhost:49465
+2025-05-16 08:59:06.240 +03:00 [DBG] Loaded hosting startup assembly Finance_Manager_Backend
+2025-05-16 08:59:06.241 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-16 08:59:06.242 +03:00 [INF] Hosting environment: Development
+2025-05-16 08:59:06.244 +03:00 [INF] Content root path: G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend
+2025-05-16 08:59:06.245 +03:00 [DBG] Hosting started
+2025-05-16 08:59:16.538 +03:00 [DBG] Connection id "0HNCK7R5AGC4B" accepted.
+2025-05-16 08:59:16.541 +03:00 [DBG] Connection id "0HNCK7R5AGC4B" started.
+2025-05-16 08:59:16.658 +03:00 [DBG] Connection 0HNCK7R5AGC4B established using the following protocol: "Tls12"
+2025-05-16 08:59:16.730 +03:00 [INF] Request starting HTTP/2 GET https://localhost:49464/swagger/index.html - null null
+2025-05-16 08:59:16.734 +03:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-05-16 08:59:17.082 +03:00 [INF] Request finished HTTP/2 GET https://localhost:49464/swagger/index.html - 200 null text/html;charset=utf-8 351.8404ms
+2025-05-16 08:59:18.596 +03:00 [INF] Request starting HTTP/2 GET https://localhost:49464/swagger/v1/swagger.json - null null
+2025-05-16 08:59:19.013 +03:00 [INF] Request finished HTTP/2 GET https://localhost:49464/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 416.7524ms
+2025-05-16 08:59:26.409 +03:00 [DBG] Connection id "0HNCK7R5AGC4B" received FIN.
+2025-05-16 08:59:26.417 +03:00 [DBG] Connection id "0HNCK7R5AGC4B" is closed. The last processed stream ID was 3.
+2025-05-16 08:59:26.417 +03:00 [DBG] The connection queue processing loop for 0HNCK7R5AGC4B completed.
+2025-05-16 08:59:26.419 +03:00 [DBG] Connection id "0HNCK7R5AGC4B" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-05-16 08:59:26.425 +03:00 [DBG] Connection id "0HNCK7R5AGC4B" stopped.
+2025-05-16 08:59:35.833 +03:00 [DBG] Connection id "0HNCK7R5AGC4C" accepted.
+2025-05-16 08:59:35.836 +03:00 [DBG] Connection id "0HNCK7R5AGC4C" started.
+2025-05-16 08:59:35.847 +03:00 [DBG] Connection 0HNCK7R5AGC4C established using the following protocol: "Tls12"
+2025-05-16 08:59:35.852 +03:00 [INF] Request starting HTTP/2 POST https://localhost:49464/api/Auth/authenticate - application/json-patch+json 62
+2025-05-16 08:59:35.860 +03:00 [DBG] POST requests are not supported
+2025-05-16 08:59:35.882 +03:00 [DBG] 1 candidate(s) found for the request path '/api/Auth/authenticate'
+2025-05-16 08:59:35.884 +03:00 [DBG] Endpoint 'Finance_Manager_Backend.Controllers.AuthController.Authenticate (Finance_Manager_Backend)' with route pattern 'api/Auth/authenticate' is valid for the request path '/api/Auth/authenticate'
+2025-05-16 08:59:35.887 +03:00 [DBG] Request matched endpoint 'Finance_Manager_Backend.Controllers.AuthController.Authenticate (Finance_Manager_Backend)'
+2025-05-16 08:59:36.051 +03:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-05-16 08:59:36.059 +03:00 [INF] Executing endpoint 'Finance_Manager_Backend.Controllers.AuthController.Authenticate (Finance_Manager_Backend)'
+2025-05-16 08:59:36.087 +03:00 [INF] Route matched with {action = "Authenticate", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthUserTokensDTO]] Authenticate(Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO) on controller Finance_Manager_Backend.Controllers.AuthController (Finance_Manager_Backend).
+2025-05-16 08:59:36.094 +03:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-05-16 08:59:36.097 +03:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-05-16 08:59:36.100 +03:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","Finance_Manager_Backend.Middleware.ValidationFilter"]
+2025-05-16 08:59:36.103 +03:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-05-16 08:59:36.108 +03:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-05-16 08:59:36.112 +03:00 [DBG] Executing controller factory for controller Finance_Manager_Backend.Controllers.AuthController (Finance_Manager_Backend)
+2025-05-16 08:59:36.115 +03:00 [DBG] Executed controller factory for controller Finance_Manager_Backend.Controllers.AuthController (Finance_Manager_Backend)
+2025-05-16 08:59:36.129 +03:00 [DBG] Attempting to bind parameter 'authDataDTO' of type 'Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO' ...
+2025-05-16 08:59:36.133 +03:00 [DBG] Attempting to bind parameter 'authDataDTO' of type 'Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO' using the name '' in request data ...
+2025-05-16 08:59:36.136 +03:00 [DBG] Rejected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonPatchInputFormatter' for content type 'application/json-patch+json'.
+2025-05-16 08:59:36.140 +03:00 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonInputFormatter' for content type 'application/json-patch+json'.
+2025-05-16 08:59:36.151 +03:00 [DBG] Connection id "0HNCK7R5AGC4C", Request id "0HNCK7R5AGC4C:00000001": started reading request body.
+2025-05-16 08:59:36.152 +03:00 [DBG] Connection id "0HNCK7R5AGC4C", Request id "0HNCK7R5AGC4C:00000001": done reading request body.
+2025-05-16 08:59:36.224 +03:00 [DBG] Done attempting to bind parameter 'authDataDTO' of type 'Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO'.
+2025-05-16 08:59:36.226 +03:00 [DBG] Done attempting to bind parameter 'authDataDTO' of type 'Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO'.
+2025-05-16 08:59:36.227 +03:00 [DBG] Attempting to validate the bound parameter 'authDataDTO' of type 'Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO' ...
+2025-05-16 08:59:36.239 +03:00 [DBG] Done attempting to validate the bound parameter 'authDataDTO' of type 'Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthDataDTO'.
+2025-05-16 08:59:36.267 +03:00 [DBG] Entity Framework Core 9.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.4' with options: EngineType=SqlServer 
+2025-05-16 08:59:36.270 +03:00 [DBG] Creating DbConnection.
+2025-05-16 08:59:36.272 +03:00 [DBG] Created DbConnection. (2ms).
+2025-05-16 08:59:36.273 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:36.275 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:36.276 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:36.278 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:36.279 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 08:59:36.281 +03:00 [DBG] Executing DbCommand [Parameters=[@__email_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0
+2025-05-16 08:59:36.287 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__email_0='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[id], [u].[balance], [u].[email], [u].[password_hash], [u].[primary_currency], [u].[role], [u].[salt], [u].[secondary_currency_1], [u].[secondary_currency_2]
+FROM [users] AS [u]
+WHERE [u].[email] = @__email_0
+2025-05-16 08:59:36.292 +03:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:36.294 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:36.296 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 3ms reading results.
+2025-05-16 08:59:36.298 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:36.299 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:36.317 +03:00 [DBG] 'AppDbContext' generated a temporary value for the property 'RefreshToken.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:36.319 +03:00 [DBG] The navigation 'RefreshToken.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:36.321 +03:00 [DBG] Context 'AppDbContext' started tracking 'RefreshToken' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:36.324 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 08:59:36.325 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 08:59:36.326 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 08:59:36.328 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:36.330 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:36.331 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 08:59:36.332 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 08:59:36.334 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 08:59:36.335 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [refresh_tokens] ([created_at], [expires_at], [is_revoked], [token], [user_fk])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-05-16 08:59:36.344 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 200), @p4='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [refresh_tokens] ([created_at], [expires_at], [is_revoked], [token], [user_fk])
+OUTPUT INSERTED.[id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2025-05-16 08:59:36.347 +03:00 [DBG] The foreign key property 'RefreshToken.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 08:59:36.349 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:36.350 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 3ms reading results.
+2025-05-16 08:59:36.352 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:36.353 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 08:59:36.356 +03:00 [DBG] An entity of type 'RefreshToken' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 08:59:36.358 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 1 entities written to the database.
+2025-05-16 08:59:36.363 +03:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter"]
+2025-05-16 08:59:36.367 +03:00 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]'.
+2025-05-16 08:59:36.370 +03:00 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2025-05-16 08:59:36.373 +03:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-05-16 08:59:36.375 +03:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-05-16 08:59:36.377 +03:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-05-16 08:59:36.379 +03:00 [INF] Executing OkObjectResult, writing value of type 'Finance_Manager_Backend.BusinessLogic.Models.DTOs.AuthUserTokensDTO'.
+2025-05-16 08:59:36.421 +03:00 [INF] Executed action Finance_Manager_Backend.Controllers.AuthController.Authenticate (Finance_Manager_Backend) in 306.5535ms
+2025-05-16 08:59:36.431 +03:00 [INF] Executed endpoint 'Finance_Manager_Backend.Controllers.AuthController.Authenticate (Finance_Manager_Backend)'
+2025-05-16 08:59:36.435 +03:00 [DBG] 'AppDbContext' disposed.
+2025-05-16 08:59:36.443 +03:00 [DBG] Disposing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 08:59:36.445 +03:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-05-16 08:59:36.447 +03:00 [INF] Request finished HTTP/2 POST https://localhost:49464/api/Auth/authenticate - 200 521 application/json; charset=utf-8 595.3719ms
+2025-05-16 08:59:46.429 +03:00 [DBG] Connection id "0HNCK7R5AGC4C" received FIN.
+2025-05-16 08:59:46.437 +03:00 [DBG] Connection id "0HNCK7R5AGC4C" is closed. The last processed stream ID was 1.
+2025-05-16 08:59:46.437 +03:00 [DBG] The connection queue processing loop for 0HNCK7R5AGC4C completed.
+2025-05-16 08:59:46.439 +03:00 [DBG] Connection id "0HNCK7R5AGC4C" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-05-16 08:59:46.443 +03:00 [DBG] Connection id "0HNCK7R5AGC4C" stopped.
+2025-05-16 09:00:14.470 +03:00 [DBG] Connection id "0HNCK7R5AGC4D" accepted.
+2025-05-16 09:00:14.495 +03:00 [DBG] Connection id "0HNCK7R5AGC4D" started.
+2025-05-16 09:00:14.501 +03:00 [DBG] Connection 0HNCK7R5AGC4D established using the following protocol: "Tls12"
+2025-05-16 09:00:14.504 +03:00 [INF] Request starting HTTP/2 DELETE https://localhost:49464/api/Transactions/2608 - null null
+2025-05-16 09:00:14.507 +03:00 [DBG] DELETE requests are not supported
+2025-05-16 09:00:14.509 +03:00 [DBG] 1 candidate(s) found for the request path '/api/Transactions/2608'
+2025-05-16 09:00:14.511 +03:00 [DBG] Endpoint 'Finance_Manager_Backend.Controllers.TransactionsController.DeleteTransaction (Finance_Manager_Backend)' with route pattern 'api/Transactions/{id}' is valid for the request path '/api/Transactions/2608'
+2025-05-16 09:00:14.512 +03:00 [DBG] Request matched endpoint 'Finance_Manager_Backend.Controllers.TransactionsController.DeleteTransaction (Finance_Manager_Backend)'
+2025-05-16 09:00:14.562 +03:00 [DBG] Successfully validated the token.
+2025-05-16 09:00:14.565 +03:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-05-16 09:00:14.574 +03:00 [DBG] Authorization was successful.
+2025-05-16 09:00:14.575 +03:00 [INF] Executing endpoint 'Finance_Manager_Backend.Controllers.TransactionsController.DeleteTransaction (Finance_Manager_Backend)'
+2025-05-16 09:00:14.582 +03:00 [INF] Route matched with {action = "DeleteTransaction", controller = "Transactions"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] DeleteTransaction(Int32) on controller Finance_Manager_Backend.Controllers.TransactionsController (Finance_Manager_Backend).
+2025-05-16 09:00:14.584 +03:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-05-16 09:00:14.589 +03:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-05-16 09:00:14.591 +03:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","Finance_Manager_Backend.Middleware.ValidationFilter"]
+2025-05-16 09:00:14.593 +03:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-05-16 09:00:14.595 +03:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-05-16 09:00:14.597 +03:00 [DBG] Executing controller factory for controller Finance_Manager_Backend.Controllers.TransactionsController (Finance_Manager_Backend)
+2025-05-16 09:00:14.609 +03:00 [DBG] Executed controller factory for controller Finance_Manager_Backend.Controllers.TransactionsController (Finance_Manager_Backend)
+2025-05-16 09:00:14.612 +03:00 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' ...
+2025-05-16 09:00:14.614 +03:00 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' using the name 'id' in request data ...
+2025-05-16 09:00:14.616 +03:00 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2025-05-16 09:00:14.618 +03:00 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2025-05-16 09:00:14.621 +03:00 [DBG] Attempting to validate the bound parameter 'id' of type 'System.Int32' ...
+2025-05-16 09:00:14.623 +03:00 [DBG] Done attempting to validate the bound parameter 'id' of type 'System.Int32'.
+2025-05-16 09:00:14.943 +03:00 [INF] Executing DeleteTransactionAsync method.
+2025-05-16 09:00:14.946 +03:00 [INF] Start ExecuteTransactionAsync method.
+2025-05-16 09:00:14.949 +03:00 [DBG] Entity Framework Core 9.0.4 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.4' with options: EngineType=SqlServer 
+2025-05-16 09:00:14.955 +03:00 [DBG] Creating DbConnection.
+2025-05-16 09:00:14.956 +03:00 [DBG] Created DbConnection. (1ms).
+2025-05-16 09:00:14.957 +03:00 [DBG] Opening connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 09:00:14.959 +03:00 [DBG] Opened connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 09:00:14.961 +03:00 [DBG] Beginning transaction with isolation level 'ReadCommitted'.
+2025-05-16 09:00:14.962 +03:00 [DBG] Began transaction with isolation level 'ReadCommitted'.
+2025-05-16 09:00:14.963 +03:00 [DBG] Start db transaction.
+2025-05-16 09:00:14.972 +03:00 [DBG] Compiling query expression: 
+'DbSet<Transaction>()
+    .Include(t => t.Category)
+    .Include(t => t.InnerCategory)
+    .FirstOrDefault(t => t.Id == __transactionId_0)'
+2025-05-16 09:00:14.985 +03:00 [DBG] Including navigation: 'Transaction.Category'.
+2025-05-16 09:00:14.989 +03:00 [DBG] Including navigation: 'Transaction.InnerCategory'.
+2025-05-16 09:00:15.045 +03:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<Transaction>(
+    asyncEnumerable: SingleQueryingEnumerable.Create<Transaction>(
+        relationalQueryContext: (RelationalQueryContext)queryContext, 
+        relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+            Client Projections:
+                0 -> Dictionary<IProperty, int> { [Property: Transaction.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Transaction.CategoryId (int) Required FK Index, 1], [Property: Transaction.Date (DateTime) Required, 2], [Property: Transaction.InnerCategoryId (int?) FK Index, 3], [Property: Transaction.Name (string) Required MaxLength(50), 4], [Property: Transaction.Price (decimal) Required ValueGenerated.OnAdd, 5], [Property: Transaction.UserId (int) Required FK Index, 6] }
+                1 -> Dictionary<IProperty, int> { [Property: Category.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 7], [Property: Category.ColorForBackground (string) Required MaxLength(7), 8], [Property: Category.Icon (string) Required MaxLength(100), 9], [Property: Category.IsIncome (bool) Required, 10], [Property: Category.Name (string) Required MaxLength(50), 11], [Property: Category.ParentCategoryId (int?) FK Index, 12] }
+                2 -> Dictionary<IProperty, int> { [Property: Category.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 13], [Property: Category.ColorForBackground (string) Required MaxLength(7), 14], [Property: Category.Icon (string) Required MaxLength(100), 15], [Property: Category.IsIncome (bool) Required, 16], [Property: Category.Name (string) Required MaxLength(50), 17], [Property: Category.ParentCategoryId (int?) FK Index, 18] }
+            SELECT TOP(1) t.id, t.category_fk, t.date, t.inner_category_fk, t.name, t.price, t.user_fk, c.id, c.background_color, c.icon_path, c.is_income, c.name, c.parent_category_fk, c0.id, c0.background_color, c0.icon_path, c0.is_income, c0.name, c0.parent_category_fk
+            FROM transactions AS t
+            INNER JOIN categories AS c ON t.category_fk == c.id
+            LEFT JOIN categories AS c0 ON t.inner_category_fk == c0.id
+            WHERE t.id == @__transactionId_0) | Resolver: c => new RelationalCommandCache(
+            c.Dependencies.MemoryCache, 
+            c.RelationalDependencies.QuerySqlGeneratorFactory, 
+            c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+            Client Projections:
+                0 -> Dictionary<IProperty, int> { [Property: Transaction.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Transaction.CategoryId (int) Required FK Index, 1], [Property: Transaction.Date (DateTime) Required, 2], [Property: Transaction.InnerCategoryId (int?) FK Index, 3], [Property: Transaction.Name (string) Required MaxLength(50), 4], [Property: Transaction.Price (decimal) Required ValueGenerated.OnAdd, 5], [Property: Transaction.UserId (int) Required FK Index, 6] }
+                1 -> Dictionary<IProperty, int> { [Property: Category.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 7], [Property: Category.ColorForBackground (string) Required MaxLength(7), 8], [Property: Category.Icon (string) Required MaxLength(100), 9], [Property: Category.IsIncome (bool) Required, 10], [Property: Category.Name (string) Required MaxLength(50), 11], [Property: Category.ParentCategoryId (int?) FK Index, 12] }
+                2 -> Dictionary<IProperty, int> { [Property: Category.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 13], [Property: Category.ColorForBackground (string) Required MaxLength(7), 14], [Property: Category.Icon (string) Required MaxLength(100), 15], [Property: Category.IsIncome (bool) Required, 16], [Property: Category.Name (string) Required MaxLength(50), 17], [Property: Category.ParentCategoryId (int?) FK Index, 18] }
+            SELECT TOP(1) t.id, t.category_fk, t.date, t.inner_category_fk, t.name, t.price, t.user_fk, c.id, c.background_color, c.icon_path, c.is_income, c.name, c.parent_category_fk, c0.id, c0.background_color, c0.icon_path, c0.is_income, c0.name, c0.parent_category_fk
+            FROM transactions AS t
+            INNER JOIN categories AS c ON t.category_fk == c.id
+            LEFT JOIN categories AS c0 ON t.inner_category_fk == c0.id
+            WHERE t.id == @__transactionId_0, 
+            False, 
+            new HashSet<string>(
+                new string[]{ }, 
+                StringComparer.Ordinal
+            )
+        )].GetRelationalCommandTemplate(parameters), 
+        readerColumns: null, 
+        shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+        {
+            Transaction entity;
+            Category entity;
+            Category entity;
+            entity = 
+            {
+                MaterializationContext materializationContext1;
+                IEntityType entityType1;
+                Transaction instance1;
+                InternalEntityEntry entry1;
+                bool hasNullKey1;
+                materializationContext1 = new MaterializationContext(
+                    [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                    queryContext.Context
+                );
+                instance1 = default(Transaction);
+                entry1 = queryContext.TryGetEntry(
+                    key: [LIFTABLE Constant: Key: Transaction.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Transaction").FindPrimaryKey()], 
+                    keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                    throwOnNullKey: True, 
+                    hasNullKey: hasNullKey1);
+                !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+                {
+                    entityType1 = entry1.EntityType;
+                    return instance1 = (Transaction)entry1.Entity;
+                } : 
+                {
+                    ISnapshot shadowSnapshot1;
+                    shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                    entityType1 = [LIFTABLE Constant: EntityType: Transaction | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Transaction")];
+                    instance1 = switch (entityType1)
+                    {
+                        case [LIFTABLE Constant: EntityType: Transaction | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Transaction")]: 
+                            {
+                                return 
+                                {
+                                    Transaction instance;
+                                    instance = new Transaction();
+                                    instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                    instance.<CategoryId>k__BackingField = dataReader.GetInt32(1);
+                                    instance.<Date>k__BackingField = dataReader.GetDateTime(2);
+                                    instance.<InnerCategoryId>k__BackingField = dataReader.IsDBNull(3) ? default(int?) : (int?)dataReader.GetInt32(3);
+                                    instance.<Name>k__BackingField = dataReader.GetString(4);
+                                    instance.<Price>k__BackingField = dataReader.GetDecimal(5);
+                                    instance.<UserId>k__BackingField = dataReader.GetInt32(6);
+                                    (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                        context: materializationContext1.Context, 
+                                        entity: instance, 
+                                        queryTrackingBehavior: TrackAll, 
+                                        structuralType: [LIFTABLE Constant: EntityType: Transaction | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Transaction")]) : default(void);
+                                    return instance;
+                                }}
+                        default: 
+                            default(Transaction)
+                    }
+                    ;
+                    entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                        entityType: entityType1, 
+                        entity: instance1, 
+                        snapshot: shadowSnapshot1);
+                    return instance1;
+                } : default(void);
+                return instance1;
+            };
+            entity = 
+            {
+                MaterializationContext materializationContext2;
+                IEntityType entityType2;
+                Category instance2;
+                InternalEntityEntry entry2;
+                bool hasNullKey2;
+                materializationContext2 = new MaterializationContext(
+                    [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                    queryContext.Context
+                );
+                instance2 = default(Category);
+                entry2 = queryContext.TryGetEntry(
+                    key: [LIFTABLE Constant: Key: Category.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category").FindPrimaryKey()], 
+                    keyValues: new object[]{ (object)dataReader.GetInt32(7) }, 
+                    throwOnNullKey: True, 
+                    hasNullKey: hasNullKey2);
+                !(hasNullKey2) ? entry2 != default(InternalEntityEntry) ? 
+                {
+                    entityType2 = entry2.EntityType;
+                    return instance2 = (Category)entry2.Entity;
+                } : 
+                {
+                    ISnapshot shadowSnapshot2;
+                    shadowSnapshot2 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                    entityType2 = [LIFTABLE Constant: EntityType: Category | Resolver: namelessParameter{3} => namelessParameter{3}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category")];
+                    instance2 = switch (entityType2)
+                    {
+                        case [LIFTABLE Constant: EntityType: Category | Resolver: namelessParameter{4} => namelessParameter{4}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category")]: 
+                            {
+                                return 
+                                {
+                                    Category instance;
+                                    instance = new Category();
+                                    instance.<Id>k__BackingField = dataReader.GetInt32(7);
+                                    instance.<ColorForBackground>k__BackingField = dataReader.GetString(8);
+                                    instance.<Icon>k__BackingField = dataReader.GetString(9);
+                                    instance.<IsIncome>k__BackingField = dataReader.GetBoolean(10);
+                                    instance.<Name>k__BackingField = dataReader.GetString(11);
+                                    instance.<ParentCategoryId>k__BackingField = dataReader.IsDBNull(12) ? default(int?) : (int?)dataReader.GetInt32(12);
+                                    (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                        context: materializationContext2.Context, 
+                                        entity: instance, 
+                                        queryTrackingBehavior: TrackAll, 
+                                        structuralType: [LIFTABLE Constant: EntityType: Category | Resolver: namelessParameter{5} => namelessParameter{5}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category")]) : default(void);
+                                    return instance;
+                                }}
+                        default: 
+                            default(Category)
+                    }
+                    ;
+                    entry2 = entityType2 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                        entityType: entityType2, 
+                        entity: instance2, 
+                        snapshot: shadowSnapshot2);
+                    return instance2;
+                } : default(void);
+                return instance2;
+            };
+            entity = 
+            {
+                MaterializationContext materializationContext3;
+                IEntityType entityType3;
+                Category instance3;
+                InternalEntityEntry entry3;
+                bool hasNullKey3;
+                materializationContext3 = new MaterializationContext(
+                    [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                    queryContext.Context
+                );
+                instance3 = default(Category);
+                entry3 = queryContext.TryGetEntry(
+                    key: [LIFTABLE Constant: Key: Category.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category").FindPrimaryKey()], 
+                    keyValues: new object[]{ dataReader.IsDBNull(13) ? default(object) : (object)dataReader.GetInt32(13) }, 
+                    throwOnNullKey: False, 
+                    hasNullKey: hasNullKey3);
+                !(hasNullKey3) ? entry3 != default(InternalEntityEntry) ? 
+                {
+                    entityType3 = entry3.EntityType;
+                    return instance3 = (Category)entry3.Entity;
+                } : 
+                {
+                    ISnapshot shadowSnapshot3;
+                    shadowSnapshot3 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                    entityType3 = [LIFTABLE Constant: EntityType: Category | Resolver: namelessParameter{6} => namelessParameter{6}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category")];
+                    instance3 = switch (entityType3)
+                    {
+                        case [LIFTABLE Constant: EntityType: Category | Resolver: namelessParameter{7} => namelessParameter{7}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category")]: 
+                            {
+                                return 
+                                {
+                                    Category instance;
+                                    instance = new Category();
+                                    instance.<Id>k__BackingField = dataReader.IsDBNull(13) ? default(int) : dataReader.GetInt32(13);
+                                    instance.<ColorForBackground>k__BackingField = dataReader.IsDBNull(14) ? default(string) : dataReader.GetString(14);
+                                    instance.<Icon>k__BackingField = dataReader.IsDBNull(15) ? default(string) : dataReader.GetString(15);
+                                    instance.<IsIncome>k__BackingField = dataReader.IsDBNull(16) ? default(bool) : dataReader.GetBoolean(16);
+                                    instance.<Name>k__BackingField = dataReader.IsDBNull(17) ? default(string) : dataReader.GetString(17);
+                                    instance.<ParentCategoryId>k__BackingField = dataReader.IsDBNull(18) ? default(int?) : (int?)dataReader.GetInt32(18);
+                                    (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                        context: materializationContext3.Context, 
+                                        entity: instance, 
+                                        queryTrackingBehavior: TrackAll, 
+                                        structuralType: [LIFTABLE Constant: EntityType: Category | Resolver: namelessParameter{8} => namelessParameter{8}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Category")]) : default(void);
+                                    return instance;
+                                }}
+                        default: 
+                            default(Category)
+                    }
+                    ;
+                    entry3 = entityType3 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                        entityType: entityType3, 
+                        entity: instance3, 
+                        snapshot: shadowSnapshot3);
+                    return instance3;
+                } : default(void);
+                return instance3;
+            };
+            ShaperProcessingExpressionVisitor.IncludeReference<Transaction, Transaction, Category>(
+                queryContext: queryContext, 
+                entity: entity, 
+                relatedEntity: entity, 
+                navigation: [LIFTABLE Constant: Navigation: Transaction.Category (Category) ToPrincipal Category | Resolver: namelessParameter{9} => namelessParameter{9}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Transaction").FindNavigation("Category")], 
+                inverseNavigation: default(INavigation), 
+                fixup: (namelessParameter{10}, namelessParameter{11}) => 
+                {
+                    return namelessParameter{10}.<Category>k__BackingField = namelessParameter{11};
+                }, 
+                trackingQuery: True);
+            ShaperProcessingExpressionVisitor.IncludeReference<Transaction, Transaction, Category>(
+                queryContext: queryContext, 
+                entity: entity, 
+                relatedEntity: entity, 
+                navigation: [LIFTABLE Constant: Navigation: Transaction.InnerCategory (Category) ToPrincipal Category | Resolver: namelessParameter{12} => namelessParameter{12}.Dependencies.Model.FindEntityType("Finance_Manager_Backend.BusinessLogic.Models.Transaction").FindNavigation("InnerCategory")], 
+                inverseNavigation: default(INavigation), 
+                fixup: (namelessParameter{13}, namelessParameter{14}) => 
+                {
+                    return namelessParameter{13}.<InnerCategory>k__BackingField = namelessParameter{14};
+                }, 
+                trackingQuery: True);
+            return entity;
+        }, 
+        contextType: Finance_Manager_Backend.DataBase.AppDbContext, 
+        standAloneStateManager: False, 
+        detailedErrorsEnabled: False, 
+        threadSafetyChecksEnabled: True), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-05-16 09:00:15.057 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 09:00:15.058 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-05-16 09:00:15.060 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 09:00:15.061 +03:00 [DBG] Executing DbCommand [Parameters=[@__transactionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[id], [t].[category_fk], [t].[date], [t].[inner_category_fk], [t].[name], [t].[price], [t].[user_fk], [c].[id], [c].[background_color], [c].[icon_path], [c].[is_income], [c].[name], [c].[parent_category_fk], [c0].[id], [c0].[background_color], [c0].[icon_path], [c0].[is_income], [c0].[name], [c0].[parent_category_fk]
+FROM [transactions] AS [t]
+INNER JOIN [categories] AS [c] ON [t].[category_fk] = [c].[id]
+LEFT JOIN [categories] AS [c0] ON [t].[inner_category_fk] = [c0].[id]
+WHERE [t].[id] = @__transactionId_0
+2025-05-16 09:00:15.067 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__transactionId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[id], [t].[category_fk], [t].[date], [t].[inner_category_fk], [t].[name], [t].[price], [t].[user_fk], [c].[id], [c].[background_color], [c].[icon_path], [c].[is_income], [c].[name], [c].[parent_category_fk], [c0].[id], [c0].[background_color], [c0].[icon_path], [c0].[is_income], [c0].[name], [c0].[parent_category_fk]
+FROM [transactions] AS [t]
+INNER JOIN [categories] AS [c] ON [t].[category_fk] = [c].[id]
+LEFT JOIN [categories] AS [c0] ON [t].[inner_category_fk] = [c0].[id]
+WHERE [t].[id] = @__transactionId_0
+2025-05-16 09:00:15.073 +03:00 [DBG] Context 'AppDbContext' started tracking 'Transaction' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 09:00:15.075 +03:00 [DBG] The navigation 'Transaction.Category' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 09:00:15.077 +03:00 [DBG] Context 'AppDbContext' started tracking 'Category' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 09:00:15.079 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 09:00:15.081 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 9ms reading results.
+2025-05-16 09:00:15.085 +03:00 [DBG] The navigation 'Transaction.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 09:00:15.088 +03:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 09:00:15.091 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Unchanged"' to '"Deleted"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 09:00:15.093 +03:00 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-05-16 09:00:15.094 +03:00 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-05-16 09:00:15.096 +03:00 [DBG] The unchanged property 'User.Balance' was detected as changed and will be marked as modified. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-05-16 09:00:15.098 +03:00 [DBG] An entity of type 'User' tracked by 'AppDbContext' changed state from '"Unchanged"' to '"Modified"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 09:00:15.100 +03:00 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-05-16 09:00:15.104 +03:00 [DBG] Executing 2 update commands as a batch.
+2025-05-16 09:00:15.108 +03:00 [DBG] Creating transaction savepoint.
+2025-05-16 09:00:15.117 +03:00 [DBG] Created transaction savepoint.
+2025-05-16 09:00:15.118 +03:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-05-16 09:00:15.120 +03:00 [DBG] Created DbCommand for 'ExecuteReader' (2ms).
+2025-05-16 09:00:15.122 +03:00 [DBG] Initialized DbCommand for 'ExecuteReader' (4ms).
+2025-05-16 09:00:15.123 +03:00 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p2='?' (DbType = Int32), @p1='?' (Precision = 12) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [transactions]
+OUTPUT 1
+WHERE [id] = @p0;
+UPDATE [users] SET [balance] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2025-05-16 09:00:15.162 +03:00 [INF] Executed DbCommand (39ms) [Parameters=[@p0='?' (DbType = Int32), @p2='?' (DbType = Int32), @p1='?' (Precision = 12) (Scale = 2) (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [transactions]
+OUTPUT 1
+WHERE [id] = @p0;
+UPDATE [users] SET [balance] = @p1
+OUTPUT 1
+WHERE [id] = @p2;
+2025-05-16 09:00:15.165 +03:00 [DBG] Closing data reader to 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 09:00:15.166 +03:00 [DBG] A data reader for 'FinanceManagerDB' on server 'localhost' is being disposed after spending 1ms reading results.
+2025-05-16 09:00:15.168 +03:00 [DBG] An entity of type 'User' tracked by 'AppDbContext' changed state from '"Modified"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 09:00:15.173 +03:00 [DBG] An entity of type 'Transaction' tracked by 'AppDbContext' changed state from '"Deleted"' to '"Detached"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-05-16 09:00:15.175 +03:00 [DBG] SaveChanges completed for 'AppDbContext' with 2 entities written to the database.
+2025-05-16 09:00:15.176 +03:00 [DBG] Committing transaction.
+2025-05-16 09:00:15.177 +03:00 [DBG] Committed transaction.
+2025-05-16 09:00:15.179 +03:00 [DBG] Closing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 09:00:15.180 +03:00 [DBG] Closed connection to database 'FinanceManagerDB' on server 'localhost' (1ms).
+2025-05-16 09:00:15.182 +03:00 [INF] Transaction successful.
+2025-05-16 09:00:15.183 +03:00 [DBG] Disposing transaction.
+2025-05-16 09:00:15.185 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2025-05-16 09:00:15.188 +03:00 [INF] Executed action Finance_Manager_Backend.Controllers.TransactionsController.DeleteTransaction (Finance_Manager_Backend) in 591.3083ms
+2025-05-16 09:00:15.190 +03:00 [INF] Executed endpoint 'Finance_Manager_Backend.Controllers.TransactionsController.DeleteTransaction (Finance_Manager_Backend)'
+2025-05-16 09:00:15.191 +03:00 [DBG] 'AppDbContext' disposed.
+2025-05-16 09:00:15.193 +03:00 [DBG] Disposing connection to database 'FinanceManagerDB' on server 'localhost'.
+2025-05-16 09:00:15.194 +03:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-05-16 09:00:15.195 +03:00 [INF] Request finished HTTP/2 DELETE https://localhost:49464/api/Transactions/2608 - 204 null null 691.3032ms
+2025-05-16 09:00:16.465 +03:00 [DBG] Connection id "0HNCK7R5AGC4D" received FIN.
+2025-05-16 09:00:16.467 +03:00 [DBG] Connection id "0HNCK7R5AGC4D" is closed. The last processed stream ID was 1.
+2025-05-16 09:00:16.468 +03:00 [DBG] The connection queue processing loop for 0HNCK7R5AGC4D completed.
+2025-05-16 09:00:16.473 +03:00 [DBG] Connection id "0HNCK7R5AGC4D" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-05-16 09:00:16.486 +03:00 [DBG] Connection id "0HNCK7R5AGC4D" stopped.
+2025-05-16 09:00:51.627 +03:00 [DBG] Connection id "0HNCK7R5AGC4E" accepted.
+2025-05-16 09:00:51.634 +03:00 [DBG] Connection id "0HNCK7R5AGC4E" started.
+2025-05-16 09:00:51.637 +03:00 [DBG] Connection 0HNCK7R5AGC4E established using the following protocol: "Tls12"
+2025-05-16 09:00:51.641 +03:00 [INF] Request starting HTTP/2 GET https://localhost:49464/api/User/1137 - null null
+2025-05-16 09:00:51.645 +03:00 [DBG] The request path  does not match the path filter
+2025-05-16 09:00:51.647 +03:00 [DBG] 1 candidate(s) found for the request path '/api/User/1137'
+2025-05-16 09:00:51.648 +03:00 [DBG] Endpoint 'Finance_Manager_Backend.Controllers.UserController.GetBalanceById (Finance_Manager_Backend)' with route pattern 'api/User/{id}' is valid for the request path '/api/User/1137'
+2025-05-16 09:00:51.653 +03:00 [DBG] Request matched endpoint 'Finance_Manager_Backend.Controllers.UserController.GetBalanceById (Finance_Manager_Backend)'
+2025-05-16 09:00:51.657 +03:00 [DBG] Successfully validated the token.
+2025-05-16 09:00:51.658 +03:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-05-16 09:00:51.659 +03:00 [INF] Executing endpoint 'Finance_Manager_Backend.Controllers.UserController.GetBalanceById (Finance_Manager_Backend)'
+2025-05-16 09:00:51.665 +03:00 [INF] Route matched with {action = "GetBalanceById", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[Finance_Manager_Backend.BusinessLogic.Models.DTOs.UserBalanceDTO]] GetBalanceById(Int32) on controller Finance_Manager_Backend.Controllers.UserController (Finance_Manager_Backend).
+2025-05-16 09:00:51.668 +03:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-05-16 09:00:51.670 +03:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-05-16 09:00:51.672 +03:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","Finance_Manager_Backend.Middleware.ValidationFilter"]
+2025-05-16 09:00:51.674 +03:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-05-16 09:00:51.676 +03:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-05-16 09:00:51.677 +03:00 [DBG] Executing controller factory for controller Finance_Manager_Backend.Controllers.UserController (Finance_Manager_Backend)
+2025-05-16 09:00:51.680 +03:00 [DBG] Executed controller factory for controller Finance_Manager_Backend.Controllers.UserController (Finance_Manager_Backend)
+2025-05-16 09:00:51.681 +03:00 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' ...
+2025-05-16 09:00:51.685 +03:00 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' using the name 'id' in request data ...
+2025-05-16 09:00:51.687 +03:00 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2025-05-16 09:00:51.689 +03:00 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2025-05-16 09:00:51.690 +03:00 [DBG] Attempting to validate the bound parameter 'id' of type 'System.Int32' ...
+2025-05-16 09:00:51.691 +03:00 [DBG] Done attempting to validate the bound parameter 'id' of type 'System.Int32'.
+2025-05-16 09:00:51.697 +03:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter"]
+2025-05-16 09:00:51.702 +03:00 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]'.
+2025-05-16 09:00:51.704 +03:00 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2025-05-16 09:00:51.705 +03:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-05-16 09:00:51.706 +03:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-05-16 09:00:51.707 +03:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-05-16 09:00:51.708 +03:00 [INF] Executing OkObjectResult, writing value of type 'Finance_Manager_Backend.BusinessLogic.Models.DTOs.UserBalanceDTO'.
+2025-05-16 09:00:51.713 +03:00 [INF] Executed action Finance_Manager_Backend.Controllers.UserController.GetBalanceById (Finance_Manager_Backend) in 35.3691ms
+2025-05-16 09:00:51.714 +03:00 [INF] Executed endpoint 'Finance_Manager_Backend.Controllers.UserController.GetBalanceById (Finance_Manager_Backend)'
+2025-05-16 09:00:51.720 +03:00 [INF] Request finished HTTP/2 GET https://localhost:49464/api/User/1137 - 200 105 application/json; charset=utf-8 78.7774ms
+2025-05-16 09:00:56.508 +03:00 [DBG] Connection id "0HNCK7R5AGC4E" received FIN.
+2025-05-16 09:00:56.514 +03:00 [DBG] The connection queue processing loop for 0HNCK7R5AGC4E completed.
+2025-05-16 09:00:56.514 +03:00 [DBG] Connection id "0HNCK7R5AGC4E" is closed. The last processed stream ID was 1.
+2025-05-16 09:00:56.516 +03:00 [DBG] Connection id "0HNCK7R5AGC4E" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-05-16 09:00:56.520 +03:00 [DBG] Connection id "0HNCK7R5AGC4E" stopped.
+2025-05-16 09:01:05.982 +03:00 [INF] Application is shutting down...
+2025-05-16 09:01:05.983 +03:00 [DBG] Hosting stopping
+2025-05-16 09:01:05.990 +03:00 [DBG] Hosting stopped
