@@ -22,11 +22,11 @@ public static class DataSeeder
         user1.Balance = 1000;
 
         // categories
-        var eatCategory = new Category("eat", false, "eat_icon.png", "#f2e563");         // light yellow (LemonChiffon)
-        var homeCategory = new Category("home", false, "home_icon.png", "#db5139");      // indian red (приглушённо-коричневый)
-        var entertaimentCategory = new Category("entertaiment", false, "entertaiment_icon.png", "#3e7ef0"); // cornflower blue
-        var salaryCategory = new Category("salary", true, "salary_icon.png", "#3de0a9"); // medium aquamarine
-        var medicineCategory = new Category("medicine", false, "medicine_icon.png", "#ff4f3b"); // salmon (приглушённо-красный)
+        var eatCategory = new Category("Eat", false, "eat_icon.png", "#f2e563");         // light yellow (LemonChiffon)
+        var homeCategory = new Category("Home", false, "home_icon.png", "#db5139");      // indian red (приглушённо-коричневый)
+        var entertaimentCategory = new Category("Entertaiment", false, "entertaiment_icon.png", "#3e7ef0"); // cornflower blue
+        var salaryCategory = new Category("Salary", true, "salary_icon.png", "#3de0a9"); // medium aquamarine
+        var medicineCategory = new Category("Medicine", false, "medicine_icon.png", "#ff4f3b"); // salmon (приглушённо-красный)
 
         // user 1
         var user_transaction1 = new Transaction("Bread", 10.90m, new DateTime(2025, 1, 8), eatCategory, user1);
