@@ -3,6 +3,8 @@ using Finance_Manager_Backend.BusinessLogic.Services.AuthServices;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
+using Finance_Manager_Backend.Middleware;
+
 namespace Finance_Manager_Backend.Controllers;
 
 [ApiController]
@@ -27,8 +29,8 @@ public class AuthController : ControllerBase
     /// <response code="400">Invalid credentials.</response>    
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(AuthUserTokensDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "Register")]
     [HttpPost("register")]
     public async Task<ActionResult<AuthUserTokensDTO>> Register([FromBody] AuthDataDTO authDataDTO)
@@ -50,8 +52,8 @@ public class AuthController : ControllerBase
     /// <response code="400">Invalid credentials.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(AuthUserTokensDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "Authenticate")]
     [HttpPost("authenticate")]
     public async Task<ActionResult<AuthUserTokensDTO>> Authenticate([FromBody] AuthDataDTO authDataDTO)
@@ -74,9 +76,9 @@ public class AuthController : ControllerBase
     /// <response code="404">User with this token not found.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(AuthUserTokensDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "RefreshToken")]
     [HttpPost("refresh-token")]
     public async Task<ActionResult<AuthUserTokensDTO>> RefreshToken([FromBody] string refreshToken)

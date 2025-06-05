@@ -6,6 +6,7 @@ using Finance_Manager_Backend.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using System.Reflection;
 using System.Text;
@@ -48,6 +49,11 @@ public class Program
         builder.Services.AddControllers(options =>
         {
             options.Filters.Add<ValidationFilter>();
+            // options.SuppressModelStateInvalidFilter = true;
+        })
+        .ConfigureApiBehaviorOptions(options =>
+        {
+            options.SuppressModelStateInvalidFilter = true;
         })
         .AddNewtonsoftJson();
         // Auto Validation without async filter:

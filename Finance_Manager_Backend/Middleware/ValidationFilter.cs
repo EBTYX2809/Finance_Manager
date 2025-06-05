@@ -35,11 +35,26 @@ public class ValidationFilter : IAsyncActionFilter
 
                 _logger.LogError("Validation failed. Errors: {errors}", errors);
 
-                context.Result = new BadRequestObjectResult(new
+                // context.Result = new BadRequestObjectResult(new
+                // {
+                //     Message = "Validation failed.",
+                //     Errors = errors
+                // });
+
+                string errorMessage = "";
+                foreach (var error in errors)
                 {
-                    Message = "Validation failed.",
-                    Errors = errors
-                });
+                    errorMessage += $"{error.Field}: {error.Error}\n";
+                }
+
+                var errorResponse = new ErrorResponse
+                {
+                    StatusCode = 400,
+                    Message = errorMessage
+                };
+
+                context.Result = new BadRequestObjectResult(errorResponse);
+
                 return;
             }
         }

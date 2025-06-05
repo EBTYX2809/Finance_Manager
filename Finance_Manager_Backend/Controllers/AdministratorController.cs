@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
+using Finance_Manager_Backend.Middleware;
+
 namespace Finance_Manager_Backend.Controllers;
 
 [Authorize(Policy = "AdminPolicy")]
@@ -26,8 +28,8 @@ public class AdministratorController : ControllerBase
     /// <response code="404">Not found category.</response>     
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(CategoryDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "GetCategory")]
     [HttpGet("{id}")]
     public async Task<ActionResult<CategoryDTO>> GetCategoryById(int id)
@@ -43,8 +45,8 @@ public class AdministratorController : ControllerBase
     /// <response code="403">Authorization failed.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "CreateAllCategories")]
     [HttpPost("seed")]
     public async Task<ActionResult> CreateAllCategories()
@@ -65,10 +67,10 @@ public class AdministratorController : ControllerBase
     /// <response code="403">Authorization failed.</response>
     /// <response code="500">Internal server error.</response>
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "CreateCategory")]
     [HttpPost("create")]
     public async Task<ActionResult<int>> CreateCategory([FromBody] CategoryDTO categoryDTO)
@@ -90,11 +92,11 @@ public class AdministratorController : ControllerBase
     /// <response code="404">Not found some resource.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "UpdateCategory")]
     [HttpPut]
     public async Task<ActionResult> UpdateCategory([FromBody] CategoryDTO categoryDTO)
@@ -115,10 +117,10 @@ public class AdministratorController : ControllerBase
     /// <response code="404">Not found category.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "DeleteCategory")]
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteCategory(int id)

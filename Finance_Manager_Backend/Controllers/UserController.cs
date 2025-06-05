@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
+using Finance_Manager_Backend.Middleware;
+
 namespace Finance_Manager_Backend.Controllers;
 
 [ApiController]
@@ -28,8 +30,8 @@ public class UserController : ControllerBase
     /// <response code="404">Not found user.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(UserBalanceDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "GetBalance")]
     [HttpGet("{id}")]
     public async Task<ActionResult<UserBalanceDTO>> GetBalanceById(int id)
@@ -53,10 +55,10 @@ public class UserController : ControllerBase
     /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [Authorize]
     [SwaggerOperation(OperationId = "UpdateCurrency")]
     [HttpPut]

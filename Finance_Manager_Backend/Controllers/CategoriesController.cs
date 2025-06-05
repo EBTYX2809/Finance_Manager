@@ -3,6 +3,8 @@ using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
+using Finance_Manager_Backend.Middleware;
+
 namespace Finance_Manager_Backend.Controllers;
 
 [ApiController]
@@ -25,8 +27,8 @@ public class CategoriesController : ControllerBase
     /// <response code="404">Not found category.</response>     
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(CategoryDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "GetCategory")]
     [HttpGet("{id}")]
     public async Task<ActionResult<CategoryDTO>> GetCategoryById(int id)
@@ -41,7 +43,7 @@ public class CategoriesController : ControllerBase
     /// <response code="200">Success.</response>    
     /// <response code="500">Internal server error.</response>
     [ProducesResponseType(typeof(List<CategoryDTO>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "GetAllCategories")]
     [HttpGet]
     public async Task<ActionResult<List<CategoryDTO>>> GetAllCategories()

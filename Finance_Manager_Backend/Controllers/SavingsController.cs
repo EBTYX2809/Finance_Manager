@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
+using Finance_Manager_Backend.Middleware;
+
 namespace Finance_Manager_Backend.Controllers;
 
 [ApiController]
@@ -27,10 +29,10 @@ public class SavingsController : ControllerBase
     /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response>
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [Authorize]
     [SwaggerOperation(OperationId = "CreateSaving")]
     [HttpPost]
@@ -50,8 +52,8 @@ public class SavingsController : ControllerBase
     /// <response code="404">Not found saving.</response>     
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(SavingDTO), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "GetSaving")]
     [HttpGet("{id}")]
     public async Task<ActionResult<SavingDTO>> GetSavingById(int id)
@@ -74,9 +76,9 @@ public class SavingsController : ControllerBase
     /// <response code="404">Not found some resource.</response>
     /// <response code="500">Internal server error.</response>
     [ProducesResponseType(typeof(List<SavingDTO>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "GetSavings")]
     [HttpGet]
     public async Task<ActionResult<List<SavingDTO>>> GetSavings([FromQuery] GetUserSavingsQueryDTO queryDTO)
@@ -98,10 +100,10 @@ public class SavingsController : ControllerBase
     /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [Authorize]
     [SwaggerOperation(OperationId = "UpdateSaving")]
     [HttpPut]
@@ -122,9 +124,9 @@ public class SavingsController : ControllerBase
     /// <response code="401">Not authorized. Possible invalid token.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [Authorize]
     [SwaggerOperation(OperationId = "DeleteSaving")]
     [HttpDelete("{id}")]

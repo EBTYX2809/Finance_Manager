@@ -3,6 +3,8 @@ using Finance_Manager_Backend.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
+using Finance_Manager_Backend.Middleware;
+
 namespace Finance_Manager_Backend.Controllers;
 
 [ApiController]
@@ -32,9 +34,9 @@ public class AnalyticsController : ControllerBase
     /// <response code="404">Not found some resource.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(List<CategoryPercentDTO>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "GetAnalytics")]
     [HttpGet("overview")]
     public async Task<ActionResult<List<CategoryPercentDTO>>> GetAnalytics([FromQuery] AnalyticsQueryDTO queryDTO)
@@ -69,9 +71,9 @@ public class AnalyticsController : ControllerBase
     /// <response code="404">Not found some resource.</response>
     /// <response code="500">Internal server error.</response> 
     [ProducesResponseType(typeof(List<CategoryPercentDTO>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerOperation(OperationId = "GetInnerAnalytics")]
     [HttpGet("inner_categories")]
     public async Task<ActionResult<List<CategoryPercentDTO>>> GetInnerAnalytics([FromQuery] InnerAnalyticsQueryDTO queryDTO)

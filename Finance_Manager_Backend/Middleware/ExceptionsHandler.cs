@@ -24,13 +24,13 @@ public class ExceptionsHandler
         }
         catch (Exception ex)
         {
-            await HandleExceptionAsync(httpContext ,ex);
+            await HandleExceptionAsync(httpContext, ex);
         }
     }
 
     private Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
     {
-        httpContext.Response.ContentType = "application/json";        
+        httpContext.Response.ContentType = "application/json";
 
         var response = httpContext.Response;
         var errorDetails = new ErrorResponse();
@@ -92,9 +92,9 @@ public class ExceptionsHandler
         return httpContext.Response.WriteAsync(result);
     }
 
-    private class ErrorResponse
-    {
-        public int StatusCode { get; set; }
-        public string Message { get; set; } = string.Empty;
-    }
+}
+public class ErrorResponse
+{
+    public int StatusCode { get; set; }
+    public string Message { get; set; } = string.Empty;
 }

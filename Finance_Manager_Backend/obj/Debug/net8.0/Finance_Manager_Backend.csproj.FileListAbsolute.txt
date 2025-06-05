@@ -25,6 +25,8 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Google.Apis.Core.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Humanizer.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.Build.Locator.dll
@@ -72,6 +74,7 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Mono.TextTemplating.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Newtonsoft.Json.dll
+G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Serilog.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Serilog.AspNetCore.dll
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
@@ -202,6 +205,3 @@ G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Mana
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_Manager_Backend.pdb
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\Finance_Manager_Backend.genruntimeconfig.cache
 G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\obj\Debug\net8.0\ref\Finance_Manager_Backend.dll
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-G:\ARTEM\Проэкты С++, C#\Visual Studio projects\C# Projects\Finance_Manager_Backend\Finance_Manager_Backend\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
