@@ -21,18 +21,9 @@ public class UsersService
 
     public async Task<User> GetUserByIdAsync(int userId)
     {
-        var cacheKey = $"User_{userId}";
-
-        if (_cache.TryGetValue(cacheKey, out User cachedUser))
-        {
-            return cachedUser;
-        }
-
         var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
 
         if (user == null) throw new EntityNotFoundException<User>(userId);
-
-        _cache.Set(cacheKey, user, TimeSpan.FromHours(1));
 
         return user;
     }
