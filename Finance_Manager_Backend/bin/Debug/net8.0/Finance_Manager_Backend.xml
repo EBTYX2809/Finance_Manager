@@ -410,5 +410,17 @@
         <member name="M:Finance_Manager_Backend.Migrations.AddedDefaultInitializationForDecimalProperties.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Finance_Manager_Backend.Migrations.AddedTelegramIdColumnToUser">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.AddedTelegramIdColumnToUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.AddedTelegramIdColumnToUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Finance_Manager_Backend.Migrations.AddedTelegramIdColumnToUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
     </members>
 </doc>

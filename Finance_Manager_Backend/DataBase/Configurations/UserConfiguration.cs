@@ -61,5 +61,9 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .IsRequired(false)
             .HasMaxLength(3)
             .HasColumnName("secondary_currency_2");
+
+        builder.Property(u => u.TelegramId)
+            .IsRequired(false)
+            .HasColumnName("telegram_id");
     }
 }
