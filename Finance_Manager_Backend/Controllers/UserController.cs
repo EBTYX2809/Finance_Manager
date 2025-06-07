@@ -68,4 +68,49 @@ public class UserController : ControllerBase
 
         return NoContent();
     }
+
+    /// <summary>
+    /// Get user id by telegram id.
+    /// </summary>
+    /// <param name="telegramId">Telegram id</param>
+    /// <returns>Returns user id</returns>
+    /// <response code="200">Success.</response>
+    /// <response code="400">Wrong telegram id.</response>
+    /// <response code="500">Internal server error.</response>  
+    [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "GetUserIdByTelegramId")]
+    [HttpGet]
+    public async Task<ActionResult<int>> GetUserIdByTelegramId(string telegramId)
+    {
+        int id = await _usersService.GetUserIdByTelegramIdAsync(telegramId);
+
+        return Ok(id);
+    }
+
+    /// <summary>
+    /// Add telegram id to user
+    /// </summary>
+    /// <param name="userIdTelegramIdDTO">DTO object with UserId and TelegramId</param>
+    /// <returns>Returns NoContent</returns>
+    /// <response code="204">Success.</response>
+    /// <response code="400">Validation failed.</response>
+    /// <response code="404">Not found some resource.</response>
+    /// <response code="401">Not authorized. Possible invalid token.</response>
+    /// <response code="500">Internal server error.</response> 
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+    [Authorize]
+    [SwaggerOperation(OperationId = "GetUserIdByTelegramId")]
+    [HttpPut]
+    public async Task<ActionResult> AddTelegramIdToUser([FromBody] UserIdTelegramIdDTO userIdTelegramIdDTO)
+    {
+        await _usersService.AddTelegramIdToUserAsync(userIdTelegramIdDTO.UserId, userIdTelegramIdDTO.TelegramId);
+
+        return NoContent();
+    }
 }
