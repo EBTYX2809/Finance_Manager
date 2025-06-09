@@ -65,5 +65,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.TelegramId)
             .IsRequired(false)
             .HasColumnName("telegram_id");
+
+        builder.HasIndex(u => u.TelegramId);
     }
 }

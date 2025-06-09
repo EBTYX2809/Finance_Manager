@@ -87,4 +87,29 @@ public class AuthController : ControllerBase
 
         return Ok(authUserTokensDTO);
     }
+
+    /// <summary>
+    /// Get user id by telegram id.
+    /// </summary>
+    /// <param name="telegramId">Telegram Id.</param>
+    /// <returns>AuthUserTokensDTO with parameters:
+    /// UserDTO - user dto object with id, email, and balance;
+    /// AccessJwtToken - new generated jwt token;
+    /// RefreshToken - new generated refresh token.</returns>    
+    /// <response code="200">Success.</response>
+    /// <response code="400">Invalid refresh token.</response>
+    /// <response code="404">Not found some resource.</response>
+    /// <response code="500">Internal server error.</response> 
+    [ProducesResponseType(typeof(AuthUserTokensDTO), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
+    [SwaggerOperation(OperationId = "AuthenticateUserByTelegramId")]
+    [HttpGet("telegram-id")]
+    public async Task<ActionResult<AuthUserTokensDTO>> AuthenticateUserByTelegramId([FromBody] long telegramId)
+    {
+        var authUserTokensDTO = await _authService.AuthenticateUserWithTelegramIdAsync(telegramId);
+
+        return Ok(authUserTokensDTO);
+    }
 }

@@ -60,16 +60,7 @@ public class UsersService
         await _appDbContext.SaveChangesAsync();
     }
 
-    public async Task<int> GetUserIdByTelegramIdAsync(string telegramId)
-    {
-        var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.TelegramId == telegramId);
-
-        if (user == null) throw new InvalidOperationException("User with this telegram id not exist.");
-
-        return user.Id;
-    }
-
-    public async Task AddTelegramIdToUserAsync(int userId, string telegramId)
+    public async Task AddTelegramIdToUserAsync(int userId, long telegramId)
     {
         var user = await GetUserByIdAsync(userId);
 

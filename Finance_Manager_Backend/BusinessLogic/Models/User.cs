@@ -30,5 +30,5 @@ public class User : IEntity
     public string? SecondaryCurrency2 { get; set; }
     public List<Transaction> Transactions { get; set; } = new();
     public List<Saving> Savings { get; set; } = new();
-    public string TelegramId { get; set; } = string.Empty;
+    public long? TelegramId { get; set; }
 }

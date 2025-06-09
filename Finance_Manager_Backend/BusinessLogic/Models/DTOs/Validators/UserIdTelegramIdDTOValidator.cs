@@ -22,6 +22,7 @@ public class UserIdTelegramIdDTOValidator : AbstractValidator<UserIdTelegramIdDT
 
         RuleFor(x => x.TelegramId)
             .NotEmpty()
+            .GreaterThan(0)
             .WithMessage("TelegramId can't be empty");
     }
 }

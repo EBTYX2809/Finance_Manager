@@ -70,26 +70,6 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Get user id by telegram id.
-    /// </summary>
-    /// <param name="telegramId">Telegram id</param>
-    /// <returns>Returns user id</returns>
-    /// <response code="200">Success.</response>
-    /// <response code="400">Wrong telegram id.</response>
-    /// <response code="500">Internal server error.</response>  
-    [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
-    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
-    [SwaggerOperation(OperationId = "GetUserIdByTelegramId")]
-    [HttpGet]
-    public async Task<ActionResult<int>> GetUserIdByTelegramId(string telegramId)
-    {
-        int id = await _usersService.GetUserIdByTelegramIdAsync(telegramId);
-
-        return Ok(id);
-    }
-
-    /// <summary>
     /// Add telegram id to user
     /// </summary>
     /// <param name="userIdTelegramIdDTO">DTO object with UserId and TelegramId</param>
@@ -105,7 +85,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [Authorize]
-    [SwaggerOperation(OperationId = "GetUserIdByTelegramId")]
+    [SwaggerOperation(OperationId = "AddTelegramIdToUser")]
     [HttpPut]
     public async Task<ActionResult> AddTelegramIdToUser([FromBody] UserIdTelegramIdDTO userIdTelegramIdDTO)
     {

@@ -37,10 +37,10 @@ public class AuthService
 
         // Saving user in cache for 1 hour
         var cacheKey = $"User_{user.Id}";
-        _cache.Set(cacheKey, user, TimeSpan.FromHours(1));        
+        _cache.Set(cacheKey, user, TimeSpan.FromHours(1));
 
         var userDTO = _mapper.Map<UserDTO>(user);
-        var accessToken = _tokenGenerator.GenerateAccessJwtToken(user);   
+        var accessToken = _tokenGenerator.GenerateAccessJwtToken(user);
         var refreshToken = _tokenGenerator.GenerateRefreshToken(user);
 
         return new AuthUserTokensDTO { UserDTO = userDTO, AccessJwtToken = accessToken, RefreshToken = refreshToken };
@@ -67,7 +67,7 @@ public class AuthService
 
         string hashedInput = HashPassword(password, user.Salt);
 
-        if (user.PasswordHash == hashedInput) 
+        if (user.PasswordHash == hashedInput)
         {
             // Saving user in cache for 1 hour
             var cacheKey = $"User_{user.Id}";
@@ -86,7 +86,7 @@ public class AuthService
     {
         var existingToken = await _appDbContext.RefreshTokens.FirstOrDefaultAsync(rt => rt.Token == refreshToken);
 
-        if(existingToken == null) throw new InvalidOperationException("Invalid refresh token");
+        if (existingToken == null) throw new InvalidOperationException("Invalid refresh token");
         else if (existingToken.ExpiresAt < DateTime.UtcNow) throw new InvalidOperationException("Expired refresh token");
 
         // Should use UsersService, but don't want load DI for 1 time using method.
@@ -105,6 +105,17 @@ public class AuthService
         var newRefreshToken = _tokenGenerator.GenerateRefreshToken(user);
 
         return new AuthUserTokensDTO { UserDTO = userDTO, AccessJwtToken = newAaccessToken, RefreshToken = newRefreshToken };
+    }
+
+    public async Task<AuthUserTokensDTO> AuthenticateUserWithTelegramIdAsync(long telegramId)
+    {
+        var user = await _appDbContext.Users.FirstOrDefaultAsync(u => u.TelegramId == telegramId);
+
+        if (user == null) throw new InvalidOperationException("User with this telegram id not exist.");
+
+        var refreshToken = await _appDbContext.RefreshTokens.FirstOrDefaultAsync(t => t.UserId == user.Id);
+
+        return await AuthenticateUserWithRefreshTokenAsync(refreshToken.Token);
     }
 
     private string HashPassword(string password, string salt)

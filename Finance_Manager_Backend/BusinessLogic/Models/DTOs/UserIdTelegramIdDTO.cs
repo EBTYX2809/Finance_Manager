@@ -8,5 +8,5 @@ public class UserIdTelegramIdDTO
     public int UserId { get; set; }
 
     [JsonProperty(Required = Required.Always)]
-    public string TelegramId { get; set; } = string.Empty;
+    public long TelegramId { get; set; }
 }
