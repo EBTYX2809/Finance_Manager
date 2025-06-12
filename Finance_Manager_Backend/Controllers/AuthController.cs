@@ -89,7 +89,7 @@ public class AuthController : ControllerBase
     }
 
     /// <summary>
-    /// Get user id by telegram id.
+    /// Authenticate user by telegram id.
     /// </summary>
     /// <param name="telegramId">Telegram Id.</param>
     /// <returns>AuthUserTokensDTO with parameters:

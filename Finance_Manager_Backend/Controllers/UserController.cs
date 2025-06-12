@@ -61,7 +61,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [Authorize]
     [SwaggerOperation(OperationId = "UpdateCurrency")]
-    [HttpPut]
+    [HttpPut("currency")]
     public async Task<ActionResult> UpdateCurrency([FromBody] UpdateUserCurrencyQueryDTO currencyQueryDTO)
     {
         await _usersService.UpdateUserCurrencyAsync(currencyQueryDTO.UserId, currencyQueryDTO.CurrencyRang, currencyQueryDTO.CurrencyCode);
@@ -86,7 +86,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     [Authorize]
     [SwaggerOperation(OperationId = "AddTelegramIdToUser")]
-    [HttpPut]
+    [HttpPut("telegramId")]
     public async Task<ActionResult> AddTelegramIdToUser([FromBody] UserIdTelegramIdDTO userIdTelegramIdDTO)
     {
         await _usersService.AddTelegramIdToUserAsync(userIdTelegramIdDTO.UserId, userIdTelegramIdDTO.TelegramId);
