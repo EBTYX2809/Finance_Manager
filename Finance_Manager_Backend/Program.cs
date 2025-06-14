@@ -48,7 +48,6 @@ public class Program
         builder.Services.AddControllers(options =>
         {
             options.Filters.Add<ValidationFilter>();
-            // options.SuppressModelStateInvalidFilter = true;
         })
         .ConfigureApiBehaviorOptions(options =>
         {
