@@ -1,3 +1,8 @@
 .vs/
 Finance_Manager_Backend/appsettings.json
+Finance_Manager_Backend/bin
+Finance_Manager_Backend/obj
+Finance_Manager_Backend/logs
+Finance_Manager_Backend/Properties
+Finance_Manager_Backend/Finance_Manager_Backend.csproj.user
 Finance_Manager_Backend_Tests/appsettings.Test.json
