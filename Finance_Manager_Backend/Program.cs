@@ -15,9 +15,9 @@ using System.Globalization;
 
 public class Program
 {
-    public static void Main()
+    public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder();
+        var builder = WebApplication.CreateBuilder(args);
 
         var cultureInfo = new CultureInfo("en-GB");
         CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
@@ -131,12 +131,16 @@ public class Program
 
         builder.Host.UseSerilog();
 
-        /*builder.WebHost.ConfigureKestrel(serverOptions =>
-        {
-            serverOptions.Listen(System.Net.IPAddress.Any, 18090);       // http://0.0.0.0:18090
-        });*/
-
         var app = builder.Build();
+
+        // Automigrate before run backend
+        if (args.Contains("--migrate"))
+        {
+            using var scope = app.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            db.Database.Migrate();
+            return;
+        }
 
         if (app.Environment.IsDevelopment())
         {
@@ -144,12 +148,10 @@ public class Program
             app.UseSwaggerUI();
             DataSeeder.ClearDb(app.Services).Wait();
             DataSeeder.SeedData(app.Services).Wait();
-            // Delete later
-            DataSeeder.SeedAdmin(app.Services, app.Configuration).Wait();
         }
         else if (app.Environment.IsProduction())
         {
-            DataSeeder.SeedAdmin(app.Services, app.Configuration).Wait();
+            // DataSeeder.SeedAdmin(app.Services, app.Configuration).Wait();
         }
 
         // Middleware

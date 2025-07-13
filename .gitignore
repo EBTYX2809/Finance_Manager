@@ -1,5 +1,6 @@
 .vs/
 Finance_Manager_Backend/appsettings.json
+Finance_Manager_Backend/.env
 Finance_Manager_Backend/bin
 Finance_Manager_Backend/obj
 Finance_Manager_Backend/logs

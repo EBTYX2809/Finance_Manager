@@ -1,0 +1,46 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  delpoy_containers:
+    runs-on: [self-hosted, backend]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Stop and remove old containers
+        run: |
+          docker compose \
+          -f ./Finance_Manager_Backend/docker-compose.yml down \
+          --volumes --remove-orphans
+          docker system prune -f
+
+      - name: Get config files
+        run: |
+          cp /home/plotnoplodviktor/configs/finman_backend_config/.env ./Finance_Manager_Backend/env
+          cp /home/plotnoplodviktor/configs/finman_backend_config/appsettings.json ./Finance_Manager_Backend
+
+      - name: Start database
+        run: docker compose -f ./Finance_Manager_Backend/docker-compose.yml up -d db
+
+      - name: Healthcheck database
+        run: |
+          until [ "$(docker inspect -f '{{.State.Health.Status}}' finance_db)" = "healthy" ]; do
+            sleep 2
+          done
+          echo "Database is healthy."
+
+      - name: Run EF migrations
+        run: |
+          docker compose \
+          -f ./Finance_Manager_Backend/docker-compose.yml run \
+          --rm backend \
+          dotnet Finance_Manager_Backend.dll --migrate
+
+      - name: Start backend
+        run: |
+          docker compose -f ./Finance_Manager_Backend/docker-compose.yml up -d backend

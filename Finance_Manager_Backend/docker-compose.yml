@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: finman_db
+    environment:
+      SA_PASSWORD: ${DB_PASSWORD}
+      ACCEPT_EULA: Y
+    ports:
+      - "1488:1488"
+    volumes:
+      - /home/plotnoplodviktor/finman_db_data:/var/opt/mssql
+    healthcheck:
+      test: [ "CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U ${DB_USER} -P ${DB_PASSWORD} -Q 'SELECT 1'" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  
+  backend:
+    build:
+      dockerfile: dockerfile
+    container_name: finman_backend
+    ports:
+      - "28000:28000"
+    environment:
+       - ASPNETCORE_ENVIRONMENT=Production
+       - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
+       - ASPNETCORE_URLS=http://0.0.0.0:28000
+    depends_on:
+      db:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-c", "wait-for-sql.sh && dotnet Finance_Manager_Backend.dll"]
