@@ -21,7 +21,7 @@ jobs:
 
       - name: Get config files
         run: |
-          cp /home/plotnoplodviktor/configs/finman_backend_config/.env ./Finance_Manager_Backend/env
+          cp /home/plotnoplodviktor/configs/finman_backend_config/.env ./Finance_Manager_Backend/.env
           cp /home/plotnoplodviktor/configs/finman_backend_config/appsettings.json ./Finance_Manager_Backend
 
       - name: Start database
