@@ -12,6 +12,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Get config files
+        run: |
+          cp /home/plotnoplodviktor/configs/finman_backend_config/.env ./Finance_Manager_Backend/.env
+          cp /home/plotnoplodviktor/configs/finman_backend_config/appsettings.json ./Finance_Manager_Backend
+
       - name: Stop and remove old containers
         run: |
           docker compose \
@@ -19,20 +24,15 @@ jobs:
           --volumes --remove-orphans
           docker system prune -f
 
-      - name: Get config files
-        run: |
-          cp /home/plotnoplodviktor/configs/finman_backend_config/.env ./Finance_Manager_Backend/.env
-          cp /home/plotnoplodviktor/configs/finman_backend_config/appsettings.json ./Finance_Manager_Backend
-
       - name: Start database
         run: docker compose -f ./Finance_Manager_Backend/docker-compose.yml up -d db
 
-      - name: Healthcheck database
-        run: |
-          until [ "$(docker inspect -f '{{.State.Health.Status}}' finman_db)" = "healthy" ]; do
-            sleep 2
-          done
-          echo "Database is healthy."
+      #- name: Healthcheck database
+      #  run: |
+      #    until [ "$(docker inspect -f '{{.State.Health.Status}}' finman_db)" = "healthy" ]; do
+      #      sleep 2
+      #    done
+      #    echo "Database is healthy."
 
       - name: Run EF migrations
         run: |
