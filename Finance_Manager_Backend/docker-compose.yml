@@ -28,6 +28,6 @@ services:
        - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
        - ASPNETCORE_URLS=http://0.0.0.0:28000
     depends_on:
-      db
+       - db
         #condition: service_healthy
     entrypoint: ["/bin/sh", "-c", "wait-for-sql.sh && dotnet Finance_Manager_Backend.dll"]
