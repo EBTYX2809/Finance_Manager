@@ -10,7 +10,7 @@ services:
     ports:
       - "1488:1488"
     volumes:
-      - /home/plotnoplodviktor/finman_db_data:/var/opt/mssql
+      - /home/ubuntu/finman_db_data:/var/opt/mssql
     #healthcheck:
     #  test: [ "CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U ${DB_USER} -P ${DB_PASSWORD} -Q 'SELECT 1'" ]
     #  interval: 10s
