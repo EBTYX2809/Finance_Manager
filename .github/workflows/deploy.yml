@@ -27,13 +27,6 @@ jobs:
       - name: Start database
         run: docker compose -f ./Finance_Manager_Backend/docker-compose.yml up -d db
 
-      # - name: Healthcheck database
-      #  run: |
-      #    until [ "$(docker inspect -f '{{.State.Health.Status}}' finman_db)" = "healthy" ]; do
-      #      sleep 2
-      #    done
-      #    echo "Database is healthy."
-
       - name: Run EF migrations
         run: |
           docker compose \

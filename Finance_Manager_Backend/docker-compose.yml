@@ -2,20 +2,20 @@ version: "3.9"
 
 services:
   db:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: postgres:16
     container_name: finman_db
     environment:
       SA_PASSWORD: ${DB_PASSWORD}
       ACCEPT_EULA: Y
     ports:
-      - "1488:1488"
+      - "5432:5432"
     volumes:
-      - /home/ubuntu/finman_db_data:/var/opt/mssql
+      - /home/ubuntu/finman_db_data:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U ${DB_USER} -P ${DB_PASSWORD} -Q 'SELECT 1'" ]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
       timeout: 5s
-      retries: 10
+      retries: 5
   
   backend:
     build:
