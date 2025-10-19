@@ -31,4 +31,4 @@ services:
        - db
         #condition: service_healthy
         # to entrypoint wait-for-sql.sh && 
-    entrypoint: ["/bin/sh", "-c", "dotnet Finance_Manager_Backend.dll"]
+    entrypoint: ["/bin/sh", "-c", "wait-for-sql.sh && dotnet Finance_Manager_Backend.dll"]
