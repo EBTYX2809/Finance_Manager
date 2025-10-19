@@ -11,11 +11,11 @@ services:
       - "1488:1488"
     volumes:
       - /home/ubuntu/finman_db_data:/var/opt/mssql
-    #healthcheck:
-    #  test: [ "CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U ${DB_USER} -P ${DB_PASSWORD} -Q 'SELECT 1'" ]
-    #  interval: 10s
-    #  timeout: 5s
-    #  retries: 10
+    healthcheck:
+      test: [ "CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U ${DB_USER} -P ${DB_PASSWORD} -Q 'SELECT 1'" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
   
   backend:
     build:
@@ -28,7 +28,7 @@ services:
        - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
        - ASPNETCORE_URLS=http://0.0.0.0:28000
     depends_on:
-       - db
-        #condition: service_healthy
+      db:
+        condition: service_healthy
         # to entrypoint wait-for-sql.sh && 
-    entrypoint: ["/bin/sh", "-c", "wait-for-sql.sh && dotnet Finance_Manager_Backend.dll"]
+    entrypoint: ["/bin/sh", "-c", "dotnet Finance_Manager_Backend.dll"]
