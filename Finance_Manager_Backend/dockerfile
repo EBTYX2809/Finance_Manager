@@ -11,8 +11,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/publish .
 # Add wait-for-sql.sh to /app
-COPY wait-for-sql.sh ./
-RUN chmod +x wait-for-sql.sh
+# COPY wait-for-sql.sh ./
+# RUN chmod +x wait-for-sql.sh
 
 EXPOSE 28000
 
