@@ -30,4 +30,4 @@ services:
     depends_on:
        - db
         #condition: service_healthy
-    entrypoint: ["/bin/sh", "-c", "wait-for-sql.sh && dotnet Finance_Manager_Backend.dll"] jj
+    entrypoint: ["/bin/sh", "-c", "wait-for-sql.sh && dotnet Finance_Manager_Backend.dll"]
