@@ -7,3 +7,5 @@ Finance_Manager_Backend/logs
 Finance_Manager_Backend/Properties
 Finance_Manager_Backend/Finance_Manager_Backend.csproj.user
 Finance_Manager_Backend_Tests/appsettings.Test.json
+Finance_Manager_Backend_Tests/obj
+Finance_Manager_Backend_Tests/bin
